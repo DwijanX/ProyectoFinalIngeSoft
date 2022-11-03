@@ -1,4 +1,4 @@
- import {createHomework,getHombeworkArray,clearHomeworkArray} from "./docente";
+ import {createHomework,getHomeworkArray,clearHomeworkArray} from "./docente";
 
  describe("Crear una tarea", () => {
     beforeEach(() => {
@@ -26,6 +26,6 @@
             dateFin:"2021-01-02",
             courseName:"testCourse2",
         }]
-        expect(getHombeworkArray()).toEqual(expectedArray);
+        expect(getHomeworkArray()).toEqual(expectedArray);
     });
 });
