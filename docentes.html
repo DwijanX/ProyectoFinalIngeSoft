@@ -1,5 +1,21 @@
 <html>
   <body>
     <h1 id="title">Docentes</h1>
+    <h1>Crear Tarea</h1>
+    <form id="HomeworkCreation-form">
+      <label for="HomeworkName">Nombre:</label>
+      <input type="text" id="HomeworkName" />
+
+      <label for="courseName">Nombre de la materia:</label>
+      <input type="text" id="courseName" />
+
+      <label for="dateInit">Fecha inicial:</label>
+      <input type="date" id="dateInit" />
+      <label for="dateFin">Fecha limite:</label>
+      <input type="date" id="dateFin" />
+      <input type="submit" value="Crear Tarea" id="create-button" />
+    </form>
+    <div id="resultado-div"></div>
+    <script type="module" src="./src/presenter.js"></script>
   </body>
 </html>
