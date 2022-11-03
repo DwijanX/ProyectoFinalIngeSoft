@@ -1,4 +1,4 @@
-import createHomework from "./docente";
+import createHomework from "./docente.js";
 
 const HomeworkName = document.querySelector("#HomeworkName");
 const CourseName = document.querySelector("#courseName");
@@ -15,3 +15,15 @@ form.addEventListener("click", (event) => {
   const dateFin = DateFin.value;
   createHomework(hmwkName,dateInit,dateFin,courseName)
 });
+
+noNumberFields.forEach(noNumberField=>
+    {
+      noNumberField.addEventListener("input", (event) => {
+        event.preventDefault();
+        let currentLength=String(noNumberField.value).length-1
+        if (isNaN(noNumberField.value[currentLength])==false)
+        {
+          noNumberField.value = noNumberField.value.slice(0,currentLength-1)
+        }
+      });
+    })

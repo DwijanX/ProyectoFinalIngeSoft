@@ -1,4 +1,4 @@
-import Tarea from "./tarea"
+import Tarea from "./tarea.js"
 let HomeWorkArray=[]
 
 function createHomework(name,dateInit,dateFin,courseName)
