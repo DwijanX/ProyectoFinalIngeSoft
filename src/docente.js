@@ -1,18 +1,13 @@
-
+import Tarea from "./tarea"
 let HomeWorkArray=[]
 
 function createHomework(name,dateInit,dateFin,courseName)
 {
-    let task={
-        name:name,
-        dateInit:dateInit,
-        dateFin:dateFin,
-        courseName:courseName
-    }
+    let task=new Tarea(name,dateInit,dateFin,courseName);
     HomeWorkArray.push(task);
-    return task
+    return task.getHomeworkObj()
 }
-function getHombeworkArray()
+function getHomeworkArray()
 {
     return HomeWorkArray;
 }
@@ -21,4 +16,4 @@ function clearHomeworkArray()
     HomeWorkArray=[]
 }
 
-export {createHomework,getHombeworkArray,clearHomeworkArray}
+export {createHomework,getHomeworkArray,clearHomeworkArray}

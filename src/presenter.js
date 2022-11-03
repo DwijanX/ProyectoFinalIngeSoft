@@ -7,9 +7,3 @@ docentesPage.addEventListener("click", (event) => {
 
   document.location.href = "./docentes.html";
 });
-
-estudiantesPage.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  document.location.href = "./estudiantes.html";
-});
