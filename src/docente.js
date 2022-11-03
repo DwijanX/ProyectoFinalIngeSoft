@@ -1,4 +1,5 @@
 
+let HomeWorkArray=[]
 
 function createHomework(name,dateInit,dateFin,courseName)
 {
@@ -8,7 +9,16 @@ function createHomework(name,dateInit,dateFin,courseName)
         dateFin:dateFin,
         courseName:courseName
     }
+    HomeWorkArray.push(task);
     return task
 }
+function getHombeworkArray()
+{
+    return HomeWorkArray;
+}
+function clearHomeworkArray()
+{
+    HomeWorkArray=[]
+}
 
-export {createHomework}
+export {createHomework,getHombeworkArray,clearHomeworkArray}
