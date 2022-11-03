@@ -1,15 +1,20 @@
-import sumar from "./sumador";
 
 const first = document.querySelector("#primer-numero");
 const second = document.querySelector("#segundo-numero");
 const form = document.querySelector("#sumar-form");
 const div = document.querySelector("#resultado-div");
 
-form.addEventListener("submit", (event) => {
+const docentesPage = document.querySelector("#docentesPage");
+const estudiantesPage = document.querySelector("#estudiantesPage");
+
+docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+  document.location.href = "./docentes.html";
+});
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+estudiantesPage.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  document.location.href = "./estudiantes.html";
 });
