@@ -15,5 +15,8 @@ function clearHomeworkArray()
 {
     HomeWorkArray=[]
 }
+function deleteHomework(){
+    return 0;
+}
 
-export {createHomework,getHomeworkArray,clearHomeworkArray}
+export {createHomework,getHomeworkArray,clearHomeworkArray,deleteHomework}

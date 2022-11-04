@@ -1,4 +1,4 @@
- import {createHomework,getHomeworkArray,clearHomeworkArray} from "./docente";
+ import {createHomework,getHomeworkArray,clearHomeworkArray, deleteHomework} from "./docente";
 
  describe("Crear una tarea", () => {
     beforeEach(() => {
@@ -28,4 +28,16 @@
         }]
         expect(getHomeworkArray()).toEqual(expectedArray);
     });
+    
+});
+describe("Deletes an assigned homework", () => {
+    beforeEach(() => {
+        clearHomeworkArray();
+      });
+    it("it deletes the assigned homework when the list has just one assigned", () => {
+        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
+        let hoArr=getHombeworkArray();
+        expect(deleteHomework()).toEqual(0);
+    });
+    
 });
