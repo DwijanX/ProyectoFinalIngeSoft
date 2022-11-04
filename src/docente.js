@@ -16,7 +16,10 @@ function clearHomeworkArray()
     HomeWorkArray=[]
 }
 function deleteHomework(){
-    return 0;
+    if(HomeWorkArray.length>0){
+        HomeWorkArray.pop();
+    }
+    return HomeWorkArray.length;
 }
 
 export {createHomework,getHomeworkArray,clearHomeworkArray,deleteHomework}

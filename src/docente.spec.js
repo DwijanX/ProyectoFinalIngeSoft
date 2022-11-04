@@ -34,9 +34,8 @@ describe("Deletes an assigned homework", () => {
     beforeEach(() => {
         clearHomeworkArray();
       });
-    it("it deletes the assigned homework when the list has just one assigned", () => {
+    it("it deletes the assigned homework when the list has just one assignment", () => {
         createHomework("test1","2021-01-01","2021-01-02","testCourse1")
-        let hoArr=getHombeworkArray();
         expect(deleteHomework()).toEqual(0);
     });
     
