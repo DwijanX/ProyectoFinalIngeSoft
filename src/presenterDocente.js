@@ -1,4 +1,4 @@
-import {createHomework,createCourse, getHomeworkArray} from "./docente";
+import {createHomework,createCourse, getHomeworkArray, getHomeworkBasedOnId} from "./docente";
 
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
@@ -17,7 +17,7 @@ const TeachersName = document.querySelector("#TeachersName");
 
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
-//var showHomework = document.getElementsByClassName("showHomework");
+var showHomework = document.getElementsByClassName("showHomework");
 
 noNumberFields=document.querySelectorAll(".noNumbersInput")
 
@@ -42,8 +42,9 @@ createHmwkForm.addEventListener("submit", (event) => {
     status= 2;
   }
   if (status==0)
-    createHomework(hmwkName,dateInit,dateFin,courseName)
+    createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
     addItemToHomeworkList()
+    idTarea++;
   return status;
 });
 
@@ -97,12 +98,29 @@ function addItemToHomeworkList()
 {
   let homeworkArray = getHomeworkArray()
   let idList = "div" + idTarea.toString()
-  idTarea++
   const homework = homeworkArray[homeworkArray.length - 1]
   const newDiv = document.createElement('div')
   newDiv.setAttribute("id", idList)
   newDiv.setAttribute("class", "showHomework")
-  elem.setAttribute("onclick","showItemsOnClick()");
   newDiv.innerHTML += homework.name
   homeworkList.appendChild(newDiv)
+  showHomework = document.getElementsByClassName("showHomework");
+  addListenerForNewItem()
+}
+
+function addListenerForNewItem()
+{
+  for (const homework of showHomework) {
+    homework.addEventListener('click', function handleClick(event) {
+      showItemsOnClick(homework.id)
+    });
+  }
+}
+
+function showItemsOnClick(divID)
+{
+  let string = divID.toString()
+  const homework = getHomeworkBasedOnId(parseInt(string.substr(3)))
+  selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
+  homework.dateFin + " , materia: " + homework.courseName
 }
