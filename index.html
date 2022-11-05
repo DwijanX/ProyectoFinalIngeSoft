@@ -16,8 +16,10 @@
 
     <div id="TeachersDiv">
       <h1 id="title">Docentes</h1>
-      <button id="showFormToCreateHmwk">Crear Tarea</button>
-      <form id="HomeworkCreation-form">
+      <button id="BtnToCreateHmwk" class="TeachersButton">Crear Tarea</button>
+      <button id="BtnToCreateCourse" class="TeachersButton">Crear Materia</button>
+
+      <form id="HomeworkCreation-form" class="creationForms">
         <label for="HomeworkName">Nombre:</label>
         <input type="text" class="noNumbersInput" id="HomeworkName" />
 
@@ -28,8 +30,21 @@
         <input type="date" id="dateInit" />
         <label for="dateFin">Fecha limite:</label>
         <input type="date" id="dateFin" />
-        <input type="submit" value="Crear Tarea" id="create-button" />
+        <input type="submit" value="Crear Tarea" />
       </form>
+      <form id="CourseCreation-form" class="creationForms">
+        <label for="CourseName">Nombre:</label>
+        <input type="text" class="noNumbersInput" id="CourseNameCreation" />
+
+        <label for="courseInitials">Sigla:</label>
+        <input type="text"  id="courseInitials" />
+
+        <label for="TeachersName">Nombre del docente:</label>
+        <input type="text" class="noNumbersInput" id="TeachersName" />
+
+        <input type="submit" value="Crear Materia"/>
+      </form>
+
     </div>
     <div id="StudentsDiv">
       <h1 id="title">Estudiantes</h1>

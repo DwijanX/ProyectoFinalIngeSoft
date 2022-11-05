@@ -4,7 +4,9 @@ const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");
 const TeachersDiv = document.querySelector("#TeachersDiv");
 const StudentsDiv = document.querySelector("#StudentsDiv");
+//Minor objects
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
+const createCourseForm=document.querySelector("#CourseCreation-form");
 
 
 
@@ -26,4 +28,5 @@ estudiantesPage.addEventListener("click", (event) => {
 function resetMinorObjsStyles()
 {
   createHmwkForm.style.display="none"
+  createCourseForm.style.display="none"
 }

@@ -22,8 +22,8 @@ function createCourse(Initials,Name,TeachersName)
 {
     let task=new Materia(Initials,Name,TeachersName);
     coursesArray.push(task);
+    console.log(coursesArray);
     return task.getCourseObj()
-
 }
 
 export {createHomework,getHomeworkArray,clearHomeworkArray,createCourse}

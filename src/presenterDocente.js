@@ -1,14 +1,25 @@
-import {createHomework} from "./docente";
+import {createHomework,createCourse} from "./docente";
 
+
+const createHmwkForm=document.querySelector("#HomeworkCreation-form");
+const createCourseForm=document.querySelector("#CourseCreation-form");
+const BtnToCreateHmwk=document.querySelector("#BtnToCreateHmwk");
+const BtnToCreateCourse=document.querySelector("#BtnToCreateCourse");
+
+//Form Objects
 const HomeworkName = document.querySelector("#HomeworkName");
 const CourseName = document.querySelector("#courseName");
 const DateInit = document.querySelector("#dateInit");
 const DateFin = document.querySelector("#dateFin");
-const form=document.querySelector("#HomeworkCreation-form");
-const showFormToCreateHmwk=document.querySelector("#showFormToCreateHmwk");
+const CourseNameCreation = document.querySelector("#CourseNameCreation");
+const courseInitials = document.querySelector("#courseInitials");
+const TeachersName = document.querySelector("#TeachersName");
+
+
+
 noNumberFields=document.querySelectorAll(".noNumbersInput")
 
-form.addEventListener("submit", (event) => {
+createHmwkForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const hmwkName = HomeworkName.value;
   const courseName = CourseName.value;
@@ -30,10 +41,28 @@ form.addEventListener("submit", (event) => {
     createHomework(hmwkName,dateInit,dateFin,courseName)
   return status;
 });
-showFormToCreateHmwk.addEventListener("click", (event) => {
+
+createCourseForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  form.style.display="block"
+  const CourseName = CourseNameCreation.value;
+  const CourseInitials = courseInitials.value;
+  const Teacher = TeachersName.value;
+  createCourse(CourseInitials,CourseName,Teacher);
 });
+
+
+BtnToCreateHmwk.addEventListener("click", (event) => {
+  event.preventDefault();
+  createHmwkForm.style.display="block"
+  createCourseForm.style.display="none"
+});
+BtnToCreateCourse.addEventListener("click", (event) => {
+  event.preventDefault();
+  createCourseForm.style.display="block"
+  createHmwkForm.style.display="none"
+
+});
+
 
 noNumberFields.forEach(noNumberField=>
     {

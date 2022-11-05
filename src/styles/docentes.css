@@ -3,11 +3,11 @@
     display:none;
     flex-direction: column;
 }
-#showFormToCreateHmwk
+.TeachersButton
 {
     width: 25%;
 }
-#HomeworkCreation-form
+.creationForms
 {
     display: none;
 }
