@@ -5,6 +5,7 @@ const CourseName = document.querySelector("#courseName");
 const DateInit = document.querySelector("#dateInit");
 const DateFin = document.querySelector("#dateFin");
 const form=document.querySelector("#HomeworkCreation-form");
+const showFormToCreateHmwk=document.querySelector("#showFormToCreateHmwk");
 noNumberFields=document.querySelectorAll(".noNumbersInput")
 
 form.addEventListener("submit", (event) => {
@@ -28,6 +29,10 @@ form.addEventListener("submit", (event) => {
   if (status==0)
     createHomework(hmwkName,dateInit,dateFin,courseName)
   return status;
+});
+showFormToCreateHmwk.addEventListener("click", (event) => {
+  event.preventDefault();
+  form.style.display="block"
 });
 
 noNumberFields.forEach(noNumberField=>

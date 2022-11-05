@@ -3,3 +3,11 @@
     display:none;
     flex-direction: column;
 }
+#showFormToCreateHmwk
+{
+    width: 25%;
+}
+#HomeworkCreation-form
+{
+    display: none;
+}
