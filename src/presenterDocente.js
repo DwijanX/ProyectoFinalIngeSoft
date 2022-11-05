@@ -1,4 +1,4 @@
-import {createHomework,createCourse} from "./docente";
+import {createHomework,createCourse, getHomeworkArray} from "./docente";
 
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
@@ -15,6 +15,7 @@ const CourseNameCreation = document.querySelector("#CourseNameCreation");
 const courseInitials = document.querySelector("#courseInitials");
 const TeachersName = document.querySelector("#TeachersName");
 
+const homeworkList =  document.querySelector("#homeworkList");
 
 
 noNumberFields=document.querySelectorAll(".noNumbersInput")
@@ -39,6 +40,7 @@ createHmwkForm.addEventListener("submit", (event) => {
   }
   if (status==0)
     createHomework(hmwkName,dateInit,dateFin,courseName)
+    addItemToHomeworkList()
   return status;
 });
 
@@ -86,4 +88,13 @@ function checkIfDate1IsLowerThan2(date1,date2)
     return true
   else
     return false
+}
+
+function addItemToHomeworkList()
+{
+  let homeworkArray = getHomeworkArray()
+  const homework = homeworkArray[homeworkArray.length - 1]
+  const newDiv = document.createElement('div');
+  newDiv.innerHTML += homework.name
+  homeworkList.appendChild(newDiv)
 }

@@ -14,6 +14,7 @@ function getHomeworkArray()
 {
     return HomeWorkArray;
 }
+
 function clearHomeworkArray()
 {
     HomeWorkArray=[]
