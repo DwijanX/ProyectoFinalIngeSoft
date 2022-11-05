@@ -15,9 +15,11 @@ function clearHomeworkArray()
 {
     HomeWorkArray=[]
 }
-function deleteHomework(){
+function deleteHomework(name){
     if(HomeWorkArray.length>0){
-        HomeWorkArray.pop();
+        if(HomeWorkArray[0].nameMatchs(name)){
+            HomeWorkArray.pop();
+        }
     }
     return HomeWorkArray.length;
 }

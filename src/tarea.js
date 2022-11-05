@@ -15,5 +15,8 @@ class Tarea{
             courseName:this.courseName
         }
     }
+    nameMatchs(name){
+        return this.name==name;
+    }
 }
 export default Tarea;

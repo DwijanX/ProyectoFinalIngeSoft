@@ -36,7 +36,7 @@ describe("Deletes an assigned homework", () => {
       });
     it("it deletes the assigned homework when the list has just one assignment", () => {
         createHomework("test1","2021-01-01","2021-01-02","testCourse1")
-        expect(deleteHomework()).toEqual(0);
+        expect(deleteHomework("test1")).toEqual(0);
     });
     
 });
