@@ -1,4 +1,5 @@
- import {createHomework,getHomeworkArray,clearHomeworkArray} from "./docente";
+
+import {createHomework,getHomeworkArray,clearHomeworkArray,createCourse} from "./docente";
 
  describe("Crear una tarea", () => {
     beforeEach(() => {
@@ -29,3 +30,9 @@
         expect(getHomeworkArray()).toEqual(expectedArray);
     });
 });
+describe("Pruebas de Materia",()=>{
+    it("Se deberia crear una materia",()=>{
+        let expectedCourse={initials:"MAT1",name:"Calculo 1",teachersName:"IDK"}
+        expect(createCourse("MAT1","Calculo 1","IDK")).toEqual(expectedCourse);
+    })
+})
