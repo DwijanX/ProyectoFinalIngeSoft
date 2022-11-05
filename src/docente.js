@@ -1,4 +1,6 @@
 import Tarea from "./tarea.js"
+import materia from "./materia.js"
+import Materia from "./materia.js";
 let HomeWorkArray=[]
 let coursesArray=[]
 
@@ -18,9 +20,9 @@ function clearHomeworkArray()
 }
 function createCourse(Initials,Name,TeachersName)
 {
-    let Course={initials:Initials,name:Name,teachersName:TeachersName};
-    coursesArray.push(Course);
-    return Course;
+    let task=new Materia(Initials,Name,TeachersName);
+    coursesArray.push(task);
+    return task.getCourseObj()
 
 }
 
