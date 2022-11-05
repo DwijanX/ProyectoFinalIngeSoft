@@ -5,6 +5,7 @@ class Tarea{
         this.dateInit=dateInit;
         this.dateFin=dateFin;
         this.courseName=courseName;
+        this.id = 0
     }
     getHomeworkObj()
     {
@@ -14,6 +15,15 @@ class Tarea{
             dateFin:this.dateFin,
             courseName:this.courseName
         }
+    }
+    changeHomeworkID(number)
+    {
+        this.id = number
+    }
+
+    getId()
+    {
+        return this.id
     }
 }
 export default Tarea;

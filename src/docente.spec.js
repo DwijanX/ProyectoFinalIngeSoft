@@ -18,11 +18,13 @@ import {createHomework,getHomeworkArray,clearHomeworkArray,createCourse} from ".
         createHomework("test2","2021-01-01","2021-01-02","testCourse2")
         let expectedArray=[{
             name:"test1",
+            id:0,
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse1",
         },{
             name:"test2",
+            id:0,
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse2",
@@ -36,3 +38,4 @@ describe("Pruebas de Materia",()=>{
         expect(createCourse("MAT1","Calculo 1","IDK")).toEqual(expectedCourse);
     })
 })
+

@@ -16,9 +16,12 @@ const courseInitials = document.querySelector("#courseInitials");
 const TeachersName = document.querySelector("#TeachersName");
 
 const homeworkList =  document.querySelector("#homeworkList");
-
+const selectedHomework = document.querySelector("#selectedHomework");
+//var showHomework = document.getElementsByClassName("showHomework");
 
 noNumberFields=document.querySelectorAll(".noNumbersInput")
+
+let idTarea = 0
 
 createHmwkForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -93,8 +96,13 @@ function checkIfDate1IsLowerThan2(date1,date2)
 function addItemToHomeworkList()
 {
   let homeworkArray = getHomeworkArray()
+  let idList = "div" + idTarea.toString()
+  idTarea++
   const homework = homeworkArray[homeworkArray.length - 1]
-  const newDiv = document.createElement('div');
+  const newDiv = document.createElement('div')
+  newDiv.setAttribute("id", idList)
+  newDiv.setAttribute("class", "showHomework")
+  elem.setAttribute("onclick","showItemsOnClick()");
   newDiv.innerHTML += homework.name
   homeworkList.appendChild(newDiv)
 }
