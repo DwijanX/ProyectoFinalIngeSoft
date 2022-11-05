@@ -4,15 +4,27 @@ import Materia from "./materia.js";
 let HomeWorkArray=[]
 let coursesArray=[]
 
-function createHomework(name,dateInit,dateFin,courseName)
+function createHomework(name,dateInit,dateFin,courseName, id)
 {
-    let task=new Tarea(name,dateInit,dateFin,courseName);
+    let task=new Tarea(name,dateInit,dateFin,courseName, id);
     HomeWorkArray.push(task);
     return task.getHomeworkObj()
 }
 function getHomeworkArray()
 {
     return HomeWorkArray;
+}
+
+function getHomeworkBasedOnId(id)
+{
+    for(var i=0; i<HomeWorkArray.length; i++)
+    {
+        if(HomeWorkArray[i].getId() == id)
+        {
+            return HomeWorkArray[i]
+        }
+    }
+    return null
 }
 
 function clearHomeworkArray()
@@ -27,4 +39,4 @@ function createCourse(Initials,Name,TeachersName)
     return task.getCourseObj()
 }
 
-export {createHomework,getHomeworkArray,clearHomeworkArray,createCourse}
+export {createHomework,getHomeworkArray,clearHomeworkArray,createCourse,getHomeworkBasedOnId}
