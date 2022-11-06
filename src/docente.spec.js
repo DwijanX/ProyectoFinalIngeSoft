@@ -100,5 +100,9 @@ describe("Modificar una tarea", () => {
             courseName:"testCourse",
         });
     });
+    it("Se modifica una tarea que no existe", () => {
+        createHomework("test","2021-01-01","2021-01-02","testCourse",0)
+        expect(modifyHomework(1,"test4","2021-01-01","2021-01-03","testCourse")).toEqual(HomeworkNotFound);
+    });
     
 });

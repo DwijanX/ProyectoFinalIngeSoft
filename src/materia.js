@@ -43,10 +43,13 @@ class Materia{
     }
     modifyHomework(id,name,dateInit,dateFin)
     {
-        let answer;
+        let answer=HomeworkNotFound;
         let HomeworkIndex=this.getHomeworkIndexById(id);
-        this.Homeworks[HomeworkIndex].modifyAtts(name,dateInit,dateFin);
-        answer=this.Homeworks[HomeworkIndex]
+        if(HomeworkIndex!=-1)
+        {
+            this.Homeworks[HomeworkIndex].modifyAtts(name,dateInit,dateFin);
+            answer=this.Homeworks[HomeworkIndex]
+        }
         return answer
     }
 }
