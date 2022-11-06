@@ -13,11 +13,9 @@ const createCourseForm=document.querySelector("#CourseCreation-form");
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const hmwkName = HomeworkName.value;
-  const courseName = CourseName.value;
-  const dateInit = DateInit.value;
-  const dateFin = DateFin.value;
-  createHomework(hmwkName,dateInit,dateFin,courseName)
+  TeachersDiv.style.display="flex"
+  StudentsDiv.style.display="none"
+  resetMinorObjsStyles()
   
 });
 estudiantesPage.addEventListener("click", (event) => {
