@@ -42,9 +42,11 @@ createHmwkForm.addEventListener("submit", (event) => {
     status= 2;
   }
   if (status==0)
+  {
     createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
     addItemToHomeworkList()
     idTarea++;
+  }
   return status;
 });
 
@@ -77,7 +79,7 @@ noNumberFields.forEach(noNumberField=>
         let currentLength=String(noNumberField.value).length-1
         if (isNaN(noNumberField.value[currentLength])==false)
         {
-          noNumberField.value = noNumberField.value.slice(0,currentLength-1)
+          noNumberField.value = noNumberField.value.slice(0,currentLength)
         }
       });
     })
@@ -86,8 +88,6 @@ function checkIfDate1IsLowerThan2(date1,date2)
 {
   date1=new Date(date1);
   date2=new Date(date2);
-  console.log(date1);
-  console.log(date2);
   if(date1-date2<=0)
     return true
   else
@@ -96,25 +96,22 @@ function checkIfDate1IsLowerThan2(date1,date2)
 
 function addItemToHomeworkList()
 {
-  let homeworkArray = getHomeworkArray()
-  let idList = "div" + idTarea.toString()
-  const homework = homeworkArray[homeworkArray.length - 1]
-  const newDiv = document.createElement('div')
-  newDiv.setAttribute("id", idList)
-  newDiv.setAttribute("class", "showHomework")
-  newDiv.innerHTML += homework.name
-  homeworkList.appendChild(newDiv)
-  showHomework = document.getElementsByClassName("showHomework");
-  addListenerForNewItem()
+  let homeworkArray = getHomeworkArray();
+  let idList = "div" + idTarea.toString();
+  const homework = homeworkArray[homeworkArray.length - 1];
+  const newDiv = document.createElement('div');
+  newDiv.setAttribute("id", idList);
+  newDiv.setAttribute("class", "showHomework");
+  newDiv.innerHTML += homework.name;
+  homeworkList.appendChild(newDiv);
+  addListenerForNewItem(newDiv,idList);
 }
 
-function addListenerForNewItem()
+function addListenerForNewItem(newHomeworkDiv,id)
 {
-  for (const homework of showHomework) {
-    homework.addEventListener('click', function handleClick(event) {
-      showItemsOnClick(homework.id)
+    newHomeworkDiv.addEventListener('click', function handleClick(event) {
+      showItemsOnClick(id);
     });
-  }
 }
 
 function showItemsOnClick(divID)

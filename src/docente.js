@@ -1,5 +1,4 @@
 import Tarea from "./tarea.js"
-import materia from "./materia.js"
 import Materia from "./materia.js";
 let HomeWorkArray=[]
 let coursesArray=[]
