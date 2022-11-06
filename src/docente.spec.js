@@ -43,18 +43,19 @@ const HomeworkNotFound=2;
     
 });
 describe("Deletes an assigned homework", () => {
+    createCourse("tst","testCourse","testTeacher")
     beforeEach(() => {
-        clearHomeworkArray();
+        clearCourseHomeworks("testCourse");
       });
     it("it deletes the assigned homework when the list has just one assignment", () => {
-        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
-        expect(deleteHomework("test1")).toEqual(0);
+        createHomework("test1","2021-01-01","2021-01-02","testCourse",1)
+        expect(deleteHomework("testCourse",1)).toEqual(0);
     });
-    it("it deletes the assigned homework based on the given name", () => {
-        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
-        createHomework("test2","2021-01-01","2021-01-02","testCourse2")
-        createHomework("test3","2021-01-01","2021-01-02","testCourse3")
-        expect(deleteHomework("test2")).toEqual(2);
+    it("it deletes the assigned homework based on the given id", () => {
+        createHomework("test1","2021-01-01","2021-01-02","testCourse",1)
+        createHomework("test2","2021-01-01","2021-01-02","testCourse",2)
+        createHomework("test3","2021-01-01","2021-01-02","testCourse",3)
+        expect(deleteHomework("testCourse",3)).toEqual(2);
     });
 });
 

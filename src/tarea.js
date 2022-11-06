@@ -1,3 +1,5 @@
+import { deleteHomework } from "./docente";
+
 class Tarea{
     constructor(name,dateInit,dateFin,courseName, id)
     {
@@ -17,10 +19,6 @@ class Tarea{
             courseName:this.courseName
         }
     }
-    nameMatchs(name){
-        return this.name==name;
-    }
-
     getId()
     {
         return this.id

@@ -1,3 +1,5 @@
+import { deleteHomework } from "./docente";
+
 const HomeworkNotFound=2;
 class Materia{
     constructor(Initials,Name,TeachersName)
@@ -51,6 +53,14 @@ class Materia{
             answer=this.Homeworks[HomeworkIndex]
         }
         return answer
+    }
+    deleteHomework(id){
+        let HomeworkIndex=this.getHomeworkIndexById(id);
+        if(HomeworkIndex!=-1)
+        {
+            this.Homeworks.splice(HomeworkIndex);
+        }
+        return this.getHomeworkArray().length;
     }
 }
 export default Materia;
