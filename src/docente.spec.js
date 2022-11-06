@@ -1,6 +1,8 @@
 
-import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId} from "./docente";
+import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework} from "./docente";
 import Materia from "./materia"
+const CourseNotFound=1
+const HomeworkNotFound=2;
 
 
  describe("Crear una tarea", () => {
@@ -36,7 +38,7 @@ import Materia from "./materia"
         expect(getCourseHomeworks("testCourse")).toEqual(expectedArray);
     });
     it("Trata de crear una tarea para un curso que no existe", () => {
-        expect(createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(null);
+        expect(createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(CourseNotFound);
     });
 });
 
@@ -56,8 +58,8 @@ describe("Pruebas para conseguir Id",()=>{
             courseName:"testCourse",
         });
     })
-    it("deberia de volver nulo",()=>{
-        expect(getHomeworkBasedOnId(4)).toEqual(null);
+    it("Se trata de obtener una tarea que no existe",()=>{
+        expect(getHomeworkBasedOnId(4)).toEqual(HomeworkNotFound);
     })
 })
 
@@ -77,9 +79,26 @@ describe("Pruebas sobre Materia",()=>{
         expect(materia.CompareName("test")).toEqual(true);
     })
     it("Prueba de obtener el array de tareas de un curso que no existe",()=>{
-        expect(getCourseHomeworks("course3414214")).toEqual(null)
+        expect(getCourseHomeworks("course3414214")).toEqual(CourseNotFound)
     })
     it("Prueba de eliminar el array de tareas de un curso que no existe",()=>{
         expect(clearCourseHomeworks("course3414214")).toEqual(1)
     })
 })
+describe("Modificar una tarea", () => {
+    createCourse("tst","testCourse","testTeacher")
+    beforeEach(() => {
+        clearCourseHomeworks("testCourse");
+      });
+    it("Se modifica una tarea", () => {
+        createHomework("test","2021-01-01","2021-01-02","testCourse",0)
+        expect(modifyHomework(0,"test4","2021-01-01","2021-01-03","testCourse")).toEqual({
+            name:"test4",
+            id:0,
+            dateInit:"2021-01-01",
+            dateFin:"2021-01-03",
+            courseName:"testCourse",
+        });
+    });
+    
+});

@@ -22,5 +22,11 @@ class Tarea{
     {
         return this.id
     }
+    modifyAtts(name,dateInit,dateFin)
+    {
+        this.name=name;
+        this.dateInit=dateInit;
+        this.dateFin=dateFin;
+    }
 }
 export default Tarea;

@@ -1,5 +1,8 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
+
+const CourseNotFound=1
+const HomeworkNotFound=2;
 let courses={}
 
 function createHomework(name,dateInit,dateFin,courseName, id)
@@ -10,7 +13,7 @@ function createHomework(name,dateInit,dateFin,courseName, id)
         courses[courseName].addHomework(task)
         return task.getHomeworkObj()
     }
-    return null
+    return CourseNotFound
 }
 function getCourseHomeworks(courseName)
 {
@@ -18,7 +21,7 @@ function getCourseHomeworks(courseName)
     {
         return courses[courseName].getHomeworkArray()
     }
-    return null
+    return CourseNotFound
 }
 
 function getHomeworkBasedOnId(id)
@@ -31,13 +34,12 @@ function getHomeworkBasedOnId(id)
                 return CourseHomeworks[HomeworkIndex]
         }
       }
-    return null
+    return HomeworkNotFound
 }
 
 function clearCourseHomeworks(courseName)
-{
-    
-    let status=1
+{ 
+    let status=CourseNotFound
     if(courses[courseName])
     {
         courses[courseName].clearHomeworks()
@@ -51,5 +53,11 @@ function createCourse(Initials,Name,TeachersName)
     courses[Name]=task
     return task.getCourseObj()
 }
-
-export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId}
+function modifyHomework(id,name,dateInit,dateFin,CourseName)
+{
+    let answer;
+    answer=courses[CourseName].modifyHomework(id,name,dateInit,dateFin);
+    return answer
+    
+}
+export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework}
