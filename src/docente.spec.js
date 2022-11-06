@@ -1,5 +1,5 @@
 
-import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework} from "./docente";
+import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework, deleteHomework} from "./docente";
 import Materia from "./materia"
 const CourseNotFound=1
 const HomeworkNotFound=2;
@@ -39,6 +39,22 @@ const HomeworkNotFound=2;
     });
     it("Trata de crear una tarea para un curso que no existe", () => {
         expect(createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(CourseNotFound);
+    });
+    
+});
+describe("Deletes an assigned homework", () => {
+    beforeEach(() => {
+        clearHomeworkArray();
+      });
+    it("it deletes the assigned homework when the list has just one assignment", () => {
+        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
+        expect(deleteHomework("test1")).toEqual(0);
+    });
+    it("it deletes the assigned homework based on the given name", () => {
+        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
+        createHomework("test2","2021-01-01","2021-01-02","testCourse2")
+        createHomework("test3","2021-01-01","2021-01-02","testCourse3")
+        expect(deleteHomework("test2")).toEqual(2);
     });
 });
 

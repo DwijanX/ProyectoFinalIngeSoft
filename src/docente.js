@@ -37,6 +37,17 @@ function getHomeworkBasedOnId(id)
     return HomeworkNotFound
 }
 
+function deleteHomework(name){
+    if(HomeWorkArray.length>0){
+        for(let i=0;i<HomeWorkArray.length;i++){
+            if(HomeWorkArray[i].nameMatchs(name)){
+                HomeWorkArray.splice(i,1);
+            }
+        }
+    }
+    return HomeWorkArray.length;
+}
+
 function clearCourseHomeworks(courseName)
 { 
     let status=CourseNotFound
@@ -62,4 +73,4 @@ function modifyHomework(id,name,dateInit,dateFin,CourseName)
     }
     return answer;
 }
-export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework}
+export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework,deleteHomework}
