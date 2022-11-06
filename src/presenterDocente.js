@@ -44,8 +44,16 @@ createHmwkForm.addEventListener("submit", (event) => {
   if (status==0)
   {
     let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
-    addItemToHomeworkList(createdHmwk)
-    idTarea++;
+    if(createdHmwk!=null)
+    {
+      addItemToHomeworkList(createdHmwk)
+      idTarea++;
+    }
+    else
+    {
+      alert("No existe el curso al que se intenta crear la tarea")
+      status=3;
+    }
   }
   return status;
 });
@@ -56,6 +64,7 @@ createCourseForm.addEventListener("submit", (event) => {
   const CourseInitials = courseInitials.value;
   const Teacher = TeachersName.value;
   createCourse(CourseInitials,CourseName,Teacher);
+  alert("Curso creado con exito");
 });
 
 
