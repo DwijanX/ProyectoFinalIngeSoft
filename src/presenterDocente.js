@@ -1,8 +1,9 @@
-import {createHomework,createCourse, getHomeworkArray, getHomeworkBasedOnId} from "./docente";
+import {createHomework,createCourse,modifyHomework , getHomeworkBasedOnId} from "./docente";
 
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
 const createCourseForm=document.querySelector("#CourseCreation-form");
+const HomeworkMoficationForm=document.querySelector("#HomeworkMofication-form");
 const BtnToCreateHmwk=document.querySelector("#BtnToCreateHmwk");
 const BtnToCreateCourse=document.querySelector("#BtnToCreateCourse");
 
@@ -14,6 +15,11 @@ const DateFin = document.querySelector("#dateFin");
 const CourseNameCreation = document.querySelector("#CourseNameCreation");
 const courseInitials = document.querySelector("#courseInitials");
 const TeachersName = document.querySelector("#TeachersName");
+const HomeworkNameModif = document.querySelector("#HomeworkNameModif");
+const dateInitModif = document.querySelector("#dateInitModif");
+const dateFinModif = document.querySelector("#dateFinModif");
+const IDModif = document.querySelector("#IDModif");
+const CourseNameModif = document.querySelector("#CourseNameModif");
 
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
@@ -22,15 +28,10 @@ var showHomework = document.getElementsByClassName("showHomework");
 noNumberFields=document.querySelectorAll(".noNumbersInput")
 
 let idTarea = 0
-
-createHmwkForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const hmwkName = HomeworkName.value;
-  const courseName = CourseName.value;
-  const dateInit = DateInit.value;
-  const dateFin = DateFin.value;
+function validateHomeworksInput(dateFin,dateInit)
+{
+  let status=0;
   today=new Date()
-  let status=0
   if(checkIfDate1IsLowerThan2(today,dateFin)==false)
   {
     alert("La fecha de fin ya paso");
@@ -41,6 +42,18 @@ createHmwkForm.addEventListener("submit", (event) => {
     alert("La fecha inicial no puede ser mayor a la final");
     status= 2;
   }
+  return status
+}
+
+createHmwkForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const hmwkName = HomeworkName.value;
+  const courseName = CourseName.value;
+  const dateInit = DateInit.value;
+  const dateFin = DateFin.value;
+  
+  let status=validateHomeworksInput(dateFin,dateInit);
+
   if (status==0)
   {
     let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
@@ -57,7 +70,21 @@ createHmwkForm.addEventListener("submit", (event) => {
   }
   return status;
 });
-
+HomeworkMoficationForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const hmwkName = HomeworkNameModif.value;
+  const dateInit = dateInitModif.value;
+  const dateFin = dateFinModif.value;
+  const idModif = IDModif.value;
+  const courseNameModif = CourseNameModif.value;
+  
+  let status=validateHomeworksInput(dateFin,dateInit);
+  if (status==0)
+  {
+    modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+  }
+  return status;
+});
 createCourseForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const CourseName = CourseNameCreation.value;
@@ -72,11 +99,13 @@ BtnToCreateHmwk.addEventListener("click", (event) => {
   event.preventDefault();
   createHmwkForm.style.display="block"
   createCourseForm.style.display="none"
+  HomeworkMoficationForm.style.display="none"
 });
 BtnToCreateCourse.addEventListener("click", (event) => {
   event.preventDefault();
   createCourseForm.style.display="block"
   createHmwkForm.style.display="none"
+  HomeworkMoficationForm.style.display="none"
 
 });
 
@@ -106,14 +135,36 @@ function checkIfDate1IsLowerThan2(date1,date2)
 function addItemToHomeworkList(homework)
 {
   let idList = idTarea.toString();
+  const HmwkContainer=document.createElement('div');
   const newDiv = document.createElement('div');
+  const modifyButton = document.createElement('button');
+  modifyButton.innerHTML="Modificar"
   newDiv.setAttribute("id", idList);
   newDiv.setAttribute("class", "showHomework");
   newDiv.innerHTML += homework.name;
-  homeworkList.appendChild(newDiv);
+  HmwkContainer.appendChild(newDiv);
+  HmwkContainer.appendChild(modifyButton);
+  homeworkList.appendChild(HmwkContainer);
   addListenerForNewItem(newDiv,idList);
+  addListenerToModifyButton(modifyButton,homework);
 }
-
+function addListenerToModifyButton(modifyButton,homework)
+{
+  modifyButton.addEventListener('click', (event=>{
+    HomeworkMoficationForm.style.display="block"
+    createHmwkForm.style.display="none"
+    createCourseForm.style.display="none"
+    loadModificationFormWithHmwkInfo(homework)
+  })) 
+}
+function loadModificationFormWithHmwkInfo(homework)
+{
+  IDModif.value=homework.id
+  CourseNameModif.value=homework.courseName
+  HomeworkNameModif.value=homework.name
+  dateInitModif.value=homework.dateInit
+  dateFinModif.value=homework.dateFin
+} 
 function addListenerForNewItem(newHomeworkDiv,id)
 {
     newHomeworkDiv.addEventListener('click', function handleClick(event) {

@@ -22,6 +22,22 @@ class Tarea{
     {
         return this.id
     }
+    getCourse()
+    {
+        return this.courseName
+    }
+    getName()
+    {
+        return this.name
+    }
+    getDateInit()
+    {
+        return this.dateInit
+    }
+    getDateFin()
+    {
+        return this.dateFin
+    }
     modifyAtts(name,dateInit,dateFin)
     {
         this.name=name;
