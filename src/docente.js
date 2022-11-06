@@ -1,34 +1,59 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
-let HomeWorkArray=[]
 let coursesArray=[]
 
 function createHomework(name,dateInit,dateFin,courseName, id)
 {
     let task=new Tarea(name,dateInit,dateFin,courseName, id);
-    HomeWorkArray.push(task);
-    return task.getHomeworkObj()
+    let courseIndex=findCourse(courseName)
+    if(courseIndex!=-1)
+    {
+        coursesArray[courseIndex].addHomework(task)
+        return task.getHomeworkObj()
+    }
+    return null
 }
-function getHomeworkArray()
+function findCourse(name)
 {
-    return HomeWorkArray;
+    for(let index=0;index<coursesArray.length;index++)
+    {
+        if(coursesArray[index].CompareName(name))
+            return index;
+    }
+    return -1;
+}
+function getCourseHomeworks(courseName)
+{
+    let courseIndex=findCourse(courseName)
+    if(courseIndex!=-1)
+        return coursesArray[courseIndex].getHomeworkArray()
+    return null
 }
 
 function getHomeworkBasedOnId(id)
 {
-    for(var i=0; i<HomeWorkArray.length; i++)
+    for(let CourseIndex=0;CourseIndex<coursesArray.length;CourseIndex++)
     {
-        if(HomeWorkArray[i].getId() == id)
+        let CourseHomeworks=coursesArray[CourseIndex].getHomeworkArray()
+        for(let HomeworkIndex=0; HomeworkIndex<CourseHomeworks.length; HomeworkIndex++)
         {
-            return HomeWorkArray[i]
+            if(CourseHomeworks[HomeworkIndex].getId() == id)
+                return CourseHomeworks[HomeworkIndex]
         }
     }
     return null
 }
 
-function clearHomeworkArray()
+function clearCourseHomeworks(courseName)
 {
-    HomeWorkArray=[]
+    let courseIndex=findCourse(courseName)
+    let status=1
+    if(courseIndex!=-1)
+    {
+        coursesArray[courseIndex].clearHomeworks()
+        status=0
+    }
+    return status
 }
 function createCourse(Initials,Name,TeachersName)
 {
@@ -39,4 +64,4 @@ function createCourse(Initials,Name,TeachersName)
 }
 
 
-export {createHomework,getHomeworkArray,clearHomeworkArray,createCourse,getHomeworkBasedOnId}
+export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId}
