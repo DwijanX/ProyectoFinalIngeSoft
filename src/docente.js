@@ -38,4 +38,5 @@ function createCourse(Initials,Name,TeachersName)
     return task.getCourseObj()
 }
 
+
 export {createHomework,getHomeworkArray,clearHomeworkArray,createCourse,getHomeworkBasedOnId}

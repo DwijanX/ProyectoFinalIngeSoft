@@ -43,8 +43,8 @@ createHmwkForm.addEventListener("submit", (event) => {
   }
   if (status==0)
   {
-    createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
-    addItemToHomeworkList()
+    let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
+    addItemToHomeworkList(createdHmwk)
     idTarea++;
   }
   return status;
@@ -94,11 +94,9 @@ function checkIfDate1IsLowerThan2(date1,date2)
     return false
 }
 
-function addItemToHomeworkList()
+function addItemToHomeworkList(homework)
 {
-  let homeworkArray = getHomeworkArray();
-  let idList = "div" + idTarea.toString();
-  const homework = homeworkArray[homeworkArray.length - 1];
+  let idList = idTarea.toString();
   const newDiv = document.createElement('div');
   newDiv.setAttribute("id", idList);
   newDiv.setAttribute("class", "showHomework");
@@ -116,8 +114,7 @@ function addListenerForNewItem(newHomeworkDiv,id)
 
 function showItemsOnClick(divID)
 {
-  let string = divID.toString()
-  const homework = getHomeworkBasedOnId(parseInt(string.substr(3)))
+  const homework = getHomeworkBasedOnId(parseInt(divID))
   selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
   homework.dateFin + " , materia: " + homework.courseName
 }
