@@ -109,6 +109,11 @@ BtnToCreateCourse.addEventListener("click", (event) => {
 
 });
 
+BtnToDeleteHomwork.addEventListener("click", (event) =>{
+  event.preventDefault();
+  
+})
+
 
 noNumberFields.forEach(noNumberField=>
     {
@@ -137,6 +142,8 @@ function addItemToHomeworkList(homework)
   let idList = idTarea.toString();
   const HmwkContainer=document.createElement('div');
   const newDiv = document.createElement('div');
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML='Eliminar';
   const modifyButton = document.createElement('button');
   modifyButton.innerHTML="Modificar"
   newDiv.setAttribute("id", idList);
@@ -144,6 +151,7 @@ function addItemToHomeworkList(homework)
   newDiv.innerHTML += homework.name;
   HmwkContainer.appendChild(newDiv);
   HmwkContainer.appendChild(modifyButton);
+  HmwkContainer.appendChild(deleteButton);
   homeworkList.appendChild(HmwkContainer);
   addListenerForNewItem(newDiv,idList);
   addListenerToModifyButton(modifyButton,homework);
