@@ -104,5 +104,10 @@ describe("Modificar una tarea", () => {
         createHomework("test","2021-01-01","2021-01-02","testCourse",0)
         expect(modifyHomework(1,"test4","2021-01-01","2021-01-03","testCourse")).toEqual(HomeworkNotFound);
     });
+    it("Se modifica una tarea que no existe en el curso brindado", () => {
+        createHomework("test","2021-01-01","2021-01-02","testCourse",0)
+        expect(modifyHomework(0,"test4","2021-01-01","2021-01-03","testCourse1")).toEqual(CourseNotFound);
+    });
+
     
 });

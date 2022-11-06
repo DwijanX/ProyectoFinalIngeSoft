@@ -55,9 +55,11 @@ function createCourse(Initials,Name,TeachersName)
 }
 function modifyHomework(id,name,dateInit,dateFin,CourseName)
 {
-    let answer;
-    answer=courses[CourseName].modifyHomework(id,name,dateInit,dateFin);
-    return answer
-    
+    let answer=CourseNotFound;
+    if(courses[CourseName])
+    {
+        answer=courses[CourseName].modifyHomework(id,name,dateInit,dateFin);
+    }
+    return answer;
 }
 export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework}
