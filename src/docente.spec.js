@@ -38,5 +38,10 @@ describe("Deletes an assigned homework", () => {
         createHomework("test1","2021-01-01","2021-01-02","testCourse1")
         expect(deleteHomework("test1")).toEqual(0);
     });
-    
+    it("it deletes the assigned homework based on the given name", () => {
+        createHomework("test1","2021-01-01","2021-01-02","testCourse1")
+        createHomework("test2","2021-01-01","2021-01-02","testCourse2")
+        createHomework("test3","2021-01-01","2021-01-02","testCourse3")
+        expect(deleteHomework("test2")).toEqual(2);
+    });
 });
