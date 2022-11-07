@@ -8,6 +8,7 @@ class Tarea{
         this.dateFin=dateFin;
         this.courseName=courseName;
         this.id = id
+        this.timesCompleted=0;
     }
     getHomeworkObj()
     {
@@ -16,7 +17,8 @@ class Tarea{
             id: this.id,
             dateInit:this.dateInit,
             dateFin:this.dateFin,
-            courseName:this.courseName
+            courseName:this.courseName,
+            timesCompleted:this.timesCompleted=0
         }
     }
     getId()
@@ -45,5 +47,14 @@ class Tarea{
         this.dateInit=dateInit;
         this.dateFin=dateFin;
     }
+    addToCompleted()
+    {
+        this.timesCompleted+=1;
+    }
+    getTimesCompleted()
+    {
+        return this.timesCompleted;
+    }
+
 }
 export default Tarea;

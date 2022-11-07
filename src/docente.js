@@ -1,9 +1,9 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
-
+import SingletonCourses from "./SingleTonCourses.js";
+let courses=SingletonCourses.getInstance();
 const CourseNotFound=1
 const HomeworkNotFound=2;
-let courses={}
 
 function createHomework(name,dateInit,dateFin,courseName, id)
 {
@@ -62,7 +62,7 @@ function modifyHomework(id,name,dateInit,dateFin,CourseName)
     return answer;
 }
 function deleteHomework(courseName, homeworkId){
-    let status;
+    let status=CourseNotFound;
    if(courses[courseName]){
     status=courses[courseName].deleteHomework(homeworkId);
    }

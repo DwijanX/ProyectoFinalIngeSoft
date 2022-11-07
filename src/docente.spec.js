@@ -17,6 +17,7 @@ const HomeworkNotFound=2;
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse",
+            timesCompleted: 0,
         });
     });
     it("Se crean varias tareas", () => {
@@ -28,12 +29,14 @@ const HomeworkNotFound=2;
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse",
+            timesCompleted: 0,
         },{
             name:"test2",
             id:2,
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse",
+            timesCompleted: 0,
         }]
         expect(getCourseHomeworks("testCourse")).toEqual(expectedArray);
     });
@@ -57,6 +60,13 @@ describe("Deletes an assigned homework", () => {
         createHomework("test3","2021-01-01","2021-01-02","testCourse",3)
         expect(deleteHomework("testCourse",3)).toEqual(2);
     });
+    it("Tries to delete a homework that doesnt exist", () => {
+        expect(deleteHomework("testCourse",20)).toEqual(0);
+    });
+    
+    it("Tries to delete a homework from a course that doesnt exist", () => {
+        expect(deleteHomework("testCourse279",0)).toEqual(CourseNotFound);
+    });
 });
 
 
@@ -73,6 +83,7 @@ describe("Pruebas para conseguir Id",()=>{
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse",
+            timesCompleted: 0,
         });
     })
     it("Se trata de obtener una tarea que no existe",()=>{
@@ -115,6 +126,7 @@ describe("Modificar una tarea", () => {
             dateInit:"2021-01-01",
             dateFin:"2021-01-03",
             courseName:"testCourse",
+            timesCompleted: 0,
         });
     });
     it("Se modifica una tarea que no existe", () => {
