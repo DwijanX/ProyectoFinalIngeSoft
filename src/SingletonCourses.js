@@ -2,7 +2,7 @@ var SingletonCourses = (function () {
     var instance;
 
     function createInstance() {
-        var object = new Object();
+        var object = {};
         return object;
     }
 

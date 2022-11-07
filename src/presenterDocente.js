@@ -1,11 +1,14 @@
 import {createHomework,createCourse,modifyHomework , getHomeworkBasedOnId, deleteHomework} from "./docente";
-
+const CourseNotFound=1
+const HomeworkNotFound=2;
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
 const createCourseForm=document.querySelector("#CourseCreation-form");
 const HomeworkMoficationForm=document.querySelector("#HomeworkMofication-form");
 const BtnToCreateHmwk=document.querySelector("#BtnToCreateHmwk");
 const BtnToCreateCourse=document.querySelector("#BtnToCreateCourse");
+const selectedHomeworkStats=document.querySelector("#selectedHomeworkStats");
+
 
 //Form Objects
 const HomeworkName = document.querySelector("#HomeworkName");
@@ -56,7 +59,7 @@ createHmwkForm.addEventListener("submit", (event) => {
   if (status==0)
   {
     let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
-    if(createdHmwk!=null)
+    if(createdHmwk!=CourseNotFound)
     {
       addItemToHomeworkList(createdHmwk)
       idTarea++;
@@ -181,6 +184,7 @@ function addListenerForNewItem(newHomeworkDiv,id)
 {
     newHomeworkDiv.addEventListener('click', function handleClick(event) {
       showItemsOnClick(id);
+      loadHomeworkStats(id);
     });
 }
 
@@ -189,4 +193,9 @@ function showItemsOnClick(divID)
   const homework = getHomeworkBasedOnId(parseInt(divID))
   selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
   homework.dateFin + " , materia: " + homework.courseName
+}
+function loadHomeworkStats(id)
+{
+  const homework = getHomeworkBasedOnId(parseInt(id))
+  selectedHomeworkStats.innerHTML="Completa "+homework.timesCompleted+" veces";
 }
