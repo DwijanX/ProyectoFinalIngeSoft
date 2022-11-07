@@ -69,18 +69,6 @@ createHmwkForm.addEventListener("submit", (event) => {
   }
   return status;
 });
-// deleteButtonForm.addEventListener("submit", (event)=>{
-//  event.preventDefault();
-//  const idDelete = idToDelete.value;
-//  const courseDelete = courseNameToDelete.value;
-//  const startDate = startDateToDelete.value;
-//  const endDate = endDateToDelete.value;
-//  let status=validateHomeworksInput(startDate,endDate);
-//  if(status==0){
-//   deleteHomework(courseDelete,idDelete)
-//  }
-//  return status;
-// });
 HomeworkMoficationForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const hmwkName = HomeworkNameModif.value;
@@ -165,9 +153,10 @@ function addItemToHomeworkList(homework)
 function addListenerToDeleteButton(deleteButton,homework){
   deleteButton.addEventListener('click', (event=>{
     HomeworkMoficationForm.style.display="none";
-    createHmwkForm.style.display="none";
+    createHmwkForm.style.display="block";
     createCourseForm.style.display="none";
     deleteHomework(homework.courseName,homework.id);
+    alert("La Tarea fue eliminada exitosamente");
   }))
   
 }
