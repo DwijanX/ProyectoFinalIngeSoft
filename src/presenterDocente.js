@@ -1,4 +1,4 @@
-import {createHomework,createCourse,modifyHomework , getHomeworkBasedOnId} from "./docente";
+import {createHomework,createCourse,modifyHomework , getHomeworkBasedOnId, deleteHomework} from "./docente";
 
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
@@ -20,7 +20,6 @@ const dateInitModif = document.querySelector("#dateInitModif");
 const dateFinModif = document.querySelector("#dateFinModif");
 const IDModif = document.querySelector("#IDModif");
 const CourseNameModif = document.querySelector("#CourseNameModif");
-
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
 var showHomework = document.getElementsByClassName("showHomework");
@@ -70,6 +69,18 @@ createHmwkForm.addEventListener("submit", (event) => {
   }
   return status;
 });
+// deleteButtonForm.addEventListener("submit", (event)=>{
+//  event.preventDefault();
+//  const idDelete = idToDelete.value;
+//  const courseDelete = courseNameToDelete.value;
+//  const startDate = startDateToDelete.value;
+//  const endDate = endDateToDelete.value;
+//  let status=validateHomeworksInput(startDate,endDate);
+//  if(status==0){
+//   deleteHomework(courseDelete,idDelete)
+//  }
+//  return status;
+// });
 HomeworkMoficationForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const hmwkName = HomeworkNameModif.value;
@@ -108,12 +119,6 @@ BtnToCreateCourse.addEventListener("click", (event) => {
   HomeworkMoficationForm.style.display="none"
 
 });
-
-BtnToDeleteHomwork.addEventListener("click", (event) =>{
-  event.preventDefault();
-  
-})
-
 
 noNumberFields.forEach(noNumberField=>
     {
@@ -155,6 +160,16 @@ function addItemToHomeworkList(homework)
   homeworkList.appendChild(HmwkContainer);
   addListenerForNewItem(newDiv,idList);
   addListenerToModifyButton(modifyButton,homework);
+  addListenerToDeleteButton(deleteButton,homework)
+}
+function addListenerToDeleteButton(deleteButton,homework){
+  deleteButton.addEventListener('click', (event=>{
+    HomeworkMoficationForm.style.display="none";
+    createHmwkForm.style.display="none";
+    createCourseForm.style.display="none";
+    deleteHomework(homework.courseName,homework.id);
+  }))
+  
 }
 function addListenerToModifyButton(modifyButton,homework)
 {
