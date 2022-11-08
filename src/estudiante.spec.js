@@ -24,6 +24,14 @@ describe("Shows a homework list ", () => {
         let homework = [{"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 0, "name": "test", "timesCompleted": 0}]
         expect(getHomeworkList()).toEqual(homework);
     });
+    it("the list shows that it has just one assignment", () => {
+        createCourse("tst","mate","testName")
+        createHomework(createHomework("test","2021-01-01","2021-01-02","mate",0))
+        createHomework("tes3","2021-01-01","2021-01-02","mate",1)
+        let homework = [{"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 0, "name": "test", "timesCompleted": 0}
+        ,{"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 1, "name": "tes3", "timesCompleted": 0}] 
+        expect(getHomeworkList()).toEqual(homework);
+    });
 });
 describe("ver fechas de tareas dentro de cada materia", () => {
     it("se agrega una materia", () => {
