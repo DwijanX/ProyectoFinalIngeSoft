@@ -30,8 +30,9 @@ function showAllHomeworkByDays()
 {
   let homeworkDays = daysWithHomework()
 
-  const iterator = homeworkDays.values();
-  addDateToList(iterator.next().value)
+  for (const [key, values] of Object.entries(homeworkDays)) {
+    addDateToList(key,values)
+  }
  /*for (let i=0; i<homeworkDays.size; i++)
   {
     console.log(homeworkDays[i])
@@ -40,15 +41,20 @@ function showAllHomeworkByDays()
 }
 
 
-function addDateToList(date)
+function addDateToList(date, homework)
 {
+  console.log(homework)
   const dateContainer=document.createElement('div');
   const newDiv = document.createElement('div');
-  const newHomework = document.createElement('div');
   newDiv.setAttribute("id", "divFecha" + fechaNumber); //added "div" for no #<number> iDs (breaks finder)
   newDiv.setAttribute("class", "showTarea");
   newDiv.innerHTML += date + "==>";
   dateContainer.appendChild(newDiv);
-  HmwkContainer.appendChild(newHomework);
+  for(let i=0; i<homework.length; i++)
+  {
+    const newHomework = document.createElement('div');
+    newHomework.innerHTML = homework[i].name
+    dateContainer.appendChild(newHomework);
+  }
   homeworkDays.appendChild(dateContainer);
 }
