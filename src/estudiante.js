@@ -44,7 +44,7 @@ function daysWithHomework()
 }
 
 /*
-function getDaysWithHomeworkAsString()
+function getDaysWithHomeworkAsString() //set returns difficult to read code
 {
     let diasDeTrabajo = "";
     for (let i=0; i<days.length; i++)

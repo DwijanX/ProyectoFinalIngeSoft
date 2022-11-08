@@ -10,6 +10,7 @@ function createHomework(name,dateInit,dateFin,courseName, id)
     if(courses[courseName])
     {
         courses[courseName].addHomework(task)
+        console.log(courses)
         return task.getHomeworkObj()
     }
     return CourseNotFound
