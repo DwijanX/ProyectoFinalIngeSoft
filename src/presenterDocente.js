@@ -162,7 +162,9 @@ function addListenerToDeleteButton(deleteButton,homework){
     HomeworkMoficationForm.style.display="none";
     createHmwkForm.style.display="block";
     createCourseForm.style.display="none";
+    deleteHomeworkFromHTML(homework.id)
     deleteHomework(homework.courseName,homework.id);
+    showItemsOnClick(homework.id)
     alert("La Tarea fue eliminada exitosamente");
   }))
   
@@ -196,8 +198,15 @@ function addListenerForNewItem(newHomeworkDiv,id)
 function showItemsOnClick(divID)
 {
   const homework = getHomeworkBasedOnId(parseInt(divID))
-  selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
-  homework.dateFin + " , materia: " + homework.courseName
+  if(homework != 2)
+  {
+    selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
+    homework.dateFin + " , materia: " + homework.courseName
+  }
+  else{
+    selectedHomework.innerHTML = ""
+  }
+  
 }
 function loadHomeworkStats(id)
 {
@@ -209,6 +218,14 @@ function rewriteModifiedHomework(divID)
 {
   ObjectId = "#div" + divID.toString()
   const homework = getHomeworkBasedOnId(parseInt(divID))
-  let homeworkToModify = document.querySelector(ObjectId);
+  let homeworkToModify = document.querySelector(ObjectId)
   homeworkToModify.innerHTML = homework.name;
+}
+
+function deleteHomeworkFromHTML(divID)
+{
+  ObjectId = "#div" + divID.toString()
+  let homeworkToModify = document.querySelector(ObjectId)
+  divToDelete = homeworkToModify.parentElement
+  divToDelete.remove()
 }
