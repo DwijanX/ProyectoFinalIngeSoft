@@ -1,7 +1,6 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
-import SingletonCourses from "./SingleTonCourses.js";
-let courses=SingletonCourses.getInstance();
+let courses={}
 const CourseNotFound=1
 const HomeworkNotFound=2;
 

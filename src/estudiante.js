@@ -1,7 +1,6 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
 import {getCourseHomeworks} from "./docente.js";
-import SingletonCourses from "./SingleTonCourses.js";
 
 let coursesStudent = [];
 let days = new Set();

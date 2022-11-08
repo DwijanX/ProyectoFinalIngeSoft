@@ -228,4 +228,5 @@ function deleteHomeworkFromHTML(divID)
   let homeworkToModify = document.querySelector(ObjectId)
   divToDelete = homeworkToModify.parentElement
   divToDelete.remove()
+  selectedHomeworkStats.innerHTML=""
 }
