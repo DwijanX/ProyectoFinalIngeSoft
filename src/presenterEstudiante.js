@@ -1,10 +1,19 @@
 import {showCoursesOnConsole} from "./estudiante"
-const testdiv = document.querySelector("#testdiv");
-const testButton = document.querySelector("#testButton");
+import {getCourseHomeworks} from "./docente.js";
 
+const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
+const enrollCourse=document.querySelector("#enrollCourse");
+const coursesList =  document.querySelector("#coursesList");
 
-testButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    console.log("hi");
-    showCoursesOnConsole()
-  });
+BtnToEnrollCourse.addEventListener("click", (event) => {
+  event.preventDefault();
+  const courseName = enrollCourse.value;
+  const course = getCourseHomeworks(courseName)
+  if(course!= 1)
+  {
+    alert("te inscribiste a " +courseName+ " con exito");
+  }
+  else{
+    alert("no te lograste inscribir a la materia");
+  }
+});
