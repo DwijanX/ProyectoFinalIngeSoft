@@ -1,5 +1,5 @@
 //import { expect } from "chai";
-import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework} from "./estudiante.js"
+import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,getHomeworkList} from "./estudiante.js"
 import {createHomework,createCourse} from "./docente.js"
 
 describe("", () => {
@@ -17,7 +17,11 @@ describe("agregar materias a estudiantes", () => {
         expect(showAllEnrolledCourses()).toEqual("mate, reli");
     });
 });
-
+describe("Shows a homework list ", () => {
+    it("the list shows that it has just one assignment", () => {
+        expect(getHomeworkList()).toEqual(1);
+    });
+});
 describe("ver fechas de tareas dentro de cada materia", () => {
     it("se agrega una materia", () => {
         createCourse("tst","mate","testName")

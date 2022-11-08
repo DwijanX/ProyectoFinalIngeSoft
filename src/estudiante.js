@@ -43,6 +43,9 @@ function daysWithHomework()
     }
     return daysWithHomework
 }
+function getHomeworkList(){
+    return getCourseHomeworks(coursesStudent[0]);
+}
 
 
-export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework}
+export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,getHomeworkList}
