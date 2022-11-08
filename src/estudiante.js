@@ -5,11 +5,6 @@ import {getCourseHomeworks} from "./docente.js";
 let coursesStudent = [];
 let days = new Set();
 
-function showCoursesOnConsole()
-{
-    console.log(courses);
-}
-
 function addCoursesToStudent(course)
 {
     coursesStudent.push(course)
@@ -31,16 +26,23 @@ function showAllEnrolledCourses()
 
 function daysWithHomework()
 {
+    let daysWithHomework={};
     let homework;
     for (let i=0; i<coursesStudent.length; i++)
     {
       homework = getCourseHomeworks(coursesStudent[i])
       for (let j=0; j<homework.length; j++)
       {
-        days.add(homework[i].getDateFin());
+        if( daysWithHomework[homework[j].getDateFin()] == undefined)
+        {
+            daysWithHomework[homework[j].getDateFin()] = [homework[j]]
+        }
+        else{
+            daysWithHomework[homework[j].getDateFin()].push(homework[j])
+        }
       }
     }
-    return days
+    return daysWithHomework
 }
 
 /*

@@ -44,10 +44,11 @@ function addDateToList(date)
 {
   const dateContainer=document.createElement('div');
   const newDiv = document.createElement('div');
+  const newHomework = document.createElement('div');
   newDiv.setAttribute("id", "divFecha" + fechaNumber); //added "div" for no #<number> iDs (breaks finder)
   newDiv.setAttribute("class", "showTarea");
-  console.log(date)
   newDiv.innerHTML += date + "==>";
   dateContainer.appendChild(newDiv);
+  HmwkContainer.appendChild(newHomework);
   homeworkDays.appendChild(dateContainer);
 }
