@@ -3,7 +3,6 @@ import Materia from "./materia.js";
 import {getCourseHomeworks} from "./docente.js";
 
 let coursesStudent = [];
-let days = new Set();
 
 function addCoursesToStudent(course)
 {
@@ -44,21 +43,6 @@ function daysWithHomework()
     }
     return daysWithHomework
 }
-
-/*
-function getDaysWithHomeworkAsString() //set returns difficult to read code
-{
-    let diasDeTrabajo = "";
-    for (let i=0; i<days.length; i++)
-    {
-        diasDeTrabajo += days[i]
-        if(i<days.length-1)
-        {
-            diasDeTrabajo += ", "
-        }
-    }
-    return diasDeTrabajo
-}*/
 
 
 export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework}

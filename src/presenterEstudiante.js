@@ -3,8 +3,8 @@ import {getCourseHomeworks} from "./docente.js";
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
-const coursesList =  document.querySelector("#coursesList");
-const homeworkDays =  document.querySelector("#daysWithHomework");
+const coursesList = document.querySelector("#coursesList");
+const homeworkDays = document.querySelector("#daysWithHomework");
 
 
 let fechaNumber = 0
@@ -28,22 +28,20 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
 
 function showAllHomeworkByDays()
 {
-  let homeworkDays = daysWithHomework()
+  let homework = daysWithHomework()
+  
+  while (homeworkDays.firstChild) {
+    homeworkDays.removeChild(homeworkDays.lastChild);
+  }
 
-  for (const [key, values] of Object.entries(homeworkDays)) {
+  for (const [key, values] of Object.entries(homework)) {
     addDateToList(key,values)
   }
- /*for (let i=0; i<homeworkDays.size; i++)
-  {
-    console.log(homeworkDays[i])
-    addDateToList(homeworkDays[i])
-  }*/
 }
 
 
 function addDateToList(date, homework)
 {
-  console.log(homework)
   const dateContainer=document.createElement('div');
   const newDiv = document.createElement('div');
   newDiv.setAttribute("id", "divFecha" + fechaNumber); //added "div" for no #<number> iDs (breaks finder)
