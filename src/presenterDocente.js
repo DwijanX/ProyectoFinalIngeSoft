@@ -85,6 +85,10 @@ HomeworkMoficationForm.addEventListener("submit", (event) => {
   {
     modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
   }
+
+  rewriteModifiedHomework(idModif)
+  showItemsOnClick(idModif)
+
   return status;
 });
 createCourseForm.addEventListener("submit", (event) => {
@@ -142,7 +146,7 @@ function addItemToHomeworkList(homework)
   deleteButton.innerHTML='Eliminar';
   const modifyButton = document.createElement('button');
   modifyButton.innerHTML="Modificar"
-  newDiv.setAttribute("id", idList);
+  newDiv.setAttribute("id", "div" + idList); //added "div" for no #<number> iDs (breaks finder)
   newDiv.setAttribute("class", "showHomework");
   newDiv.innerHTML += homework.name;
   HmwkContainer.appendChild(newDiv);
@@ -172,6 +176,7 @@ function addListenerToModifyButton(modifyButton,homework)
     loadModificationFormWithHmwkInfo(homework)
   })) 
 }
+
 function loadModificationFormWithHmwkInfo(homework)
 {
   IDModif.value=homework.id
@@ -198,4 +203,12 @@ function loadHomeworkStats(id)
 {
   const homework = getHomeworkBasedOnId(parseInt(id))
   selectedHomeworkStats.innerHTML="Completa "+homework.timesCompleted+" veces";
+}
+
+function rewriteModifiedHomework(divID)
+{
+  ObjectId = "#div" + divID.toString()
+  const homework = getHomeworkBasedOnId(parseInt(divID))
+  let homeworkToModify = document.querySelector(ObjectId);
+  homeworkToModify.innerHTML = homework.name;
 }
