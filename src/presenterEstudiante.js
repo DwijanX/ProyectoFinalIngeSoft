@@ -1,4 +1,4 @@
-import {showCoursesOnConsole} from "./estudiante"
+import {addCoursesToStudent, showAllEnrolledCourses} from "./estudiante.js"
 import {getCourseHomeworks} from "./docente.js";
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
@@ -12,6 +12,8 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   if(course!= 1)
   {
     alert("te inscribiste a " +courseName+ " con exito");
+    addCoursesToStudent(courseName)
+    coursesList.innerHTML = showAllEnrolledCourses()
   }
   else{
     alert("no te lograste inscribir a la materia");
