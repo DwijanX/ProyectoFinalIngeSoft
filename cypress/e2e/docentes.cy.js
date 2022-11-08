@@ -30,6 +30,16 @@ describe("Funciones de vista docente", () => {
          cy.get("#HomeworkCreation-form").submit();
          cy.get("#homeworkList").contains("#div0","testhmwk")
         });
+    it("deberia agregar una  segunda tarea", () => {
+            cy.get("#BtnToCreateHmwk").click()
+            cy.get("#HomeworkName").type("testhmwk")
+            cy.get("#courseName").type("test2")
+            cy.get("#dateInit").type("2022-11-09")
+            cy.get("#dateFin").type("2022-11-10")
+            cy.get("#HomeworkCreation-form").submit();
+            cy.get("#homeworkList").contains("#div0","testhmwk")
+           });
+           
     it("deberia modificar una tarea", () => {
         cy.get("#0mdf").click()
         cy.get("#0mdf").type("test")
@@ -38,5 +48,9 @@ describe("Funciones de vista docente", () => {
         cy.get("#homeworkList").contains("#div0","nameChangedHmwk")
         
         });
-    
+    it("deberia eliminar una tarea", () => {
+            cy.get("#0dlt").click()
+            cy.get("#div0").should('not.exist');
+            
+        });
 });
