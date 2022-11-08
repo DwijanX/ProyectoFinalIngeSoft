@@ -4,6 +4,7 @@ import {getCourseHomeworks} from "./docente.js";
 import SingletonCourses from "./SingleTonCourses.js";
 
 let coursesStudent = [];
+let days = new Set();
 
 function showCoursesOnConsole()
 {
@@ -29,5 +30,34 @@ function showAllEnrolledCourses()
     return materias
 }
 
+function daysWithHomework()
+{
+    let homework;
+    for (let i=0; i<coursesStudent.length; i++)
+    {
+      homework = getCourseHomeworks(coursesStudent[i])
+      for (let j=0; j<homework.length; j++)
+      {
+        days.add(homework[i].getDateFin());
+      }
+    }
+    return days
+}
 
-export{addCoursesToStudent, showAllEnrolledCourses}
+/*
+function getDaysWithHomeworkAsString()
+{
+    let diasDeTrabajo = "";
+    for (let i=0; i<days.length; i++)
+    {
+        diasDeTrabajo += days[i]
+        if(i<days.length-1)
+        {
+            diasDeTrabajo += ", "
+        }
+    }
+    return diasDeTrabajo
+}*/
+
+
+export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework}

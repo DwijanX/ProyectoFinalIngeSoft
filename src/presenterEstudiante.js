@@ -1,4 +1,4 @@
-import {addCoursesToStudent, showAllEnrolledCourses} from "./estudiante.js"
+import {addCoursesToStudent, showAllEnrolledCourses, getCourses, daysWithHomework} from "./estudiante.js"
 import {getCourseHomeworks} from "./docente.js";
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
@@ -19,3 +19,12 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
     alert("no te lograste inscribir a la materia");
   }
 });
+
+function showAllHomeworkByDays()
+{
+  let homeworkDays = daysWithHomework()
+  for (let i=0; i<homeworkDays.length; i++)
+  {
+  //anadir un nuevo div para cada dia y luego mostrarlo
+  }
+}
