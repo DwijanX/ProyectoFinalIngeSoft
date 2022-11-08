@@ -44,7 +44,12 @@ function daysWithHomework()
     return daysWithHomework
 }
 function getHomeworkList(){
-    return getCourseHomeworks(coursesStudent[0]);
+    let homeworkList= {};
+    for(let i=0; i<coursesStudent.length; i++){
+        homeworkList=getCourseHomeworks(coursesStudent[i])
+    }
+
+    return homeworkList;
 }
 
 
