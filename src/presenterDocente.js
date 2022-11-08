@@ -143,9 +143,11 @@ function addItemToHomeworkList(homework)
   const HmwkContainer=document.createElement('div');
   const newDiv = document.createElement('div');
   const deleteButton = document.createElement('button');
+  deleteButton.setAttribute("id",idList+"dlt")
   deleteButton.innerHTML='Eliminar';
   const modifyButton = document.createElement('button');
   modifyButton.innerHTML="Modificar"
+  modifyButton.setAttribute("id",idList+"mdf")
   newDiv.setAttribute("id", "div" + idList); //added "div" for no #<number> iDs (breaks finder)
   newDiv.setAttribute("class", "showHomework");
   newDiv.innerHTML += homework.name;
