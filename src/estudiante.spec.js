@@ -22,7 +22,17 @@ describe("ver fechas de tareas dentro de cada materia", () => {
     it("se agrega una materia", () => {
         createCourse("tst","mate","testName")
         createHomework("test","2021-01-01","2021-01-02","mate",0)
-
-        expect(daysWithHomework()).toEqual(["2021-01-02"]);
+        let days = {"2021-01-02": [{"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 0, "name": "test", "timesCompleted": 0}]};
+        expect(daysWithHomework()).toEqual(days);
+    });
+    it("se agrega mas tareas", () => {
+        createCourse("tst","mate","testName")
+        createHomework("test","2021-01-01","2021-01-02","mate",0)
+        createHomework("tes3","2021-01-01","2021-01-02","mate",2)
+        createHomework("test2","2021-01-01","2021-01-03","mate",1)
+        let days ={"2021-01-02": [{"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 0, "name": "test", "timesCompleted": 0}, 
+        {"courseName": "mate", "dateFin": "2021-01-02", "dateInit": "2021-01-01", "id": 2, "name": "tes3", "timesCompleted": 0}], 
+        "2021-01-03": [{"courseName": "mate", "dateFin": "2021-01-03", "dateInit": "2021-01-01", "id": 1, "name": "test2", "timesCompleted": 0}]}
+        expect(daysWithHomework()).toEqual(days);
     });
 });
