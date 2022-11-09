@@ -85,7 +85,7 @@ function homeworkMarkButtonListener(element,hmwkId)
 {
   element.addEventListener('click', function handleClick(event){
     element.disabled=true;
-    element.style.backgroundColor="green"
+    element.style.backgroundColor="#00FF00"
     element.style.color="white"
     element.innerHTML="Done"
     completeHomework(hmwkId);
@@ -97,13 +97,13 @@ function InitializeMarkButton(Button,homeworkId)
   Button.disabled=disabled
   if(disabled)
   {
-    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId}, "Done")
-    Button.style.backgroundColor="green"
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Done")
+    Button.style.backgroundColor="#00FF00"
     Button.style.color="white"
   }
   else
   {
-    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId}, "Mark done")
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Mark done")
     homeworkMarkButtonListener(Button,homeworkId);
   }
 
@@ -122,8 +122,8 @@ function addDateToList(date, homeworks)
     let homeworkContainer=document.createElement("div");
     let nameContainer= document.createElement('div');
     let homeworkMarkButton= document.createElement('button');
-    addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homeworks[i].id})
-    addPropsToElement(nameContainer,{"id":"hmwkName"+homeworks[i].id}, homeworks[i].name)
+    addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homeworks[i].id,"class":"HomeworkContainer"})
+    addPropsToElement(nameContainer,{"id":"hmwkName"+homeworks[i].id,"class":"HomeworkText"}, homeworks[i].name)
     addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
     addElementsToFather(dateContainer,homeworkContainer)
     addListenerForfurtherinfo(nameContainer,homeworks[i]);

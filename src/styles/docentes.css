@@ -16,12 +16,6 @@
 {
     display: none;
 }
-.showHomework:hover
-{
-    opacity: 75%;
-    border: 1px black solid;
-    width: 10%;
-}
 
 #BtnToCreateHmwk
 {

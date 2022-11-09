@@ -97,6 +97,7 @@ HomeworkMoficationForm.addEventListener("submit", (event) => {
     modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
   }
 
+  
   rewriteModifiedHomework(idModif)
   showItemsOnClick(idModif)
 
@@ -151,22 +152,29 @@ function checkIfDate1IsLowerThan2(date1,date2)
 function addItemToHomeworkList(homework)
 {
   let idList = idTarea.toString();
-  const HmwkContainer=document.createElement('div');
-  const newDiv = document.createElement('div');
+  //Name Div
+  const homeworkNameDiv = document.createElement('div');
+  homeworkNameDiv.setAttribute("id", "div" + idList); //added "div" for no #<number> iDs (breaks finder)
+  homeworkNameDiv.setAttribute("class", "HomeworkText");
+  homeworkNameDiv.innerHTML += homework.name;
+  //delete button
   const deleteButton = document.createElement('button');
   deleteButton.setAttribute("id",idList+"dlt")
+  deleteButton.setAttribute("class","HomeworkBtn")
   deleteButton.innerHTML='Eliminar';
+  //ModifyButton
   const modifyButton = document.createElement('button');
   modifyButton.innerHTML="Modificar"
   modifyButton.setAttribute("id",idList+"mdf")
-  newDiv.setAttribute("id", "div" + idList); //added "div" for no #<number> iDs (breaks finder)
-  newDiv.setAttribute("class", "showHomework");
-  newDiv.innerHTML += homework.name;
-  HmwkContainer.appendChild(newDiv);
+  modifyButton.setAttribute("class","HomeworkBtn")
+  //Container
+  const HmwkContainer=document.createElement('div');
+  HmwkContainer.setAttribute("class","HomeworkContainer")
+  HmwkContainer.appendChild(homeworkNameDiv);
   HmwkContainer.appendChild(modifyButton);
   HmwkContainer.appendChild(deleteButton);
   homeworkList.appendChild(HmwkContainer);
-  addListenerForNewItem(newDiv,idList);
+  addListenerForNewItem(homeworkNameDiv,idList);
   addListenerToModifyButton(modifyButton,homework);
   addListenerToDeleteButton(deleteButton,homework)
 }
