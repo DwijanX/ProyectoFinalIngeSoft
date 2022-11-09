@@ -9,7 +9,8 @@ const StudentsDiv = document.querySelector("#StudentsDiv");
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
 const createCourseForm=document.querySelector("#CourseCreation-form");
 
-
+console.log(docentesPage)
+console.log(estudiantesPage)
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();

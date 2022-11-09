@@ -1,7 +1,12 @@
+
 #TeachersDiv
 {
     display:none;
     flex-direction: column;
+    top: 120px;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
 }
 .TeachersButton
 {
