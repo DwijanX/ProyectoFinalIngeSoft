@@ -48,9 +48,9 @@ function clearCourseHomeworks(courseName)
 }
 function createCourse(Initials,Name,TeachersName)
 {
-    let task=new Materia(Initials,Name,TeachersName);
-    courses[Name]=task
-    return task.getCourseObj()
+    let course=new Materia(Initials,Name,TeachersName);
+    courses[Name]=course
+    return course.getCourseObj()
 }
 function modifyHomework(id,name,dateInit,dateFin,CourseName)
 {
@@ -68,4 +68,9 @@ function deleteHomework(courseName, homeworkId){
    }
    return status;
 }
-export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework,deleteHomework}
+function markHmwkAsDone(id)
+{
+    let hmwk=getHomeworkBasedOnId(id)
+    hmwk.addToCompleted()
+}
+export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework,deleteHomework,markHmwkAsDone}

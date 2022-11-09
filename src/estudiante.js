@@ -43,14 +43,7 @@ function daysWithHomework()
     }
     return daysWithHomework
 }
-function getHomeworkList(){
-    let homeworkList= {};
-    for(let i=0; i<coursesStudent.length; i++){
-        homeworkList=getCourseHomeworks(coursesStudent[i])
-    }
-
-    return homeworkList;
-}
 
 
-export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,getHomeworkList}
+
+export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework}

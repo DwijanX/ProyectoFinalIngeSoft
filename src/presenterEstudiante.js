@@ -1,5 +1,5 @@
-import {addCoursesToStudent, showAllEnrolledCourses, getCourses, daysWithHomework, getHomeworkList} from "./estudiante.js"
-import {getCourseHomeworks, getHomeworkBasedOnId} from "./docente.js";
+import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework} from "./estudiante.js"
+import {getCourseHomeworks,markHmwkAsDone} from "./docente.js";
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
@@ -30,8 +30,6 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
 function showAllHomeworkByDays()
 {
   let homework = daysWithHomework();
-  //idList = getHomeworkList.length;
-  //newDiv.setAttribute("id", "div" + idList);
   const newDiv = document.createElement('div');
   while (homeworkDays.firstChild) {
     homeworkDays.removeChild(homeworkDays.lastChild);
@@ -41,7 +39,6 @@ function showAllHomeworkByDays()
     addDateToList(key,values)
 
   }
-  //addListenerForfurtherinfo(newDiv,idList);
 }
 
 function addListenerForfurtherinfo(homworkDiv,homework){
@@ -51,31 +48,48 @@ function addListenerForfurtherinfo(homworkDiv,homework){
 }
 
 function showFurtherInformation(homework){
- // homework != 2 ? selectedHomework.innerHTML= `Homework : ${homework.name} started on ${homework.dateInit} and you must complete it by ${homework.dateFin}` : selectedHomework.innerHTML = ""
  actualHomework.innerHTML= `Homework : ${homework.name} started on ${homework.dateInit} and you must complete it by ${homework.dateFin}`
+}
+function addElementsToFather(Father,...children)
+{
+  for(let index=0;index<children.length;index++)
+  {
+    Father.appendChild(children[index])
+  }
+}
+function addPropsToElement(element,props,innerHTML)
+{
+  element.innerHTML=innerHTML;
+  for (let property in props) {
+    element.setAttribute(`${property}`,`${props[property]}`);
+  }
+}
+function homeworkMarkButtonListener(element,hmwkId)
+{
+  element.addEventListener('click', function handleClick(event){
+    markHmwkAsDone(hmwkId);
+  });
 }
 function addDateToList(date, homework)
 {
   const dateContainer=document.createElement('div');
-  const newDiv = document.createElement('div');
-  const superDiv = document.createElement('div');
-  const checkBox = document.createElement('checkbox');
-  superDiv.appendChild(newDiv);
-  superDiv.appendChild(checkBox);
-  idList = getHomeworkList.length;
-  newDiv.setAttribute("id", "div" + idList);
-  newDiv.setAttribute("id", "divFecha" + fechaNumber); //added "div" for no #<number> iDs (breaks finder)
-  newDiv.setAttribute("class", "showTarea");
-  newDiv.innerHTML += date + "==>";
-  dateContainer.appendChild(superDiv);
+  const dateTittleDiv = document.createElement('h3');
+  addPropsToElement(dateTittleDiv,{"id":"divFecha"+fechaNumber,"class":"divFecha" + fechaNumber}, date + "==>")
+  addElementsToFather(dateContainer,dateTittleDiv)
+
   for(let i=0; i<homework.length; i++)
   {
-    const newHomework = document.createElement('div');
-    newHomework.innerHTML = homework[i].name
-    dateContainer.appendChild(newHomework);
-    addListenerForfurtherinfo(newHomework,homework[i]);
+    let homeworkContainer=document.createElement("div");
+    let homeworkMarkButton= document.createElement('button');
+    let homeworkName = document.createElement('div');
+    addPropsToElement(homeworkName,{"id":"hmwkName"+homework[i].id}, homework[i].name)
+    addPropsToElement(homeworkMarkButton,{"id":"hmwkBtn"+homework[i].id}, "Marcar como completada")
+    addElementsToFather(homeworkContainer,homeworkName,homeworkMarkButton)
+    addElementsToFather(dateContainer,homeworkContainer)
+    addListenerForfurtherinfo(homeworkName,homework[i]);
+    homeworkMarkButtonListener(homeworkMarkButton,homework[i].id);
   }
-  homeworkDays.appendChild(dateContainer);
+  addElementsToFather(homeworkDays,dateContainer)
 
 }
   

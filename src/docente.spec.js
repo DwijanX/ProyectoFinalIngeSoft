@@ -1,5 +1,5 @@
 
-import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework, deleteHomework} from "./docente";
+import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework, deleteHomework,markHmwkAsDone} from "./docente";
 import Materia from "./materia"
 const CourseNotFound=1
 const HomeworkNotFound=2;
@@ -139,4 +139,15 @@ describe("Modificar una tarea", () => {
     });
 
     
+});
+
+describe("estadisticas", () => {
+    it("se puede obtener la cantidad de veces que una materia fue completada", () => {
+        createCourse("tst","mate","testName")
+        createHomework("test","2021-01-01","2021-01-02","mate",0)
+        let hmwk=getHomeworkBasedOnId(0)
+        markHmwkAsDone(0)
+        markHmwkAsDone(0)
+        expect(hmwk.getTimesCompleted()).toEqual(2);
+    });
 });
