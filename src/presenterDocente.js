@@ -237,7 +237,7 @@ function loadHomeworkStats(id)
 
 function rewriteModifiedHomework(divID)
 {
-  ObjectId = "#div" + divID.toString()
+  let ObjectId = "#div" + divID.toString()
   const homework = getHomeworkBasedOnId(parseInt(divID))
   let homeworkToModify = document.querySelector(ObjectId)
   homeworkToModify.innerHTML = homework.name;
@@ -247,7 +247,7 @@ function deleteHomeworkFromHTML(divID)
 {
   let ObjectId = "#div" + divID.toString()
   let homeworkToModify = document.querySelector(ObjectId)
-  divToDelete = homeworkToModify.parentElement
+  let divToDelete = homeworkToModify.parentElement
   divToDelete.remove()
   selectedHomeworkStats.innerHTML=""
 }
