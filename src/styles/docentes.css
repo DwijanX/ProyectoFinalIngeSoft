@@ -22,3 +22,46 @@
     border: 1px black solid;
     width: 10%;
 }
+
+#BtnToCreateHmwk
+{
+    padding: 15px 0;
+}
+
+#BtnToCreateCourse
+{
+    position: relative;
+    top: 10px;
+    padding: 15px 0;
+}
+
+#HomeworkCreation-form, #CourseCreation-form, #HomeworkMofication-form
+{
+    position: relative;
+    top: 20px;
+}
+
+#TeachersDiv input{
+    padding: 5px;
+}
+
+input[type=submit] {
+    position: relative;
+    display: inline-block;
+    padding: 20px 30px;
+    background: #00FF00;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+input[type=submit]:hover {
+    box-shadow: #3DAB3D -1px 1px, #3DAB3D -2px 2px, #3DAB3D -3px 3px, #3DAB3D -4px 4px, #3DAB3D -5px 5px, #3DAB3D -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    
+    transition-delay: 0s;
+        transition-duration: 0.4s;
+        transition-property: all;
+    transition-timing-function: line;
+}

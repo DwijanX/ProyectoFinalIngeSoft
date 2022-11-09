@@ -9,6 +9,9 @@
 }
 .StudentButton
 {
+    color:white;
+    position: relative;
+    top: 10px;
     width: 25%;
     text-align: center;
     padding: 15px 0;
@@ -16,6 +19,38 @@
     font-weight: bold;
     border: 2px solid #009688;
     cursor: pointer;
+    background: transparent;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
+}
+
+.StudentButton span{
+    background: #009688;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.StudentButton:hover span{
+    width: 100%; 
+}
+
+.StudentButton:hover{
+    border: none;
+}
+
+#enrollCourse
+{
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 0;
+    font-weight: bold;
+    padding-left: 10px;
 }
