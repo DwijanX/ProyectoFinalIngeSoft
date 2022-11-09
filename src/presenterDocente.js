@@ -26,7 +26,7 @@ const CourseNameModif = document.querySelector("#CourseNameModif");
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
 
-noNumberFields=document.querySelectorAll(".noNumbersInput")
+let noNumberFields=document.querySelectorAll(".noNumbersInput")
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
