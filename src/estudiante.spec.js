@@ -1,9 +1,13 @@
 //import { expect } from "chai";
-import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework} from "./estudiante.js"
+import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import {createHomework,createCourse} from "./docente.js"
 
-describe("", () => {
-    it("", () => {
+describe("Marcado de tareas", () => {
+    it("se completa una tarea", () => {
+        createCourse("tst","mate","testName")
+        createHomework("test","2021-01-01","2021-01-02","mate",0)
+        completeHomework(0);
+        expect(getIfIdCompleted(0)).toEqual(true);
     });
 });
 

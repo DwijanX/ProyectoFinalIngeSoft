@@ -1,15 +1,26 @@
-import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework} from "./estudiante.js"
+import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import {getCourseHomeworks,markHmwkAsDone} from "./docente.js";
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
 const coursesList = document.querySelector("#coursesList");
 const homeworkDays = document.querySelector("#daysWithHomework");
-const homeworkList =  document.querySelector("#homeworkList");
 const actualHomework = document.querySelector("#actualHomework");
+const estudiantesPage = document.querySelector("#estudiantesPage");
 
 let fechaNumber = 0
+estudiantesPage.addEventListener("click", (event) => {
+  event.preventDefault();
+  loadBaseStatus()
+});
 
+function loadBaseStatus()
+{
+  actualHomework.innerHTML=""
+  enrollCourse.value=""
+  loadCourses()
+  loadHomeworks()
+}
 
 BtnToEnrollCourse.addEventListener("click", (event) => {
   event.preventDefault();
@@ -19,25 +30,30 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   {
     alert("te inscribiste a " +courseName+ " con exito");
     addCoursesToStudent(courseName)
-    coursesList.innerHTML = showAllEnrolledCourses()
-    showAllHomeworkByDays()
+    loadCourses();
+    loadHomeworks();
   }
   else{
     alert("no te lograste inscribir a la materia");
   }
 });
-
+function loadCourses()
+{
+  coursesList.innerHTML = showAllEnrolledCourses()
+}
+function loadHomeworks()
+{
+  showAllHomeworkByDays()
+}
 function showAllHomeworkByDays()
 {
   let homework = daysWithHomework();
-  const newDiv = document.createElement('div');
   while (homeworkDays.firstChild) {
     homeworkDays.removeChild(homeworkDays.lastChild);
   }
 
   for (const [key, values] of Object.entries(homework)) {
     addDateToList(key,values)
-
   }
 }
 
@@ -57,9 +73,10 @@ function addElementsToFather(Father,...children)
     Father.appendChild(children[index])
   }
 }
-function addPropsToElement(element,props,innerHTML)
+function addPropsToElement(element,props,...innerHTML)
 {
-  element.innerHTML=innerHTML;
+  if(innerHTML[0]!=undefined)
+    element.innerHTML=innerHTML[0];
   for (let property in props) {
     element.setAttribute(`${property}`,`${props[property]}`);
   }
@@ -67,30 +84,53 @@ function addPropsToElement(element,props,innerHTML)
 function homeworkMarkButtonListener(element,hmwkId)
 {
   element.addEventListener('click', function handleClick(event){
-    markHmwkAsDone(hmwkId);
+    element.disabled=true;
+    element.style.backgroundColor="green"
+    element.style.color="white"
+    element.innerHTML="Done"
+    completeHomework(hmwkId);
   });
 }
-function addDateToList(date, homework)
+function InitializeMarkButton(Button,homeworkId)
 {
-  const dateContainer=document.createElement('div');
-  const dateTittleDiv = document.createElement('h3');
-  addPropsToElement(dateTittleDiv,{"id":"divFecha"+fechaNumber,"class":"divFecha" + fechaNumber}, date + "==>")
-  addElementsToFather(dateContainer,dateTittleDiv)
+  let disabled=getIfIdCompleted(homeworkId)
+  Button.disabled=disabled
+  if(disabled)
+  {
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId}, "Done")
+    Button.style.backgroundColor="green"
+    Button.style.color="white"
+  }
+  else
+  {
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId}, "Mark done")
+    homeworkMarkButtonListener(Button,homeworkId);
+  }
 
-  for(let i=0; i<homework.length; i++)
+}
+function addDateToList(date, homeworks)
+{
+
+  let dateContainer=document.createElement('div');
+    dateContainer=document.createElement('div');
+    let dateTittleDiv = document.createElement('h3');
+    addPropsToElement(dateContainer,{"id":"divFecha"+fechaNumber})
+    addPropsToElement(dateTittleDiv,{"class":"divFecha" + fechaNumber}, date + "==>")
+    addElementsToFather(dateContainer,dateTittleDiv)
+  for(let i=0; i<homeworks.length; i++)
   {
     let homeworkContainer=document.createElement("div");
+    let nameContainer= document.createElement('div');
     let homeworkMarkButton= document.createElement('button');
-    let homeworkName = document.createElement('div');
-    addPropsToElement(homeworkName,{"id":"hmwkName"+homework[i].id}, homework[i].name)
-    addPropsToElement(homeworkMarkButton,{"id":"hmwkBtn"+homework[i].id}, "Marcar como completada")
-    addElementsToFather(homeworkContainer,homeworkName,homeworkMarkButton)
+    addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homeworks[i].id})
+    addPropsToElement(nameContainer,{"id":"hmwkName"+homeworks[i].id}, homeworks[i].name)
+    addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
     addElementsToFather(dateContainer,homeworkContainer)
-    addListenerForfurtherinfo(homeworkName,homework[i]);
-    homeworkMarkButtonListener(homeworkMarkButton,homework[i].id);
+    addListenerForfurtherinfo(nameContainer,homeworks[i]);
+      
+    InitializeMarkButton(homeworkMarkButton,homeworks[i].id)
   }
   addElementsToFather(homeworkDays,dateContainer)
 
 }
   
-

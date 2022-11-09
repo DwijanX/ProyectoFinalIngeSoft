@@ -1,36 +1,31 @@
 import Tarea from "./tarea.js"
 import Materia from "./materia.js";
-import {getCourseHomeworks} from "./docente.js";
+import {getCourseHomeworks,markHmwkAsDone} from "./docente.js";
 
-let coursesStudent = [];
+let coursesStudent = new Set();
+let completedHomeworkIds=new Set();
 
 function addCoursesToStudent(course)
 {
-    coursesStudent.push(course)
+    coursesStudent.add(course)
 }
 
 function showAllEnrolledCourses()
 {
     let materias = "";
-    for (let i=0; i<coursesStudent.length; i++)
-    {
-        materias += coursesStudent[i]
-        if(i<coursesStudent.length-1)
-        {
-            materias += ", "
-        }
-    }
-    return materias
+    coursesStudent.forEach(course=>{
+        materias +=course+", "
+    })
+    return materias.substring(0,materias.length-2)
 }
 
 function daysWithHomework()
 {
     let daysWithHomework={};
     let homework;
-    for (let i=0; i<coursesStudent.length; i++)
-    {
-      homework = getCourseHomeworks(coursesStudent[i])
-      for (let j=0; j<homework.length; j++)
+    coursesStudent.forEach(course=>{
+        homework = getCourseHomeworks(course)
+        for (let j=0; j<homework.length; j++)
       {
         if( daysWithHomework[homework[j].getDateFin()] == undefined)
         {
@@ -40,10 +35,19 @@ function daysWithHomework()
             daysWithHomework[homework[j].getDateFin()].push(homework[j])
         }
       }
-    }
+    })
     return daysWithHomework
+}
+function completeHomework(id)
+{
+    completedHomeworkIds.add(id)
+    markHmwkAsDone(id);
+}
+
+function getIfIdCompleted(id)
+{
+    return completedHomeworkIds.has(id)
 }
 
 
-
-export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework}
+export{addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,completeHomework,getIfIdCompleted}

@@ -8,7 +8,7 @@ const HomeworkMoficationForm=document.querySelector("#HomeworkMofication-form");
 const BtnToCreateHmwk=document.querySelector("#BtnToCreateHmwk");
 const BtnToCreateCourse=document.querySelector("#BtnToCreateCourse");
 const selectedHomeworkStats=document.querySelector("#selectedHomeworkStats");
-
+const docentesPage = document.querySelector("#docentesPage");
 
 //Form Objects
 const HomeworkName = document.querySelector("#HomeworkName");
@@ -25,9 +25,20 @@ const IDModif = document.querySelector("#IDModif");
 const CourseNameModif = document.querySelector("#CourseNameModif");
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
-var showHomework = document.getElementsByClassName("showHomework");
 
 noNumberFields=document.querySelectorAll(".noNumbersInput")
+
+docentesPage.addEventListener("click", (event) => {
+  event.preventDefault();
+  loadBaseStatus()
+});
+
+function loadBaseStatus()
+{
+  selectedHomeworkStats.innerHTML=""
+  selectedHomework.innerHTML=""
+}
+
 
 let idTarea = 0
 function validateHomeworksInput(dateFin,dateInit)

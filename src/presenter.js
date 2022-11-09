@@ -9,8 +9,6 @@ const StudentsDiv = document.querySelector("#StudentsDiv");
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
 const createCourseForm=document.querySelector("#CourseCreation-form");
 
-console.log(docentesPage)
-console.log(estudiantesPage)
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
@@ -21,7 +19,6 @@ docentesPage.addEventListener("click", (event) => {
   
 });
 estudiantesPage.addEventListener("click", (event) => {
-  console.log("Clicked");
   StudentsDiv.style.display="flex"
   TeachersDiv.style.display="none"
   resetMinorObjsStyles()
