@@ -44,7 +44,7 @@ let idTarea = 0
 function validateHomeworksInput(dateFin,dateInit)
 {
   let status=0;
-  today=new Date()
+  let today=new Date()
   if(checkIfDate1IsLowerThan2(today,dateFin)==false)
   {
     alert("La fecha de fin ya paso");
@@ -141,8 +141,8 @@ noNumberFields.forEach(noNumberField=>
 
 function checkIfDate1IsLowerThan2(date1,date2)
 {
-  date1=new Date(date1);
-  date2=new Date(date2);
+  let date1=new Date(date1);
+  let date2=new Date(date2);
   if(date1-date2<=0)
     return true
   else
@@ -245,7 +245,7 @@ function rewriteModifiedHomework(divID)
 
 function deleteHomeworkFromHTML(divID)
 {
-  ObjectId = "#div" + divID.toString()
+  let ObjectId = "#div" + divID.toString()
   let homeworkToModify = document.querySelector(ObjectId)
   divToDelete = homeworkToModify.parentElement
   divToDelete.remove()
