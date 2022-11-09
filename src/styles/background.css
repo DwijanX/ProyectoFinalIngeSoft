@@ -62,10 +62,32 @@ body{
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 30%;
     z-index: 9;
-   /* position: relative;
-    z-index: 9;
-    width: 100%;
-    height: 100vh;*/
+}
+
+.changePage
+{
+    position: relative;
+    top: 10px;
+    left:100px;
+    display: inline-block;
+    padding: 12px 30px;
+    background: #00FF00;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 30px;
+}
+
+.changePage:hover
+{
+    box-shadow: #3DAB3D -1px 1px, #3DAB3D -2px 2px, #3DAB3D -3px 3px, #3DAB3D -4px 4px, #3DAB3D -5px 5px, #3DAB3D -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+    
+    transition-delay: 0s;
+        transition-duration: 0.4s;
+        transition-property: all;
+    transition-timing-function: line;
 }
