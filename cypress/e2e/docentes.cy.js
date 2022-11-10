@@ -26,7 +26,7 @@ describe("Funciones de vista docente", () => {
          cy.get("#HomeworkName").type("testhmwk")
          cy.get("#courseName").type("test")
          cy.get("#dateInit").type("2022-11-09")
-         cy.get("#dateFin").type("2022-11-10")
+         cy.get("#dateFin").type("2023-11-10")
          cy.get("#HomeworkCreation-form").submit();
          cy.get("#homeworkList").contains("#div0","testhmwk")
         });
@@ -35,7 +35,7 @@ describe("Funciones de vista docente", () => {
             cy.get("#HomeworkName").type("testhmwk")
             cy.get("#courseName").type("test2")
             cy.get("#dateInit").type("2022-11-09")
-            cy.get("#dateFin").type("2022-11-10")
+            cy.get("#dateFin").type("2023-11-10")
             cy.get("#HomeworkCreation-form").submit();
             cy.get("#homeworkList").contains("#div0","testhmwk")
            });
