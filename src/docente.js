@@ -1,12 +1,12 @@
-import Tarea from "./tarea.js"
-import Materia from "./materia.js";
+import Homework from "./homework.js"
+import Course from "./Course.js";
 let courses={}
 const CourseNotFound=1
 const HomeworkNotFound=2;
 
 function createHomework(name,dateInit,dateFin,courseName, id)
 {
-    let task=new Tarea(name,dateInit,dateFin,courseName, id);
+    let task=new Homework(name,dateInit,dateFin,courseName, id);
     if(courses[courseName])
     {
         courses[courseName].addHomework(task)
@@ -23,6 +23,7 @@ function getCourseHomeworks(courseName)
     }
     return CourseNotFound
 }
+
 
 function getHomeworkBasedOnId(id)
 {
@@ -48,7 +49,7 @@ function clearCourseHomeworks(courseName)
 }
 function createCourse(Initials,Name,TeachersName)
 {
-    let course=new Materia(Initials,Name,TeachersName);
+    let course=new Course(Initials,Name,TeachersName);
     courses[Name]=course
     return course.getCourseObj()
 }
@@ -73,4 +74,8 @@ function markHmwkAsDone(id)
     let hmwk=getHomeworkBasedOnId(id)
     hmwk.addToCompleted()
 }
-export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework,deleteHomework,markHmwkAsDone}
+function getCourseNames()
+{
+    return Object.keys(courses)
+}
+export {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework,deleteHomework,markHmwkAsDone,getCourseNames}

@@ -1,6 +1,5 @@
-import { deleteHomework } from "./docente";
 
-class Tarea{
+class Homework{
     constructor(name,dateInit,dateFin,courseName, id)
     {
         this.name=name;
@@ -45,4 +44,4 @@ class Tarea{
     }
 
 }
-export default Tarea;
+export default Homework;

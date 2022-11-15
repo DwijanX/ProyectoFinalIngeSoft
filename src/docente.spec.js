@@ -1,6 +1,6 @@
 
 import {createHomework,getCourseHomeworks,clearCourseHomeworks,createCourse,getHomeworkBasedOnId,modifyHomework, deleteHomework,markHmwkAsDone} from "./docente";
-import Materia from "./materia"
+import Course from "./Course"
 const CourseNotFound=1
 const HomeworkNotFound=2;
 
@@ -94,7 +94,7 @@ describe("Pruebas para conseguir Id",()=>{
 describe("Pruebas sobre Materia",()=>{
     let materia;
     beforeEach(() => {
-        materia=new Materia("tst","test","testTeacher")
+        materia=new Course("tst","test","testTeacher")
       });
     it("Se deberia crear una materia",()=>{
         let expectedCourse={initials:"MAT1",name:"Calculo 1",teachersName:"IDK"}
@@ -112,6 +112,7 @@ describe("Pruebas sobre Materia",()=>{
     it("Prueba de eliminar el array de tareas de un curso que no existe",()=>{
         expect(clearCourseHomeworks("course3414214")).toEqual(1)
     })
+    
 })
 describe("Modificar una tarea", () => {
     createCourse("tst","testCourse","testTeacher")

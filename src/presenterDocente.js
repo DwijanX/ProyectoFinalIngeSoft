@@ -1,6 +1,14 @@
-import {createHomework,createCourse,modifyHomework , getHomeworkBasedOnId, deleteHomework} from "./docente";
-const CourseNotFound=1
-const HomeworkNotFound=2;
+import {getHomeworkBasedOnId, deleteHomework} from "./docente";
+import * as errorCode from './errorCodes'
+import { CoursesControllerSingleton } from "./coursesController";
+let coursesController=CoursesControllerSingleton.getInstance()
+
+let alertMessages={[errorCode.OK]:"Se creo correctamente",
+  [errorCode.CourseNotFound]:"No existe el curso",
+  [errorCode.HomeworkNotFound]:"No existe la tarea",
+  [errorCode.DeadlineAlreadyPassed]:"La fecha final ya paso",
+  [errorCode.DeadlineCantBeLowerThanInit]:"La fecha inicial no puede ser mayor a la final"}
+  
 
 const createHmwkForm=document.querySelector("#HomeworkCreation-form");
 const createCourseForm=document.querySelector("#CourseCreation-form");
@@ -40,23 +48,8 @@ function loadBaseStatus()
 }
 
 
-let idTarea = 0
-function validateHomeworksInput(dateFin,dateInit)
-{
-  let status=0;
-  let today=new Date()
-  if(checkIfDate1IsLowerThan2(today,dateFin)==false)
-  {
-    alert("La fecha de fin ya paso");
-    status= 1;
-  }
-  if (checkIfDate1IsLowerThan2(dateInit,dateFin)==false)
-  {
-    alert("La fecha inicial no puede ser mayor a la final");
-    status= 2;
-  }
-  return status
-}
+
+
 
 createHmwkForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -65,23 +58,12 @@ createHmwkForm.addEventListener("submit", (event) => {
   const dateInit = DateInit.value;
   const dateFin = DateFin.value;
   
-  let status=validateHomeworksInput(dateFin,dateInit);
-
-  if (status==0)
+  let status=coursesController.createHomework(hmwkName,dateInit,dateFin,courseName)
+  alert(alertMessages[status])
+  if(status==errorCode.OK)
   {
-    let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,idTarea)
-    if(createdHmwk!=CourseNotFound)
-    {
-      addItemToHomeworkList(createdHmwk)
-      idTarea++;
-    }
-    else
-    {
-      alert("No existe el curso al que se intenta crear la tarea")
-      status=3;
-    }
+    loadListByDates()
   }
-  return status;
 });
 HomeworkMoficationForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -90,15 +72,9 @@ HomeworkMoficationForm.addEventListener("submit", (event) => {
   const dateFin = dateFinModif.value;
   const idModif = IDModif.value;
   const courseNameModif = CourseNameModif.value;
-  
-  let status=validateHomeworksInput(dateFin,dateInit);
-  if (status==0)
-  {
-    modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
-  }
-
-  
-  rewriteModifiedHomework(idModif)
+  let status=coursesController.modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+  alert(alertMessages[status]);
+  loadListByDates()
   showItemsOnClick(idModif)
 
   return status;
@@ -108,11 +84,9 @@ createCourseForm.addEventListener("submit", (event) => {
   const CourseName = CourseNameCreation.value;
   const CourseInitials = courseInitials.value;
   const Teacher = TeachersName.value;
-  createCourse(CourseInitials,CourseName,Teacher);
+  coursesController.createCourse(CourseInitials,CourseName,Teacher);
   alert("Curso creado con exito");
 });
-
-
 BtnToCreateHmwk.addEventListener("click", (event) => {
   event.preventDefault();
   createHmwkForm.style.display="block"
@@ -139,44 +113,72 @@ noNumberFields.forEach(noNumberField=>
       });
     })
 
-function checkIfDate1IsLowerThan2(date1,date2)
-{
-  date1=new Date(date1);
-  date2=new Date(date2);
-  if(date1-date2<=0)
-    return true
-  else
-    return false
-}
 
-function addItemToHomeworkList(homework)
+
+
+
+function loadListByDates()
+{  
+  homeworkList.innerHTML=""
+  let HomeworkDatesObj=coursesController.getAllHomeworksByDate()
+  console.log(HomeworkDatesObj);
+  Object.keys(HomeworkDatesObj).forEach((date)=>
+  {
+    addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))
+  })
+
+}
+function loadDateContainer(homeworksArray,date)
 {
-  let idList = idTarea.toString();
+  let dateContainer=document.createElement('div');
+  let dateTittleDiv = document.createElement('h3');
+  addPropsToElement(dateContainer,{"id":"divFechaDocente"+date})
+  addPropsToElement(dateTittleDiv,{"class":"divFecha" + date}, date + "==>")
+  addElementsToFather(dateContainer,dateTittleDiv)
+  for(let i=0; i<homeworksArray.length; i++)
+  {
+    addElementsToFather(dateContainer, createHomeworkItem(homeworksArray[i]))
+    
+  }
+  return dateContainer
+}
+function createHomeworkItem(homework)
+{
+  let idList = homework.getId().toString();
   //Name Div
   const homeworkNameDiv = document.createElement('div');
-  homeworkNameDiv.setAttribute("id", "div" + idList); //added "div" for no #<number> iDs (breaks finder)
-  homeworkNameDiv.setAttribute("class", "HomeworkText");
-  homeworkNameDiv.innerHTML += homework.name;
+  addPropsToElement(homeworkNameDiv,{"class":"HomeworkText","id":"div" + idList},homework.name)
   //delete button
   const deleteButton = document.createElement('button');
-  deleteButton.setAttribute("id",idList+"dlt")
-  deleteButton.setAttribute("class","HomeworkBtn")
-  deleteButton.innerHTML='Eliminar';
+  addPropsToElement(deleteButton,{"class":"HomeworkBtn","id":idList+"dlt"},"Eliminar")
   //ModifyButton
   const modifyButton = document.createElement('button');
-  modifyButton.innerHTML="Modificar"
-  modifyButton.setAttribute("id",idList+"mdf")
-  modifyButton.setAttribute("class","HomeworkBtn")
+  addPropsToElement(modifyButton,{"class":"HomeworkBtn","id":idList+"mdf"},"Modificar")
+
   //Container
   const HmwkContainer=document.createElement('div');
-  HmwkContainer.setAttribute("class","HomeworkContainer")
-  HmwkContainer.appendChild(homeworkNameDiv);
-  HmwkContainer.appendChild(modifyButton);
-  HmwkContainer.appendChild(deleteButton);
-  homeworkList.appendChild(HmwkContainer);
+  addPropsToElement(HmwkContainer,{"class":"HomeworkContainer"})
+  addElementsToFather(HmwkContainer,homeworkNameDiv,modifyButton,deleteButton)
+  //event listeners
   addListenerForNewItem(homeworkNameDiv,idList);
   addListenerToModifyButton(modifyButton,homework);
   addListenerToDeleteButton(deleteButton,homework)
+  return HmwkContainer
+}
+function addElementsToFather(Father,...children)
+{
+  for(let index=0;index<children.length;index++)
+  {
+    Father.appendChild(children[index])
+  }
+}
+function addPropsToElement(element,props,...innerHTML)
+{
+  if(innerHTML[0]!=undefined)
+    element.innerHTML=innerHTML[0];
+  for (let property in props) {
+    element.setAttribute(`${property}`,`${props[property]}`);
+  }
 }
 function addListenerToDeleteButton(deleteButton,homework){
   deleteButton.addEventListener('click', (event=>{
@@ -233,14 +235,6 @@ function loadHomeworkStats(id)
 {
   const homework = getHomeworkBasedOnId(parseInt(id))
   selectedHomeworkStats.innerHTML="Completa "+homework.timesCompleted+" veces";
-}
-
-function rewriteModifiedHomework(divID)
-{
-  let ObjectId = "#div" + divID.toString()
-  const homework = getHomeworkBasedOnId(parseInt(divID))
-  let homeworkToModify = document.querySelector(ObjectId)
-  homeworkToModify.innerHTML = homework.name;
 }
 
 function deleteHomeworkFromHTML(divID)

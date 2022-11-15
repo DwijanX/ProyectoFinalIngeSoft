@@ -1,7 +1,7 @@
 import { deleteHomework } from "./docente";
 
 const HomeworkNotFound=2;
-class Materia{
+class Course{
     constructor(Initials,Name,TeachersName)
     {
         this.initials=Initials;
@@ -63,4 +63,4 @@ class Materia{
         return this.getHomeworkArray().length;
     }
 }
-export default Materia;
+export default Course;
