@@ -1,4 +1,5 @@
-import { deleteHomework } from "./docente";
+import { deleteHomework } from "./Courses";
+import * as errorCode from './errorCodes'
 
 const HomeworkNotFound=2;
 class Course{
@@ -55,12 +56,16 @@ class Course{
         return answer
     }
     deleteHomework(id){
+        let status;
         let HomeworkIndex=this.getHomeworkIndexById(id);
         if(HomeworkIndex!=-1)
         {
-            this.Homeworks.splice(HomeworkIndex);
+            this.Homeworks.splice(HomeworkIndex,1);
+            status=this.getHomeworkArray().length;
         }
-        return this.getHomeworkArray().length;
+        else
+            status=errorCode.HomeworkNotFound
+        return status
     }
 }
 export default Course;

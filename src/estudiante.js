@@ -1,4 +1,3 @@
-import {markHmwkAsDone} from "./docente.js";
 
 let coursesStudent = new Set();
 let completedHomeworkIds=new Set();
@@ -25,7 +24,6 @@ function showAllEnrolledCourses()
 function completeHomework(id)
 {
     completedHomeworkIds.add(id)
-    markHmwkAsDone(id);
 }
 
 function getIfIdCompleted(id)

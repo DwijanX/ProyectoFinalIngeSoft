@@ -1,32 +1,33 @@
 import * as errorCode from './errorCodes'
-import {createHomework,getCourseNames,getCourseHomeworks,modifyHomework,createCourse} from "./docente";
+import { Courses } from './Courses';
 import {getCoursesStudent} from './estudiante'
 
-class CoursesController{
+class CoursesController extends  Courses{
     constructor()
     {
+        super();
         this.homeworkId=0;
     }
-    modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+    tryToModifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
     {
         let status=this.#validateHomeworksInput(dateFin,dateInit);
         if (status==errorCode.OK)
         {
-            modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+            this.modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
         }
         return status;
     }
-    createCourse(CourseInitials,CourseName,Teacher)
+    tryToCreateCourse(CourseInitials,CourseName,Teacher)
     {
-        createCourse(CourseInitials,CourseName,Teacher)
+        this.createCourse(CourseInitials,CourseName,Teacher)
     }
-    createHomework(hmwkName,dateInit,dateFin,courseName)
+    tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
     {
         let status=this.#validateHomeworksInput(dateFin,dateInit);
 
         if (status==errorCode.OK)
         {
-          let createdHmwk=createHomework(hmwkName,dateInit,dateFin,courseName,this.homeworkId)
+          let createdHmwk=this.createHomework(hmwkName,dateInit,dateFin,courseName,this.homeworkId)
           
           if(createdHmwk!=errorCode.CourseNotFound)
           {
@@ -40,10 +41,10 @@ class CoursesController{
     }
     getAllHomeworksByDate()
     {
-        let CourseNames=getCourseNames()
+        let CourseNames=this.getCourseNames()
         let HomeworksArray=[]
         CourseNames.forEach((CourseName)=>{
-            HomeworksArray=HomeworksArray.concat(getCourseHomeworks(CourseName))
+            HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
         console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);
@@ -53,7 +54,7 @@ class CoursesController{
         let CourseNames=getCoursesStudent()
         let HomeworksArray=[]
         CourseNames.forEach((CourseName)=>{
-            HomeworksArray=HomeworksArray.concat(getCourseHomeworks(CourseName))
+            HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
         console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);

@@ -1,4 +1,3 @@
-import {getHomeworkBasedOnId, deleteHomework} from "./docente";
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
@@ -58,7 +57,7 @@ createHmwkForm.addEventListener("submit", (event) => {
   const dateInit = DateInit.value;
   const dateFin = DateFin.value;
   
-  let status=coursesController.createHomework(hmwkName,dateInit,dateFin,courseName)
+  let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
   alert(alertMessages[status])
   if(status==errorCode.OK)
   {
@@ -72,7 +71,7 @@ HomeworkMoficationForm.addEventListener("submit", (event) => {
   const dateFin = dateFinModif.value;
   const idModif = IDModif.value;
   const courseNameModif = CourseNameModif.value;
-  let status=coursesController.modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+  let status=coursesController.tryToModifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
   alert(alertMessages[status]);
   loadListByDates()
   showItemsOnClick(idModif)
@@ -84,7 +83,7 @@ createCourseForm.addEventListener("submit", (event) => {
   const CourseName = CourseNameCreation.value;
   const CourseInitials = courseInitials.value;
   const Teacher = TeachersName.value;
-  coursesController.createCourse(CourseInitials,CourseName,Teacher);
+  coursesController.tryToCreateCourse(CourseInitials,CourseName,Teacher);
   alert("Curso creado con exito");
 });
 BtnToCreateHmwk.addEventListener("click", (event) => {
@@ -147,7 +146,7 @@ function createHomeworkItem(homework)
   let idList = homework.getId().toString();
   //Name Div
   const homeworkNameDiv = document.createElement('div');
-  addPropsToElement(homeworkNameDiv,{"class":"HomeworkText","id":"div" + idList},homework.name)
+  addPropsToElement(homeworkNameDiv,{"class":"HomeworkText","id":"divName" + idList},homework.name)
   //delete button
   const deleteButton = document.createElement('button');
   addPropsToElement(deleteButton,{"class":"HomeworkBtn","id":idList+"dlt"},"Eliminar")
@@ -157,7 +156,7 @@ function createHomeworkItem(homework)
 
   //Container
   const HmwkContainer=document.createElement('div');
-  addPropsToElement(HmwkContainer,{"class":"HomeworkContainer"})
+  addPropsToElement(HmwkContainer,{"class":"HomeworkContainer","id":"div" + idList})
   addElementsToFather(HmwkContainer,homeworkNameDiv,modifyButton,deleteButton)
   //event listeners
   addListenerForNewItem(homeworkNameDiv,idList);
@@ -186,7 +185,8 @@ function addListenerToDeleteButton(deleteButton,homework){
     createHmwkForm.style.display="block";
     createCourseForm.style.display="none";
     deleteHomeworkFromHTML(homework.id)
-    deleteHomework(homework.courseName,homework.id);
+  console.log(homework);
+    coursesController.deleteHomework(homework.courseName,homework.id);
     showItemsOnClick(homework.id)
     alert("La Tarea fue eliminada exitosamente");
   }))
@@ -220,7 +220,9 @@ function addListenerForNewItem(newHomeworkDiv,id)
 
 function showItemsOnClick(divID)
 {
-  const homework = getHomeworkBasedOnId(parseInt(divID))
+  const homework = coursesController.getHomeworkBasedOnId(parseInt(divID))
+  console.log("desde show");
+  console.log(homework);
   if(homework != 2)
   {
     selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
@@ -233,15 +235,15 @@ function showItemsOnClick(divID)
 }
 function loadHomeworkStats(id)
 {
-  const homework = getHomeworkBasedOnId(parseInt(id))
+  const homework = coursesController.getHomeworkBasedOnId(parseInt(id))
   selectedHomeworkStats.innerHTML="Completa "+homework.timesCompleted+" veces";
 }
 
 function deleteHomeworkFromHTML(divID)
 {
   let ObjectId = "#div" + divID.toString()
+  console.log(ObjectId);
   let homeworkToModify = document.querySelector(ObjectId)
-  let divToDelete = homeworkToModify.parentElement
-  divToDelete.remove()
+  homeworkToModify.remove()
   selectedHomeworkStats.innerHTML=""
 }

@@ -1,5 +1,4 @@
-import {addCoursesToStudent, showAllEnrolledCourses, daysWithHomework,completeHomework,getIfIdCompleted} from "./estudiante.js"
-import {getCourseHomeworks,markHmwkAsDone} from "./docente.js";
+import {addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -27,7 +26,7 @@ function loadBaseStatus()
 BtnToEnrollCourse.addEventListener("click", (event) => {
   event.preventDefault();
   const courseName = enrollCourse.value;
-  const course = getCourseHomeworks(courseName)
+  const course = coursesController.getCourseHomeworks(courseName)
   if(course!= 1)
   {
     alert("te inscribiste a " +courseName+ " con exito");
@@ -86,6 +85,7 @@ function homeworkMarkButtonListener(element,hmwkId)
     element.style.color="white"
     element.innerHTML="Done"
     completeHomework(hmwkId);
+    coursesController.markHmwkAsDone(hmwkId);
   });
 }
 function InitializeMarkButton(Button,homeworkId)
