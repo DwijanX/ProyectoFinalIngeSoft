@@ -27,3 +27,24 @@ describe("Funciones de vista estudiante", () => {
          cy.get("#daysWithHomework").contains("#divFecha2023-01-05","2023-01-05")
         });
 });
+describe("Student courses", () => {
+    it("should show enrolled courses", () => {
+    cy.visit('http://localhost:1234');
+    cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
+    cy.get("#passwordText").type("ucb2022")
+    cy.get("#estudiantesPage").click()
+    cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
+    cy.get("#BtnToEnrollCourse").click()
+    cy.get("#enrollCourse").type("INGENIERIA DE SOFTWARE")
+    cy.get("#BtnToEnrollCourse").click()
+    cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
+    cy.get("#BtnToEnrollCourse").click()
+    cy.get("#enrollCourse").type("REDES DE COMPUTADORAS II")
+    cy.get("#BtnToEnrollCourse").click()
+    cy.get("#enrollCourse").type("TECNOLOGIAS WEB")
+    cy.get("#BtnToEnrollCourse").click()
+    cy.get("#enrollCourse").type("ADMINISTRACION II")
+    cy.get("#BtnToEnrollCourse").click()
+    });
+});
+
