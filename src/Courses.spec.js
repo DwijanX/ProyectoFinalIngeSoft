@@ -47,7 +47,7 @@ const HomeworkNotFound=2;
         expect(CoursesObj.getCourseHomeworks("testCourse")).toEqual(expectedArray);
     });
     it("Trata de crear una tarea para un curso que no existe", () => {
-        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(CourseNotFound);
+        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(errorCode.CourseNotFound);
     });
     
 });

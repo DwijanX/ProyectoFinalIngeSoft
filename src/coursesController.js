@@ -13,7 +13,7 @@ class CoursesController extends  Courses{
         let status=this.#validateHomeworksInput(dateFin,dateInit);
         if (status==errorCode.OK)
         {
-            this.modifyHomework(idModif,hmwkName,dateInit,dateFin,parseInt(courseNameModif))
+            this.modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
         }
         return status;
     }
