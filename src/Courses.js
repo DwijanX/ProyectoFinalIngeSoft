@@ -9,13 +9,12 @@ class Courses{
     {
         this.courses={}
     }
-    createHomework(name,dateInit,dateFin,courseName, id)
+    createHomework(name,dateInit,dateFin,courseName,hoursNeeded, id)
     {
-        let task=new Homework(name,dateInit,dateFin,courseName, id);
+        let task=new Homework(name,dateInit,dateFin,courseName,hoursNeeded, id);
         if(this.courses[courseName])
         {
             this.courses[courseName].addHomework(task)
-            console.log(this.courses)
             return task.getHomeworkObj()
         }
         return CourseNotFound
