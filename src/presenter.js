@@ -1,6 +1,5 @@
 import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
 
-const {readFileSync, promises: fsPromises} = require('fs');
 
 const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");

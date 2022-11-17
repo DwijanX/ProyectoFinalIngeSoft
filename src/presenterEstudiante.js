@@ -60,7 +60,7 @@ function addListenerForfurtherinfo(homworkDiv,homework){
 }
 
 function showFurtherInformation(homework){
- actualHomework.innerHTML= `Homework : ${homework.name} started on ${homework.dateInit} and you must complete it by ${homework.dateFin}`
+ actualHomework.innerHTML= `Homework : ${homework.name} started on ${homework.dateInit} and you must complete it by ${homework.dateFin}`+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay();
 }
 function addElementsToFather(Father,...children)
 {

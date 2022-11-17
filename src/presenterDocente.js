@@ -1,6 +1,5 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
-import {createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
 
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -40,13 +39,14 @@ let noNumberFields=document.querySelectorAll(".noNumbersInput")
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
-  loadBaseStatus()
+  loadTeacherViewBaseStatus()
 });
 
-function loadBaseStatus()
+function loadTeacherViewBaseStatus()
 {
   selectedHomeworkStats.innerHTML=""
   selectedHomework.innerHTML=""
+  loadListByDates()
 }
 
 
@@ -226,7 +226,7 @@ function showItemsOnClick(divID)
   if(homework != 2)
   {
     selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
-    homework.dateFin + " , materia: " + homework.courseName
+    homework.dateFin + " , materia: " + homework.courseName+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay();
   }
   else{
     selectedHomework.innerHTML = ""
@@ -247,3 +247,5 @@ function deleteHomeworkFromHTML(divID)
   homeworkToModify.remove()
   selectedHomeworkStats.innerHTML=""
 }
+
+export {loadTeacherViewBaseStatus} 
