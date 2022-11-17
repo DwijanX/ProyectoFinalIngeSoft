@@ -34,6 +34,7 @@ const IDModif = document.querySelector("#IDModif");
 const CourseNameModif = document.querySelector("#CourseNameModif");
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
+const HoursNeededHmwk=document.querySelector("#HoursNeededHmwk");
 
 let noNumberFields=document.querySelectorAll(".noNumbersInput")
 
@@ -55,8 +56,8 @@ createHmwkForm.addEventListener("submit", (event) => {
   const courseName = CourseName.value;
   const dateInit = DateInit.value;
   const dateFin = DateFin.value;
-  
-  let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
+  const hoursNeeded=HoursNeededHmwk.value
+  let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded)
   alert(alertMessages[status])
   if(status==errorCode.OK)
   {

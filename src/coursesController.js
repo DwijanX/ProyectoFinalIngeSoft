@@ -13,7 +13,7 @@ class CoursesController extends  Courses{
         let status=this.#validateHomeworksInput(dateFin,dateInit);
         if (status==errorCode.OK)
         {
-            this.modifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
+            this.modifyHomework(idModif,hmwkName,dateInit,dateFin,parseInt(courseNameModif))
         }
         return status;
     }
@@ -21,13 +21,13 @@ class CoursesController extends  Courses{
     {
         this.createCourse(CourseInitials,CourseName,Teacher)
     }
-    tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
+    tryToCreateHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded)
     {
         let status=this.#validateHomeworksInput(dateFin,dateInit);
-
         if (status==errorCode.OK)
         {
-          let createdHmwk=this.createHomework(hmwkName,dateInit,dateFin,courseName,this.homeworkId)
+            hoursNeeded=parseInt(hoursNeeded)
+          let createdHmwk=this.createHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded,this.homeworkId)
           
           if(createdHmwk!=errorCode.CourseNotFound)
           {

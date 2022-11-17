@@ -12,12 +12,13 @@ class Courses{
     createHomework(name,dateInit,dateFin,courseName,hoursNeeded, id)
     {
         let task=new Homework(name,dateInit,dateFin,courseName,hoursNeeded, id);
+        
         if(this.courses[courseName])
         {
             this.courses[courseName].addHomework(task)
             return task.getHomeworkObj()
         }
-        return CourseNotFound
+        return errorCode.CourseNotFound
     }
     getCourseHomeworks(courseName)
     {
