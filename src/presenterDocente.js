@@ -1,5 +1,7 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
+import {createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
+
 let coursesController=CoursesControllerSingleton.getInstance()
 
 let alertMessages={[errorCode.OK]:"Se creo correctamente",
@@ -38,6 +40,8 @@ let noNumberFields=document.querySelectorAll(".noNumbersInput")
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
   loadBaseStatus()
+  createPredefinedCourses()
+  createPredefinedHomework()
 });
 
 function loadBaseStatus()
@@ -45,9 +49,6 @@ function loadBaseStatus()
   selectedHomeworkStats.innerHTML=""
   selectedHomework.innerHTML=""
 }
-
-
-
 
 
 createHmwkForm.addEventListener("submit", (event) => {
