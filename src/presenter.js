@@ -38,6 +38,8 @@ docentesPage.addEventListener("click", (event) => {
   
 });
 estudiantesPage.addEventListener("click", (event) => {
+  createPredefinedCourses()
+  createPredefinedHomework()
   StudentsDiv.style.display="flex"
   TeachersDiv.style.display="none"
   Login.style.display="none"
