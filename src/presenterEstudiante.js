@@ -1,6 +1,15 @@
-import {addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
+import {addCoursesToStudent,getCoursesStudent ,showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
+
+let courses= getCoursesStudent();
+// courses.forEach(function(courses){
+//   let newOption = document.createElement("option");
+//   newOption.text = courses;
+//   newOption.value = courses;
+//   courseBox.appendChild(newOption);
+// });
+
 
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
@@ -31,6 +40,12 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   {
     alert("te inscribiste a " +courseName+ " con exito");
     addCoursesToStudent(courseName)
+    courses.forEach(function(courses){
+      let newOption = document.createElement("option");
+      newOption.text = courses;
+      newOption.value = courses;
+      courseBox.appendChild(newOption);
+    });
     loadCourses();
     loadListByDates();
   }
