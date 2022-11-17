@@ -52,4 +52,4 @@ function createPredefinedHomework()
     status=coursesController.tryToCreateHomework("Entrega Proyecto Final","2023-01-01","2023-01-20","INGENIERIA DE SOFTWARE")
 }
 
-export {createPredefinedCourses, createPredefinedHomework, professorLogIn}
+export {createPredefinedCourses, createPredefinedHomework, professorLogIn, logInProfessorCredentials}

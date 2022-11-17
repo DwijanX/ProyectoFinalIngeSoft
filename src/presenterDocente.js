@@ -40,8 +40,6 @@ let noNumberFields=document.querySelectorAll(".noNumbersInput")
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
   loadBaseStatus()
-  createPredefinedCourses()
-  createPredefinedHomework()
 });
 
 function loadBaseStatus()

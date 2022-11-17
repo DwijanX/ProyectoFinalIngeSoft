@@ -5,6 +5,7 @@
     top: 120px;
     width: 100%;
     position: absolute;
+    left: -22%;
     z-index: 10;
 }
 .StudentButton
