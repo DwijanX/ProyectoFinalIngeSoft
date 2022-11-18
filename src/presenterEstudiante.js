@@ -18,6 +18,9 @@ const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
 
+const courseBox = document.querySelector("#courseBox")
+// let newOption = document.createElement("option");
+
 let fechaNumber = 0
 estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
@@ -40,12 +43,10 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   {
     alert("te inscribiste a " +courseName+ " con exito");
     addCoursesToStudent(courseName)
-    courses.forEach(function(courses){
-      let newOption = document.createElement("option");
-      newOption.text = courses;
-      newOption.value = courses;
-      courseBox.appendChild(newOption);
-    });
+    let newOption = document.createElement("option");
+    newOption.text = courseName;
+    newOption.value = courseName;
+    courseBox.appendChild(newOption);
     loadCourses();
     loadListByDates();
   }
@@ -53,6 +54,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
     alert("no te lograste inscribir a la materia");
   }
 });
+
 function loadCourses()
 {
   coursesList.innerHTML = showAllEnrolledCourses()

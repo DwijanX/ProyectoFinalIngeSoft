@@ -60,7 +60,21 @@ describe("Focus On a course", () => {
     cy.get("#BtnToEnrollCourse").click()
     cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
     cy.get("#BtnToEnrollCourse").click()
-    cy.get("#courseBox").select("INGENIERIA DE SOFTWARE")
+    cy.get("#courseBox").select("All")
     });
+    it("should step on internet de las cosas", () => {
+        cy.visit('http://localhost:1234');
+        cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
+        cy.get("#passwordText").type("ucb2022")
+        cy.get("#estudiantesPage").click()
+        cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
+        cy.get("#BtnToEnrollCourse").click()
+        cy.get("#enrollCourse").type("INGENIERIA DE SOFTWARE")
+        cy.get("#BtnToEnrollCourse").click()
+        cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
+        cy.get("#BtnToEnrollCourse").click()
+        cy.get("#courseBox").select("INTERNET DE LAS COSAS")
+        });
 });
+
 
