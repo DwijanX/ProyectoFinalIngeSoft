@@ -208,5 +208,11 @@ describe("Tiempo", () => {
         let hmwk=CoursesObj.getHomeworkBasedOnId(0)
         expect(hmwk.getHoursPerDay()).toEqual(1.5);
     });
+    it("Deberia obtener las horas necesarias para las tareas de un dia", () => {
+        CoursesObj.createHomework("test","2021-01-01","2021-01-03","mate",3,0)
+        CoursesObj.createHomework("test2","2021-01-01","2021-01-03","mate",3,0)
+        
+        expect(CoursesObj.getHoursNeededPerDay(CoursesObj.getCourseHomeworks('mate'))).toEqual(3);
+    });
 });
 

@@ -80,6 +80,14 @@ class Courses{
        }
        return status;
     }
+    getHoursNeededPerDay(sameDateHomeworks)
+    {
+        let hoursNeeded=0
+        sameDateHomeworks.forEach((Homework)=>{
+            hoursNeeded+=Homework.getHoursPerDay()
+        })
+        return hoursNeeded;
+    }
 
 }
 export {Courses}
