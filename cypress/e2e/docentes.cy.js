@@ -27,7 +27,7 @@ describe("Funciones de vista docente", () => {
         cy.get("#dateFin").type("2023-11-10")
         cy.get("#HoursNeededHmwk").type("2")
         cy.get("#HomeworkCreation-form").submit();
-        cy.get("#homeworkList").contains("#div13","testhmwk")
+        cy.get("#homeworkList").contains("#div14","testhmwk")
         });
     it("deberia agregar una  segunda tarea", () => {
             cy.get("#BtnToCreateHmwk").click()
@@ -37,7 +37,7 @@ describe("Funciones de vista docente", () => {
             cy.get("#dateInit").type("2022-11-09")
             cy.get("#dateFin").type("2023-11-10")
             cy.get("#HomeworkCreation-form").submit();
-            cy.get("#homeworkList").contains("#div14","testhmwk")
+            cy.get("#homeworkList").contains("#div15","testhmwk")
            });
            
     it("deberia modificar una tarea", () => {

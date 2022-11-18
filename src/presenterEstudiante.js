@@ -2,12 +2,15 @@ import {addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdComp
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
+const hoursToConsiderDayOverloaded=3
+
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
 const coursesList = document.querySelector("#coursesList");
 const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
+
 
 let fechaNumber = 0
 estudiantesPage.addEventListener("click", (event) => {
@@ -112,12 +115,14 @@ function loadDateContainer(homeworksArray,date)
   dateContainer=document.createElement('div');
   let dateTittleDiv = document.createElement('h3');
   addPropsToElement(dateContainer,{"id":"divFecha"+date})
-  addPropsToElement(dateTittleDiv,{"class":"divFecha" + date}, date + "==>")
+  addPropsToElement(dateTittleDiv,{"id":"divFechaTitle" + date}, date + "==>")
   addElementsToFather(dateContainer,dateTittleDiv)
   for(let i=0; i<homeworksArray.length; i++)
   {
     addElementsToFather(dateContainer, createHomeworkItem(homeworksArray[i]))
   }
+  if(coursesController.getHoursToComplete(homeworksArray)>hoursToConsiderDayOverloaded)
+    dateTittleDiv.style.color="red";
   return dateContainer
 }
 function createHomeworkItem(homework)

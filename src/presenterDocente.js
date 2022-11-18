@@ -58,6 +58,7 @@ createHmwkForm.addEventListener("submit", (event) => {
   const dateFin = DateFin.value;
   const hoursNeeded=HoursNeededHmwk.value
   let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded)
+  console.log(coursesController.getHomeworkBasedOnId(13));
   alert(alertMessages[status])
   if(status==errorCode.OK)
   {

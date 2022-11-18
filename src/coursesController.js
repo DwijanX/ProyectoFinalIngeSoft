@@ -46,7 +46,6 @@ class CoursesController extends  Courses{
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
-        console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);
     }
     getStudentHomeworksByDate()
@@ -56,7 +55,6 @@ class CoursesController extends  Courses{
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
-        console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);
         
     }
