@@ -1,6 +1,4 @@
-import Student from "./estudiante.js"
 import {seeIfStudentExist, getStudentName} from "./studentList.js"
-import {addCoursesToStudent,getCoursesStudent ,showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -13,7 +11,6 @@ const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
 const courseBox = document.querySelector("#courseBox")
-let fechaNumber = 0
 let student
 
 estudiantesPage.addEventListener("click", (event) => {
@@ -38,7 +35,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   if(course!= 1)
   {
     alert("te inscribiste a " +courseName+ " con exito");
-    addCoursesToStudent(courseName)
+    student.addCoursesToStudent(courseName)
     let newOption = document.createElement("option");
     newOption.text = courseName;
     newOption.value = courseName;

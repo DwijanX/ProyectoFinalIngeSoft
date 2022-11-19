@@ -15,7 +15,7 @@ describe("Funciones de vista estudiante", () => {
      cy.get("#estudiantesPage").click()
      cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
      cy.get("#BtnToEnrollCourse").click()
-     cy.get('#coursesList'). invoke("text").should("eq",'INTERNET DE LAS COSAS');
+     cy.get('#coursesList').invoke("text").should("eq",'INTERNET DE LAS COSAS');
     });
     it("deberia verse la tarea al registrarse a la materia", () => {
         cy.visit('http://localhost:1234');
@@ -39,8 +39,8 @@ describe("Funciones de vista estudiante", () => {
 describe("Student courses", () => {
     it("should show enrolled courses", () => {
     cy.visit('http://localhost:1234');
-    cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
-    cy.get("#passwordText").type("ucb2022")
+    cy.get("#loginText").type("Montaño Urquieta, Dieter")
+    cy.get("#passwordText").type("123")
     cy.get("#estudiantesPage").click()
     cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
     cy.get("#BtnToEnrollCourse").click()
@@ -60,8 +60,8 @@ describe("Student courses", () => {
 describe("Focus On a course", () => {
     it("should show the comboBox", () => {
     cy.visit('http://localhost:1234');
-    cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
-    cy.get("#passwordText").type("ucb2022")
+    cy.get("#loginText").type("Montaño Urquieta, Dieter")
+    cy.get("#passwordText").type("123")
     cy.get("#estudiantesPage").click()
     cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
     cy.get("#BtnToEnrollCourse").click()
@@ -73,8 +73,8 @@ describe("Focus On a course", () => {
     });
     it("should step on internet de las cosas", () => {
         cy.visit('http://localhost:1234');
-        cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
-        cy.get("#passwordText").type("ucb2022")
+        cy.get("#loginText").type("Montaño Urquieta, Dieter")
+        cy.get("#passwordText").type("123")
         cy.get("#estudiantesPage").click()
         cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
         cy.get("#BtnToEnrollCourse").click()
@@ -86,8 +86,8 @@ describe("Focus On a course", () => {
         });
         it("should step on internet de las cosas", () => {
             cy.visit('http://localhost:1234');
-            cy.get("#loginText").type("Antezana Rojas, Israel Gilberto")
-            cy.get("#passwordText").type("ucb2022")
+            cy.get("#loginText").type("Montaño Urquieta, Dieter")
+            cy.get("#passwordText").type("123")
             cy.get("#estudiantesPage").click()
             cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
             cy.get("#BtnToEnrollCourse").click()
