@@ -52,7 +52,8 @@ function loadCourses()
 function loadListByDates()
 {  
   homeworkDays.innerHTML=""
-  let HomeworkDatesObj=coursesController.getStudentHomeworksByDate()
+  console.log(student.getCoursesStudent())
+  let HomeworkDatesObj=coursesController.getStudentHomeworksByDate(student.getCoursesStudent())
   Object.keys(HomeworkDatesObj).forEach((date)=>
   {
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))

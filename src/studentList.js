@@ -22,11 +22,6 @@ function getStudentsFromJson()
                 studentDict[student.getName()] = student
             }
             studentDict[student.getName()].addCoursesToStudent(neoDict[pos]["course"])
-           // else{
-              //  studentDict[student.getName()]
-           // }
-
-           // studentDict[student.getName()].push(student)
         }
     }
 }

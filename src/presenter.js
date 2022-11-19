@@ -49,7 +49,6 @@ estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
 
   getStudentsFromJson()
-  addCoursesToStudent()
   if(studentLogIn(loginText.value, passwordText.value))
   {
     setStudentName(loginText.value)
@@ -58,6 +57,9 @@ estudiantesPage.addEventListener("click", (event) => {
     TeachersDiv.style.display="none"
     Login.style.display="none"
     resetMinorObjsStyles()
+  }
+  else{
+    passInfo.innerHTML = "credenciales incorrectas"
   }
 });
 
