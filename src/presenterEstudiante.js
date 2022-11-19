@@ -2,24 +2,13 @@ import {addCoursesToStudent,getCoursesStudent ,showAllEnrolledCourses,completeHo
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
-let courses= getCoursesStudent();
-// courses.forEach(function(courses){
-//   let newOption = document.createElement("option");
-//   newOption.text = courses;
-//   newOption.value = courses;
-//   courseBox.appendChild(newOption);
-// });
-
-
 const BtnToEnrollCourse=document.querySelector("#BtnToEnrollCourse");
 const enrollCourse=document.querySelector("#enrollCourse");
 const coursesList = document.querySelector("#coursesList");
 const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
-
 const courseBox = document.querySelector("#courseBox")
-// let newOption = document.createElement("option");
 
 let fechaNumber = 0
 estudiantesPage.addEventListener("click", (event) => {
@@ -69,6 +58,19 @@ function loadListByDates()
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
   })
 
+}
+function addListenerForSelectedCourse(){
+
+  courseBox.addEventListener('change', (event) => {
+    loadSelectedCourse(event.target.value)
+  });
+}
+function loadSelectedCourse(course){
+  homeworkDays.innerHTML=""
+  let homeworkDatesObj=coursesController.getCourseHomeworks(course)
+  Object.keys(homeworkDatesObj).forEach((date)=>{
+    addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
+  })
 }
 function addListenerForfurtherinfo(homworkDiv,homework){
   homworkDiv.addEventListener('click', function handleClick(event){
@@ -146,6 +148,7 @@ function createHomeworkItem(homework)
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
   addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
   addListenerForfurtherinfo(nameContainer,homework);
+  addListenerForSelectedCourse();
   InitializeMarkButton(homeworkMarkButton,homework.id)
   return homeworkContainer
 }

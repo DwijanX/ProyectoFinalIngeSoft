@@ -60,6 +60,9 @@ class CoursesController extends  Courses{
         return this.getdaysWithHomework(HomeworksArray);
         
     }
+    getStudentHomeworkByClass(course){
+        return this.getCourseHomeworks(course);
+    }
     getdaysWithHomework(homeworks)
     {
         let daysWithHomework={};
