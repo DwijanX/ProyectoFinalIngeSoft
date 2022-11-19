@@ -50,7 +50,7 @@ class CoursesController extends  Courses{
     }
     getStudentHomeworksByDate()
     {
-        let CourseNames=getCoursesStudent()
+        let CourseNames= getCoursesStudent()
         let HomeworksArray=[]
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))

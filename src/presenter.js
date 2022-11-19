@@ -1,5 +1,5 @@
 import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
-
+import {getStudentsFromJson, studentLogIn, setStudentName} from "./studentList.js"
 
 const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");
@@ -44,13 +44,20 @@ docentesPage.addEventListener("click", (event) => {
 
   
 });
+
 estudiantesPage.addEventListener("click", (event) => {
-  loadSampleData()
-  StudentsDiv.style.display="flex"
-  TeachersDiv.style.display="none"
-  Login.style.display="none"
-  resetMinorObjsStyles()
-  
+  event.preventDefault();
+
+  getStudentsFromJson()
+  if(studentLogIn(loginText.value, passwordText.value))
+  {
+    setStudentName(loginText.value)
+    loadSampleData()
+    StudentsDiv.style.display="flex"
+    TeachersDiv.style.display="none"
+    Login.style.display="none"
+    resetMinorObjsStyles()
+  }
 });
 
 function resetMinorObjsStyles()

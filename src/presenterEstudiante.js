@@ -1,4 +1,5 @@
 import Student from "./estudiante.js"
+import {seeIfStudentExist, getStudentName} from "./studentList.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -11,8 +12,8 @@ const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
 
+let student
 
-let fechaNumber = 0
 estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
   loadBaseStatus()
@@ -20,6 +21,8 @@ estudiantesPage.addEventListener("click", (event) => {
 
 function loadBaseStatus()
 {
+  student = seeIfStudentExist(getStudentName())
+  console.log(student)
   actualHomework.innerHTML=""
   enrollCourse.value=""
   loadCourses()
@@ -33,7 +36,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   if(course!= 1)
   {
     alert("te inscribiste a " +courseName+ " con exito");
-    addCoursesToStudent(courseName)
+    student.addCoursesToStudent(courseName)
     loadCourses();
     loadListByDates();
   }
@@ -43,7 +46,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
 });
 function loadCourses()
 {
-  coursesList.innerHTML = showAllEnrolledCourses()
+  coursesList.innerHTML = student.showAllEnrolledCourses()
 }
 
 function loadListByDates()
@@ -87,13 +90,13 @@ function homeworkMarkButtonListener(element,hmwkId)
     element.style.backgroundColor="#00FF00"
     element.style.color="white"
     element.innerHTML="Done"
-    completeHomework(hmwkId);
+    student.completeHomework(hmwkId);
     coursesController.markHmwkAsDone(hmwkId);
   });
 }
 function InitializeMarkButton(Button,homeworkId)
 {
-  let disabled=getIfIdCompleted(homeworkId)
+  let disabled=student.getIfIdCompleted(homeworkId)
   Button.disabled=disabled
   if(disabled)
   {
