@@ -1,5 +1,5 @@
 import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
-import {getStudentsFromJson, studentLogIn, setStudentName} from "./studentList.js"
+import {getStudentsFromJson, studentLogIn, setStudentName, addCoursesToStudent} from "./studentList.js"
 
 const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");
@@ -49,6 +49,7 @@ estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
 
   getStudentsFromJson()
+  addCoursesToStudent()
   if(studentLogIn(loginText.value, passwordText.value))
   {
     setStudentName(loginText.value)

@@ -1,38 +1,44 @@
 import Student from "./estudiante.js";
 import {combineDicts} from "./predefinedStudents.js"
 
-let students = new Set();
-let studentsName = new Set();
-
 let studentPassword = "123"
 
 let studentName = ""
 
+let studentDict = {}
+
+
 function getStudentsFromJson()
 {
-    let studentDicts = combineDicts()
+    let neoDict = combineDicts()
 
-    for(let pos=0;pos < studentDicts.length; pos++)
+    for(let pos=0;pos < neoDict.length; pos++)
     {
-        for(let studentPos=0; studentPos < studentDicts[pos]["students"].length; studentPos++)
+        for(let studentPos=0; studentPos < neoDict[pos]["students"].length; studentPos++)
         {
-            let student = new Student(studentDicts[pos]["students"][studentPos])
-            student.addCoursesToStudent(studentDicts[pos]["course"])
-            students.add(student)
-            studentsName.add(student.getName())
+            let student = new Student(neoDict[pos]["students"][studentPos])
+            if (!studentDict[student.getName()]) {
+                studentDict[student.getName()] = [];
+                studentDict[student.getName()] = student
+            }
+            studentDict[student.getName()].addCoursesToStudent(neoDict[pos]["course"])
+           // else{
+              //  studentDict[student.getName()]
+           // }
+
+           // studentDict[student.getName()].push(student)
         }
     }
 }
 
 function getStudents()
 {
-    return students
+    return studentDict
 }
-
 
 function studentLogIn(name, password)
 {
-    if(studentsName.has(name) && password == studentPassword)
+    if(name in studentDict && password == studentPassword)
     {
         return true
     }
@@ -41,14 +47,12 @@ function studentLogIn(name, password)
 
 function seeIfStudentExist(name)
 {
-    for(let key of students)
+    if(name in studentDict)
     {
-        if(key.getName() == name)
-        {
-            return key
-        }
+        return studentDict[name]
     }
     return null
+
 }
 
 function setStudentName(name)
@@ -61,10 +65,19 @@ function getStudentName()
     return studentName
 }
 
-function getCoursesStudent()
+function getCoursesFromAllStudents()
 {
-    
+    let courses = new Set();
+    for(let key in studentDict)
+    {
+        let student = studentDict[key].getCoursesStudent()
+        for(let course of student)
+        {
+            courses.add(course)
+        }
+    }
+    return courses
 }
 
 
-export {getStudentsFromJson, studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName}
+export {getStudentsFromJson,studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, getCoursesFromAllStudents}

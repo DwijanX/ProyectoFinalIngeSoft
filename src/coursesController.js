@@ -1,6 +1,6 @@
 import * as errorCode from './errorCodes'
 import { Courses } from './Courses';
-import {getCoursesStudent} from './estudiante'
+import {getCoursesFromAllStudents} from "./studentList.js"
 
 class CoursesController extends  Courses{
     constructor()
@@ -50,7 +50,7 @@ class CoursesController extends  Courses{
     }
     getStudentHomeworksByDate()
     {
-        let CourseNames= getCoursesStudent()
+        let CourseNames= getCoursesFromAllStudents()
         let HomeworksArray=[]
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))

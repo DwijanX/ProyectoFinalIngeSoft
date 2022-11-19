@@ -1,17 +1,15 @@
-import {getStudentsFromJson, studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName} from "./studentList.js"
+import {getStudentsFromJson, studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, getCoursesFromAllStudents} from "./studentList.js"
 import Student from "./estudiante.js"
 
 describe("Se crean estudiantes predefinidos", () => {
     it("se ve que existe el primer estudiante", () => {
         getStudentsFromJson()
         let students = getStudents()
-        const [first] = students
-        expect(first.getName()).toEqual("Aguilar Alcocer, Dayan");
+        expect(Object.keys(students)[0]).toEqual("Aguilar Alcocer, Dayan");
     });
     it("se ve que existen mas estudiantes", () => {
         let students = getStudents()
-        const [, second] = students
-        expect(second.getName()).toEqual("Aliss Arteaga, Francisco Gabriel");
+        expect(Object.keys(students)[1]).toEqual("Aliss Arteaga, Francisco Gabriel");
     });
 });
 
@@ -42,5 +40,12 @@ describe("guarda nombre de estudiante en variable", () => {
     it("busca estudiante inscrito", () => {
         setStudentName("jose")
         expect(getStudentName()).toEqual("jose");
+    });
+});
+
+describe("devuelve todos los cursos donde los estudiantes estan inscritos", () => {
+    it("devuelve los 6 cursos prediseñados", () => {
+        let cursos =new Set(["TECNOLOGIAS WEB", "INTERNET DE LAS COSAS", "REDES DE COMPUTADORAS II", "SISTEMAS DE INFORMACION III", "INGENIERIA DE SOFTWARE", "ADMINISTRACION II"])
+        expect(getCoursesFromAllStudents()).toEqual(cursos);
     });
 });
