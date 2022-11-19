@@ -34,4 +34,12 @@ describe("agregar materias a estudiantes", () => {
     });
 });
 
-
+describe("devuelve valores de constructor", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Nicolas")
+      });
+    it("Muestra nombre de estudiante creado", () => {
+        expect(newStudent.getName()).toEqual("Nicolas");
+    });
+});

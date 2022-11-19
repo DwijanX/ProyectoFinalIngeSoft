@@ -38,6 +38,10 @@ class Student{
         return this.completedHomeworkIds.has(id)
     }
 
+    getName()
+    {
+        return this.name
+    }
 }
 
 export default Student;
