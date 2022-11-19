@@ -1,4 +1,4 @@
-import {addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
+import Student from "./estudiante.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 

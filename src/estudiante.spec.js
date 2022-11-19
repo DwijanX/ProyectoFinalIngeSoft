@@ -1,25 +1,36 @@
 //import { expect } from "chai";
-import {addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdCompleted,getCoursesStudent} from "./estudiante.js"
+import Student from "./estudiante.js"
 
 describe("Marcado de tareas", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Nicolas")
+      });
     it("se completa una tarea", () => {
-        completeHomework(0);
-        expect(getIfIdCompleted(0)).toEqual(true);
+        newStudent.completeHomework(0);
+        expect(newStudent.getIfIdCompleted(0)).toEqual(true);
     });
 });
 
 describe("agregar materias a estudiantes", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Nicolas")
+      });
     it("se agrega una materia", () => {
-        addCoursesToStudent("mate")
-        expect(showAllEnrolledCourses()).toEqual("mate");
+        newStudent.addCoursesToStudent("mate")
+        expect(newStudent.showAllEnrolledCourses()).toEqual("mate");
     });
     it("se agrega una materia", () => {
-        addCoursesToStudent("reli")
-        expect(showAllEnrolledCourses()).toEqual("mate, reli");
+        newStudent.addCoursesToStudent("mate")
+        newStudent.addCoursesToStudent("reli")
+        expect(newStudent.showAllEnrolledCourses()).toEqual("mate, reli");
     });
     it("se obtiene un set de cursos", () => {
         let ExpectedVal=new Set(["mate","reli"])
-        expect(getCoursesStudent()).toEqual(ExpectedVal);
+        newStudent.addCoursesToStudent("mate")
+        newStudent.addCoursesToStudent("reli")
+        expect(newStudent.getCoursesStudent()).toEqual(ExpectedVal);
     });
 });
 

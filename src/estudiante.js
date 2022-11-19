@@ -1,35 +1,43 @@
 
-let coursesStudent = new Set();
-let completedHomeworkIds=new Set();
+     
+class Student{
+    
+    constructor(Name)
+    {
+        this.name=Name;
+        this.coursesStudent =new Set();
+        this.completedHomeworkIds = new Set();
+    }
 
-function addCoursesToStudent(course)
-{
-    coursesStudent.add(course)
+    addCoursesToStudent(course)
+    {
+        this.coursesStudent.add(course)
+    }
+
+    getCoursesStudent()
+    {
+        return this.coursesStudent;
+    }
+
+    showAllEnrolledCourses()
+    {
+        let materias = "";
+        this.coursesStudent.forEach(course=>{
+            materias +=course+", "
+        })
+        return materias.substring(0,materias.length-2)
+    }
+
+    completeHomework(id)
+    {
+        this.completedHomeworkIds.add(id)
+    }
+
+    getIfIdCompleted(id)
+    {
+        return this.completedHomeworkIds.has(id)
+    }
+
 }
-function getCoursesStudent()
-{
-    return coursesStudent;
-}
 
-function showAllEnrolledCourses()
-{
-    let materias = "";
-    coursesStudent.forEach(course=>{
-        materias +=course+", "
-    })
-    return materias.substring(0,materias.length-2)
-}
-
-
-function completeHomework(id)
-{
-    completedHomeworkIds.add(id)
-}
-
-function getIfIdCompleted(id)
-{
-    return completedHomeworkIds.has(id)
-}
-
-
-export{addCoursesToStudent, showAllEnrolledCourses,completeHomework,getIfIdCompleted,getCoursesStudent}
+export default Student;
