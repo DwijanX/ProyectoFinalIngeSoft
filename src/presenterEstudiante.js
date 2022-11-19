@@ -1,5 +1,6 @@
 import Student from "./estudiante.js"
 import {seeIfStudentExist, getStudentName} from "./studentList.js"
+import {addCoursesToStudent,getCoursesStudent ,showAllEnrolledCourses,completeHomework,getIfIdCompleted} from "./estudiante.js"
 import { CoursesControllerSingleton } from "./coursesController";
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -11,7 +12,8 @@ const coursesList = document.querySelector("#coursesList");
 const homeworkDays = document.querySelector("#daysWithHomework");
 const actualHomework = document.querySelector("#actualHomework");
 const estudiantesPage = document.querySelector("#estudiantesPage");
-
+const courseBox = document.querySelector("#courseBox")
+let fechaNumber = 0
 let student
 
 estudiantesPage.addEventListener("click", (event) => {
@@ -36,7 +38,11 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   if(course!= 1)
   {
     alert("te inscribiste a " +courseName+ " con exito");
-    student.addCoursesToStudent(courseName)
+    addCoursesToStudent(courseName)
+    let newOption = document.createElement("option");
+    newOption.text = courseName;
+    newOption.value = courseName;
+    courseBox.appendChild(newOption);
     loadCourses();
     loadListByDates();
   }
@@ -44,6 +50,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
     alert("no te lograste inscribir a la materia");
   }
 });
+
 function loadCourses()
 {
   coursesList.innerHTML = student.showAllEnrolledCourses()
@@ -59,6 +66,19 @@ function loadListByDates()
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
   })
 
+}
+function addListenerForSelectedCourse(){
+
+  courseBox.addEventListener('change', (event) => {
+    loadSelectedCourse(event.target.value)
+  });
+}
+function loadSelectedCourse(course){
+  homeworkDays.innerHTML=""
+  let homeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
+  Object.keys(homeworkDatesObj).forEach((date)=>{
+    addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
+  })
 }
 function addListenerForfurtherinfo(homworkDiv,homework){
   homworkDiv.addEventListener('click', function handleClick(event){
@@ -138,6 +158,7 @@ function createHomeworkItem(homework)
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
   addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
   addListenerForfurtherinfo(nameContainer,homework);
+  addListenerForSelectedCourse();
   InitializeMarkButton(homeworkMarkButton,homework.id)
   return homeworkContainer
 }
