@@ -5,7 +5,7 @@ class Student{
     constructor(Name)
     {
         this.name=Name;
-        this.coursesStudent =new Set();
+        this.coursesStudent = new Set();
         this.completedHomeworkIds = new Set();
     }
 

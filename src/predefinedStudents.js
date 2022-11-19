@@ -1,142 +1,147 @@
-jsonTechWeb = {
+let dictTechWeb = {
     "course": "TECNOLOGIAS WEB",
     "students":
     [
-        {
-        "name": "Aguilar Alcocer, Dayan",
-        "name": "Aliss Arteaga, Francisco Gabriel",
-        "name": "Balderrama Vargas, Gabriel Ichiro",
-        "name": "Bustamante Jaldin, Sergio",
-        "name": "Camargo Aramayo, Maria Belen",
-        "name": "Canapi Madrid, Cristian Said",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Garcia Vacaflor, Jerson Alan",
-        "name": "Gonzalez Fernandez, Grover Leonardo",
-        "name": "Guardia Ramirez, Rodrigo",
-        "name": "Gutierrez Calizaya, Melina Aylem",
-        "name": "Riva Salinas, Paulo Ariel",
-        "name": "Rivero Arnez, Christian",
-        "name": "Rodriguez Alvarez, Noel Alejandro",
-        "name": "Roman Arevalo, Libia Nataly",
-        "name": "Roman Ledezma, Edwin Oswaldo"
-        }
+        "Aguilar Alcocer, Dayan",
+        "Aliss Arteaga, Francisco Gabriel",
+        "Balderrama Vargas, Gabriel Ichiro",
+        "Bustamante Jaldin, Sergio",
+        "Camargo Aramayo, Maria Belen",
+        "Canapi Madrid, Cristian Said",
+        "Cari Rodriguez, Nicolas",
+        "Garcia Vacaflor, Jerson Alan",
+        "Gonzalez Fernandez, Grover Leonardo",
+        "Guardia Ramirez, Rodrigo",
+        "Gutierrez Calizaya, Melina Aylem",
+        "Riva Salinas, Paulo Ariel",
+        "Rivero Arnez, Christian",
+        "Rodriguez Alvarez, Noel Alejandro",
+        "Roman Arevalo, Libia Nataly",
+        "Roman Ledezma, Edwin Oswaldo"
     ]
 }
 
-jsonIoT = {
+let dictIoT = {
     "course": "INTERNET DE LAS COSAS",
     "students":
     [
-        {
-        "name": "Acero Rojas, Edwin Daniel",
-        "name": "Balderrama Vargas, Gabriel Ichiro",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Diaz Crespo, Rene Dorian",
-        "name": "Escobar Herrada, Marco Fernando",
-        "name": "Fuentes Martinez, Aramis",
-        "name": "Garcia Arias, Alfred Brandon",
-        "name": "Guardia Ramirez, Rodrigo",
-        "name": "Lopez Soria, Jose Carlos",
-        "name": "Montaño Urquieta, Dieter",
-        "name": "Ortuño Prudencio, Jhonny Ricardo",
-        "name": "Rivero Arnez, Christian"
-        }
+        "Acero Rojas, Edwin Daniel",
+        "Balderrama Vargas, Gabriel Ichiro",
+        "Cari Rodriguez, Nicolas",
+        "Diaz Crespo, Rene Dorian",
+        "Escobar Herrada, Marco Fernando",
+        "Fuentes Martinez, Aramis",
+        "Garcia Arias, Alfred Brandon",
+        "Guardia Ramirez, Rodrigo",
+        "Lopez Soria, Jose Carlos",
+        "Montaño Urquieta, Dieter",
+        "Ortuño Prudencio, Jhonny Ricardo",
+        "Rivero Arnez, Christian"
     ]
 }
 
-jsonRedes = {
+let dictRedes = {
     "course": "REDES DE COMPUTADORAS II",
     "students":
     [
-        {
-	    "name": "Aguilera Cordero, Isabel Consuelo",
-        "name": "Aliss Arteaga, Francisco Gabriel",
-	    "name": "Almendras Santa Cruz, Brian",
-        "name": "Balderrama Vargas, Gabriel Ichiro",
-        "name": "Camargo Aramayo, Maria Belen",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Escobar Herrada, Marco Fernando",
-	    "name": "Flores Lopez, Alejandro Santiago",
-        "name": "Fuentes Martinez, Aramis",
-        "name": "Garcia Arias, Alfred Brandon",
-        "name": "Lopez Soria, Jose Carlos",
-        "name": "Rivero Arnez, Christian",
-	    "name": "Sanchez San Miguel, Jose Manuel",
-        "name": "Tarquino Cespedes, Adriana Valentina",
-	    "name": "Vera Loza, Rosa Noelia"
-        }
+	    "Aguilera Cordero, Isabel Consuelo",
+        "Aliss Arteaga, Francisco Gabriel",
+	    "Almendras Santa Cruz, Brian",
+        "Balderrama Vargas, Gabriel Ichiro",
+        "Camargo Aramayo, Maria Belen",
+        "Cari Rodriguez, Nicolas",
+        "Escobar Herrada, Marco Fernando",
+	    "Flores Lopez, Alejandro Santiago",
+        "Fuentes Martinez, Aramis",
+        "Garcia Arias, Alfred Brandon",
+        "Lopez Soria, Jose Carlos",
+        "Rivero Arnez, Christian",
+	    "Sanchez San Miguel, Jose Manuel",
+        "Tarquino Cespedes, Adriana Valentina",
+	    "Vera Loza, Rosa Noelia"
     ]
 }
 
-jsonSisInfo = {
+let dictSisInfo = {
     "course": "SISTEMAS DE INFORMACION III",
     "students":
     [
-        {
-        "name": "Balderrama Vargas, Gabriel Ichiro",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Copa Mejia, Daho Fabio",
-        "name": "Escobar Herrada, Marco Fernando",
-        "name": "Garcia Arias, Alfred Brandon",
-        "name": "Guardia Ramirez, Rodrigo",
-        "name": "Gutierrez Calizaya, Melina Aylem",
-        "name": "Lopez Soria, Jose Carlos",
-        "name": "Mamani Perez, Sandra Jael",
-        "name": "Rivero Arnez, Christian",
-        "name": "Salazar Aramayo, Luis Felipe",
-	    "name": "Salazar Villegas, Luis Sebastian",
-	    "name": "Sanchez San Miguel, Jose Manuel",
-        "name": "Tarquino Cespedes, Adriana Valentina",
-	    "name": "Terceros Ortega, Jonatan Gerson",
-        "name": "Torrico Hinojosa, Santiago Jose",
-	    "name": "Uribe Tapia, Nicole Alejandra"
-        }
+        "Balderrama Vargas, Gabriel Ichiro",
+        "Cari Rodriguez, Nicolas",
+        "Copa Mejia, Daho Fabio",
+        "Escobar Herrada, Marco Fernando",
+        "Garcia Arias, Alfred Brandon",
+        "Guardia Ramirez, Rodrigo",
+        "Gutierrez Calizaya, Melina Aylem",
+        "Lopez Soria, Jose Carlos",
+        "Mamani Perez, Sandra Jael",
+        "Rivero Arnez, Christian",
+        "Salazar Aramayo, Luis Felipe",
+	    "Salazar Villegas, Luis Sebastian",
+	    "Sanchez San Miguel, Jose Manuel",
+        "Tarquino Cespedes, Adriana Valentina",
+	    "Terceros Ortega, Jonatan Gerson",
+        "Torrico Hinojosa, Santiago Jose",
+	    "Uribe Tapia, Nicole Alejandra"
     ]
 }
 
-jsonIngSoft = {
+let dictIngSoft = {
     "course": "INGENIERIA DE SOFTWARE",
     "students":
     [
-        {
-        "name": "Aguayo Salas, Karen Pilar",
-        "name": "Asturizaga Garcia, Sebastian",
-        "name": "Balderrama Vargas, Gabriel Ichiro",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Encinas Cabezas, Angy Alejandra",
-        "name": "Garcia Arias, Alfred Brandon",
-        "name": "Guardia Ramirez, Rodrigo",
-        "name": "Gutierrez Calizaya, Melina Aylem",
-        "name": "Lee Perez, Young Woang",
-        "name": "Rivero Arnez, Christian",
-        "name": "Rodriguez Coca, Alejandro Josue",
-	    "name": "Rojas Reque, Kevin Yamil",
-        "name": "Torrico Hinojosa, Santiago Jose"
-        }
+        "Aguayo Salas, Karen Pilar",
+        "Asturizaga Garcia, Sebastian",
+        "Balderrama Vargas, Gabriel Ichiro",
+        "Cari Rodriguez, Nicolas",
+        "Encinas Cabezas, Angy Alejandra",
+        "Garcia Arias, Alfred Brandon",
+        "Guardia Ramirez, Rodrigo",
+        "Gutierrez Calizaya, Melina Aylem",
+        "Lee Perez, Young Woang",
+        "Rivero Arnez, Christian",
+        "Rodriguez Coca, Alejandro Josue",
+	    "Rojas Reque, Kevin Yamil",
+        "Torrico Hinojosa, Santiago Jose"
     ]
 }
 
-jsonAdmin = {
+let dictAdmin = {
     "course": "ADMINISTRACION II",
     "students":
     [
-        {
-        "name": "Alavi Gutierrez, Dilan Alvaro",
-        "name": "Arze Mejia, Jaime Alberto",
-        "name": "Balderrama Muñoz, Wendy Isabel",
-        "name": "Bustamante Jaldin, Sergio",
-        "name": "Calvimonte Siles, Mariana",
-        "name": "Camargo Aramayo, Maria Belen",
-        "name": "Cari Rodriguez, Nicolas",
-        "name": "Crespo Romero, Melany",
-        "name": "Gamboa Montaño, Kevin",
-        "name": "Lazarte Cabero, Diego",
-        "name": "Mencia Cespedes, Tatiana Dayana",
-        "name": "Quiroga Zambrana, Marcelo Sergio",
-        "name": "Rivero Arnez, Christian",
-        "name": "Sanchez San Miguel, Jose Manuel",
-	    "name": "Torrico Quilla, Gonzalo Nicolas",
-        "name": "Villegas Quiroga, Andres Sebastian"
-        }
+        "Alavi Gutierrez, Dilan Alvaro",
+        "Arze Mejia, Jaime Alberto",
+        "Balderrama Muñoz, Wendy Isabel",
+        "Bustamante Jaldin, Sergio",
+        "Calvimonte Siles, Mariana",
+        "Camargo Aramayo, Maria Belen",
+        "Cari Rodriguez, Nicolas",
+        "Crespo Romero, Melany",
+        "Gamboa Montaño, Kevin",
+        "Lazarte Cabero, Diego",
+        "Mencia Cespedes, Tatiana Dayana",
+        "Quiroga Zambrana, Marcelo Sergio",
+        "Rivero Arnez, Christian",
+        "Sanchez San Miguel, Jose Manuel",
+	    "Torrico Quilla, Gonzalo Nicolas",
+        "Villegas Quiroga, Andres Sebastian"
     ]
 }
+
+let DictList = []
+function combineDicts()
+{
+    DictList.push(dictTechWeb)
+    DictList.push(dictIoT)
+    DictList.push(dictRedes)
+    DictList.push(dictSisInfo)
+    DictList.push(dictIngSoft)
+    DictList.push(dictAdmin)
+
+    return DictList
+}
+
+
+
+export {combineDicts}
