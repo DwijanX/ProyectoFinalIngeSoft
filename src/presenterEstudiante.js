@@ -67,7 +67,7 @@ function addListenerForSelectedCourse(){
 }
 function loadSelectedCourse(course){
   homeworkDays.innerHTML=""
-  let homeworkDatesObj=coursesController.getCourseHomeworks(course)
+  let homeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
   Object.keys(homeworkDatesObj).forEach((date)=>{
     addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
   })
