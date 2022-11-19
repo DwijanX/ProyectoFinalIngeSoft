@@ -1,6 +1,5 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
-import {createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
 
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -34,18 +33,20 @@ const IDModif = document.querySelector("#IDModif");
 const CourseNameModif = document.querySelector("#CourseNameModif");
 const homeworkList =  document.querySelector("#homeworkList");
 const selectedHomework = document.querySelector("#selectedHomework");
+const HoursNeededHmwk=document.querySelector("#HoursNeededHmwk");
 
 let noNumberFields=document.querySelectorAll(".noNumbersInput")
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
-  loadBaseStatus()
+  loadTeacherViewBaseStatus()
 });
 
-function loadBaseStatus()
+function loadTeacherViewBaseStatus()
 {
   selectedHomeworkStats.innerHTML=""
   selectedHomework.innerHTML=""
+  loadListByDates()
 }
 
 
@@ -55,8 +56,9 @@ createHmwkForm.addEventListener("submit", (event) => {
   const courseName = CourseName.value;
   const dateInit = DateInit.value;
   const dateFin = DateFin.value;
-  
-  let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
+  const hoursNeeded=HoursNeededHmwk.value
+  let status=coursesController.tryToCreateHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded)
+  console.log(coursesController.getHomeworkBasedOnId(13));
   alert(alertMessages[status])
   if(status==errorCode.OK)
   {
@@ -225,7 +227,7 @@ function showItemsOnClick(divID)
   if(homework != 2)
   {
     selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
-    homework.dateFin + " , materia: " + homework.courseName
+    homework.dateFin + " , materia: " + homework.courseName+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay();
   }
   else{
     selectedHomework.innerHTML = ""
@@ -246,3 +248,5 @@ function deleteHomeworkFromHTML(divID)
   homeworkToModify.remove()
   selectedHomeworkStats.innerHTML=""
 }
+
+export {loadTeacherViewBaseStatus} 

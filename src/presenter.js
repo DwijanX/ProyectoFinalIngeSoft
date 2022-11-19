@@ -1,6 +1,5 @@
 import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
 
-const {readFileSync, promises: fsPromises} = require('fs');
 
 const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");
@@ -16,7 +15,16 @@ const HomeworkMofication=document.querySelector("#HomeworkMofication-form");
 const loginText = document.querySelector("#loginText");
 const passwordText = document.querySelector("#passwordText");
 let passInfo = document.querySelector("#pass");
-
+let alreadyLoaded=false
+function loadSampleData()
+{
+  if(alreadyLoaded==false)
+  {
+    createPredefinedCourses()
+    createPredefinedHomework()
+    alreadyLoaded=true
+  }
+}
 
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
@@ -24,8 +32,7 @@ docentesPage.addEventListener("click", (event) => {
   logInProfessorCredentials()
   if(professorLogIn(loginText.value, passwordText.value))
   {
-    createPredefinedCourses()
-    createPredefinedHomework()
+    loadSampleData()
     TeachersDiv.style.display="flex"
     StudentsDiv.style.display="none"
     Login.style.display="none"
@@ -38,8 +45,7 @@ docentesPage.addEventListener("click", (event) => {
   
 });
 estudiantesPage.addEventListener("click", (event) => {
-  createPredefinedCourses()
-  createPredefinedHomework()
+  loadSampleData()
   StudentsDiv.style.display="flex"
   TeachersDiv.style.display="none"
   Login.style.display="none"

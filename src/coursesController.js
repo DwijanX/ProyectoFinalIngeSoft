@@ -21,13 +21,13 @@ class CoursesController extends  Courses{
     {
         this.createCourse(CourseInitials,CourseName,Teacher)
     }
-    tryToCreateHomework(hmwkName,dateInit,dateFin,courseName)
+    tryToCreateHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded)
     {
         let status=this.#validateHomeworksInput(dateFin,dateInit);
-
         if (status==errorCode.OK)
         {
-          let createdHmwk=this.createHomework(hmwkName,dateInit,dateFin,courseName,this.homeworkId)
+            hoursNeeded=parseInt(hoursNeeded)
+          let createdHmwk=this.createHomework(hmwkName,dateInit,dateFin,courseName,hoursNeeded,this.homeworkId)
           
           if(createdHmwk!=errorCode.CourseNotFound)
           {
@@ -46,7 +46,6 @@ class CoursesController extends  Courses{
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
-        console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);
     }
     getStudentHomeworksByDate()
@@ -56,7 +55,6 @@ class CoursesController extends  Courses{
         CourseNames.forEach((CourseName)=>{
             HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
         })
-        console.log(HomeworksArray);
         return this.getdaysWithHomework(HomeworksArray);
         
     }

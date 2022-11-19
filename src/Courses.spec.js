@@ -14,18 +14,19 @@ const HomeworkNotFound=2;
         CoursesObj.createCourse("tst","testCourse","testTeacher")
       });
     it("Se crea una tarea", () => {
-        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",0)).toEqual({
+        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",2,0)).toEqual({
             name:"test",
             id:0,
             dateInit:"2021-01-01",
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            hoursNeeded:2
         });
     });
     it("Se crean varias tareas", () => {
-        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",1)
-        CoursesObj.createHomework("test2","2021-01-01","2021-01-02","testCourse",2)
+        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",2,1)
+        CoursesObj.createHomework("test2","2021-01-01","2021-01-02","testCourse",2,2)
         let expectedArray=[{
             name:"test1",
             id:1,
@@ -33,6 +34,7 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            hoursNeeded:2
         },{
             name:"test2",
             id:2,
@@ -40,11 +42,12 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            hoursNeeded:2
         }]
         expect(CoursesObj.getCourseHomeworks("testCourse")).toEqual(expectedArray);
     });
     it("Trata de crear una tarea para un curso que no existe", () => {
-        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(CourseNotFound);
+        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse1",0)).toEqual(errorCode.CourseNotFound);
     });
     
 });
@@ -55,13 +58,13 @@ describe("Deletes an assigned homework", () => {
         CoursesObj.createCourse("tst","testCourse","testTeacher")
       });
     it("it deletes the assigned homework when the list has just one assignment", () => {
-        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",1)
+        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",2,1)
         expect(CoursesObj.deleteHomework("testCourse",1)).toEqual(0);
     });
     it("it deletes the assigned homework based on the given id", () => {
-        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",1)
-        CoursesObj.createHomework("test2","2021-01-01","2021-01-02","testCourse",2)
-        CoursesObj.createHomework("test3","2021-01-01","2021-01-02","testCourse",3)
+        CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",2,1)
+        CoursesObj.createHomework("test2","2021-01-01","2021-01-02","testCourse",2,2)
+        CoursesObj.createHomework("test3","2021-01-01","2021-01-02","testCourse",2,3)
         expect(CoursesObj.deleteHomework("testCourse",3)).toEqual(2);
     });
     it("Tries to delete a homework that doesnt exist", () => {
@@ -80,8 +83,8 @@ describe("Pruebas para conseguir Id",()=>{
         CoursesObj=new Courses()
         CoursesObj.createCourse("tst","testCourse","testTeacher")
       });
-    it("deberia de volver tarea 1",()=>{
-        CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",0)
+    it("deberia devolver tarea 1",()=>{
+        CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",2,0)
         expect(CoursesObj.getHomeworkBasedOnId(0)).toEqual({
             name:"test",
             id:0,
@@ -89,6 +92,7 @@ describe("Pruebas para conseguir Id",()=>{
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            hoursNeeded:2
         });
     })
     it("Se trata de obtener una tarea que no existe",()=>{
@@ -131,6 +135,7 @@ describe("Pruebas sobre Materia",()=>{
     })
     
 })
+
 describe("Modificar una tarea", () => {
     let CoursesObj;
     beforeEach(() => {
@@ -138,7 +143,7 @@ describe("Modificar una tarea", () => {
         CoursesObj.createCourse("tst","testCourse","testTeacher")
       });
     it("Se modifica una tarea", () => {
-        CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",0)
+        CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",2,0)
         expect( CoursesObj.modifyHomework(0,"test4","2021-01-01","2021-01-03","testCourse")).toEqual({
             name:"test4",
             id:0,
@@ -146,6 +151,7 @@ describe("Modificar una tarea", () => {
             dateFin:"2021-01-03",
             courseName:"testCourse",
             timesCompleted: 0,
+            hoursNeeded:2
         });
     });
     it("Se modifica una tarea que no existe", () => {
@@ -159,6 +165,22 @@ describe("Modificar una tarea", () => {
 
     
 });
+describe("Obtener datos de una tarea", () => {
+    let CoursesObj;
+    beforeEach(() => {
+        CoursesObj=new Courses()
+        CoursesObj.createCourse("tst","mate","testName")
+        CoursesObj.createHomework("test","2021-01-01","2021-01-02","mate",2,0)
+      });
+    it("Se puede obtener el id de una tarea", () => {
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.getId()).toEqual(0);
+    });
+    it("Se puede obtener la fecha final de una tarea", () => {
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.getDateFin()).toEqual("2021-01-02");
+    });
+});
 
 describe("estadisticas", () => {
     let CoursesObj;
@@ -167,10 +189,30 @@ describe("estadisticas", () => {
       });
     it("se puede obtener la cantidad de veces que una materia fue completada", () => {
         CoursesObj.createCourse("tst","mate","testName")
-        CoursesObj.createHomework("test","2021-01-01","2021-01-02","mate",0)
+        CoursesObj.createHomework("test","2021-01-01","2021-01-02","mate",2,0)
         let hmwk=CoursesObj.getHomeworkBasedOnId(0)
         CoursesObj.markHmwkAsDone(0)
         CoursesObj.markHmwkAsDone(0)
         expect(hmwk.getTimesCompleted()).toEqual(2);
     });
 });
+
+describe("Tiempo", () => {
+    let CoursesObj;
+    beforeEach(() => {
+        CoursesObj=new Courses()
+        CoursesObj.createCourse("tst","mate","testName")
+      });
+    it("Deberia calcular las horas necesarias por dia para acabar la tarea", () => {
+        CoursesObj.createHomework("test","2021-01-01","2021-01-03","mate",3,0)
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.getHoursPerDay()).toEqual(1.5);
+    });
+    it("Deberia obtener las horas necesarias para las tareas de un dia", () => {
+        CoursesObj.createHomework("test","2021-01-01","2021-01-03","mate",3,0)
+        CoursesObj.createHomework("test2","2021-01-01","2021-01-03","mate",3,0)
+        
+        expect(CoursesObj.getHoursToComplete(CoursesObj.getCourseHomeworks('mate'))).toEqual(3);
+    });
+});
+
