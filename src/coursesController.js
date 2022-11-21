@@ -52,7 +52,6 @@ class CoursesController extends  Courses{
     {
         let CourseNames= getCoursesFromAllStudents()
         let HomeworksArray=[]
-        console.log(coursesEnlisted)
         CourseNames.forEach((CourseName)=>{
             if(coursesEnlisted.has(CourseName))
             {
