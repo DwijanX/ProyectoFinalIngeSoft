@@ -121,7 +121,6 @@ function loadListByDates()
 {  
   homeworkList.innerHTML=""
   let HomeworkDatesObj=coursesController.getAllHomeworksByDate()
-  console.log(HomeworkDatesObj);
   Object.keys(HomeworkDatesObj).forEach((date)=>
   {
     addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))

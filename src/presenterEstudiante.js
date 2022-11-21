@@ -15,7 +15,14 @@ let student
 
 estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
-  loadBaseStatus()
+  try
+  {
+    loadBaseStatus()
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 });
 
 function loadBaseStatus()

@@ -62,6 +62,8 @@
       <h1>Anti Estres aplicacion chad 1.1.0</h1>
     <button class="changePage" id="docentesPage"><span></span>Docentes</button>
     <button class="changePage" id="estudiantesPage"><span></span>Estudiantes</button>
+    <button class="changePage" id="logOutButton" >Cerrar sesion</button>
+    
     <div id="Login">
       <form method="post">
         <div class="txt_field">
@@ -143,7 +145,7 @@
       <div id="coursesList"></div>
       <h2>Enfocarse en un Curso</h2>
       <select name="courseBox" id="courseBox">
-        <option value="">All</option>
+        <option value="All">All</option>
       </select>
       <h2>tareas</h2>
       <div id="daysWithHomework"></div>
@@ -151,7 +153,6 @@
       <div id="actualHomework"></div>
       <label for="daysWithHomework"></label><br>
     </div>
-
     <script type="module" src="./src/presenter.js"></script>
     <script type="module" src="./src/presenterDocente.js"></script>
     <script type="module" src="./src/presenterEstudiante.js"></script>

@@ -69,7 +69,7 @@ describe("Focus On a course", () => {
     cy.get("#BtnToEnrollCourse").click()
     cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
     cy.get("#BtnToEnrollCourse").click()
-    cy.get("#courseBox").select("All")
+    cy.get("#courseBox").select("All").should('have.value',"All")
     });
     it("should step on internet de las cosas", () => {
         cy.visit('http://localhost:1234');
@@ -78,26 +78,32 @@ describe("Focus On a course", () => {
         cy.get("#estudiantesPage").click()
         cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
         cy.get("#BtnToEnrollCourse").click()
+        cy.get("#courseBox").select("INTERNET DE LAS COSAS").should('have.value',"INTERNET DE LAS COSAS")
+
+        });
+    it("should step on sistemas de informacion", () => {
+        cy.visit('http://localhost:1234');
+        cy.get("#loginText").type("Montaño Urquieta, Dieter")
+        cy.get("#passwordText").type("123")
+        cy.get("#estudiantesPage").click()
         cy.get("#enrollCourse").type("INGENIERIA DE SOFTWARE")
         cy.get("#BtnToEnrollCourse").click()
         cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
         cy.get("#BtnToEnrollCourse").click()
-        cy.get("#courseBox").select("INTERNET DE LAS COSAS")
+        cy.get("#courseBox").select("SISTEMAS DE INFORMACION III").should('have.value',"SISTEMAS DE INFORMACION III")
+
         });
-        it("should step on internet de las cosas", () => {
-            cy.visit('http://localhost:1234');
-            cy.get("#loginText").type("Montaño Urquieta, Dieter")
-            cy.get("#passwordText").type("123")
-            cy.get("#estudiantesPage").click()
-            cy.get("#enrollCourse").type("INTERNET DE LAS COSAS")
-            cy.get("#BtnToEnrollCourse").click()
-            cy.get("#enrollCourse").type("INGENIERIA DE SOFTWARE")
-            cy.get("#BtnToEnrollCourse").click()
-            cy.get("#enrollCourse").type("SISTEMAS DE INFORMACION III")
-            cy.get("#BtnToEnrollCourse").click()
-            cy.get("#courseBox").select("INTERNET DE LAS COSAS")
-            cy.get("#courseBox").select("SISTEMAS DE INFORMACION III")
-            });
 });
 
 
+describe("Log out tests", () => {
+    it("should be able to log out", () => {
+    cy.visit('http://localhost:1234');
+    cy.get("#loginText").type("Montaño Urquieta, Dieter")
+    cy.get("#passwordText").type("123")
+    cy.get("#estudiantesPage").click()
+    cy.get("#logOutButton").click()
+    cy.get("#Login").should('have.css', 'display', 'block')
+    });
+
+});
