@@ -1,5 +1,6 @@
 import {seeIfStudentExist, getStudentName} from "./studentList.js"
 import { CoursesControllerSingleton } from "./coursesController";
+import Homework from "./homework.js";
 let coursesController=CoursesControllerSingleton.getInstance()
 
 const hoursToConsiderDayOverloaded=3
@@ -110,6 +111,7 @@ function homeworkMarkButtonListener(element,hmwkId)
     element.innerHTML="Done"
     student.completeHomework(hmwkId);
     coursesController.markHmwkAsDone(hmwkId);
+    homeworkDone(hmwkId);
   });
 }
 function InitializeMarkButton(Button,homeworkId)
@@ -124,12 +126,23 @@ function InitializeMarkButton(Button,homeworkId)
   }
   else
   {
-    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Mark done")
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Mark done");
     homeworkMarkButtonListener(Button,homeworkId);
   }
 
 }
-
+function homeworkDone(homeworkId){
+  let feedbackbtn = document.querySelector("#feedbackbtn"+homeworkId);
+  let disabled=student.getIfIdCompleted(homeworkId)
+  if(disabled){
+    feedbackbtn.style.display = "block";
+  }else{
+    feedbackbtn.style.display = "none";
+  }
+}
+function InitializeFeedBackButton(Button){
+  Button.style.display = "none"
+}
 function loadDateContainer(homeworksArray,date)
 {
   let dateContainer=document.createElement('div');
@@ -146,16 +159,20 @@ function loadDateContainer(homeworksArray,date)
     dateTittleDiv.style.color="red";
   return dateContainer
 }
+
 function createHomeworkItem(homework)
 {
   let homeworkContainer=document.createElement("div");
   let nameContainer= document.createElement('div');
   let homeworkMarkButton= document.createElement('button');
+  let feedBackButton=document.createElement('button');
+  addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
   addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homework.id,"class":"HomeworkContainer"})
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
-  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
+  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton)
   addListenerForfurtherinfo(nameContainer,homework);
   addListenerForSelectedCourse();
   InitializeMarkButton(homeworkMarkButton,homework.id)
+  InitializeFeedBackButton(feedBackButton);
   return homeworkContainer
 }
