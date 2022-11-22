@@ -79,12 +79,13 @@ function getCoursesFromAllStudentsWithinACourse(courseToCheck)
     let courses = new Set();
     for (const key in studentDict) {
 
-        let student = studentDict[key].getCoursesStudent()
-        if(student.has(courseToCheck))
+        let studentCourses = studentDict[key].getCoursesStudent()
+        if(studentCourses.has(courseToCheck))
         {
-            for(let course of student)
+            for(let course of studentCourses)
             {
-                courses.add(course)
+                if(courseToCheck!=course)
+                    courses.add(course)
             }
         } 
     }

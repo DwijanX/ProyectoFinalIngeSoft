@@ -117,15 +117,20 @@ noNumberFields.forEach(noNumberField=>
 
 function loadHomeworkByStudentCourses()
 {
-  let course = coursesController.getCourseByProfessorName(getProfessorName())
-  return getCoursesFromAllStudentsWithinACourse(course)
+  let answerSet=new Set()
+  let courseName = coursesController.getCourseByName(getProfessorName())
+  answerSet.add(courseName)
+  
+  let OtherCourses=getCoursesFromAllStudentsWithinACourse(courseName)
+  return new Set([...answerSet, ...OtherCourses])
 }
     
 function loadListByDates()
 {  
   homeworkList.innerHTML=""
-  console.log(loadHomeworkByStudentCourses())
+
   let HomeworkDatesObj=coursesController.getAllHomeworksByDate(loadHomeworkByStudentCourses())
+  
   Object.keys(HomeworkDatesObj).forEach((date)=>
   {
     addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))

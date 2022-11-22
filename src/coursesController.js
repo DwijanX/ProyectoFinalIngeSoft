@@ -9,10 +9,7 @@ class CoursesController extends  Courses{
         this.homeworkId=0;
     }
 
-    getCourseByProfessorName(name)
-    {
-        return this.getCourseByName(name)  
-    }
+    
 
     tryToModifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
     {
