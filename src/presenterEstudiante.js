@@ -33,6 +33,7 @@ function loadBaseStatus()
   enrollCourse.value=""
   loadCourses()
   loadListByDates()
+  reloadCourseBox()
 }
 
 BtnToEnrollCourse.addEventListener("click", (event) => {
@@ -86,11 +87,14 @@ function loadListByDates()
   homeworkDays.innerHTML=""
   removeAllChildNodes(homeworkDays);
   let HomeworkDatesObj=coursesController.getStudentHomeworksByDate(student.getCoursesStudent())
-  reloadCourseBox()
-  Object.keys(HomeworkDatesObj).forEach((date)=>
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  reloadCourseBox();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
   {
+    let date=dates[dateIndex]
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
-  })
+  }
 
 }
 courseBox.addEventListener('change', (event) => {
@@ -102,11 +106,14 @@ courseBox.addEventListener('change', (event) => {
 function loadSelectedCourse(course){
   homeworkDays.innerHTML=""
   removeAllChildNodes(homeworkDays);
-  let homeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
-  
-  Object.keys(homeworkDatesObj).forEach((date)=>{
-    addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
-  })
+  let HomeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
+  {
+    let date=dates[dateIndex]
+    addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
+  }
 }
 function addListenerForfurtherinfo(homworkDiv,homework){
   homworkDiv.addEventListener('click', function handleClick(event){

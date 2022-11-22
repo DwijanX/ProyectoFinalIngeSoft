@@ -115,7 +115,7 @@ noNumberFields.forEach(noNumberField=>
       });
     })
 
-function loadHomeworkByStudentCourses()
+function getCourseHomeworksFromAllStudents()
 {
   let answerSet=new Set()
   let courseName = coursesController.getCourseByName(getProfessorName())
@@ -129,12 +129,14 @@ function loadListByDates()
 {  
   homeworkList.innerHTML=""
 
-  let HomeworkDatesObj=coursesController.getAllHomeworksByDate(loadHomeworkByStudentCourses())
-  
-  Object.keys(HomeworkDatesObj).forEach((date)=>
+  let HomeworkDatesObj=coursesController.getAllHomeworksByDate(getCourseHomeworksFromAllStudents())
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
   {
+    let date=dates[dateIndex]
     addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))
-  })
+  }
 
 }
 function loadDateContainer(homeworksArray,date)
