@@ -113,10 +113,11 @@ noNumberFields.forEach(noNumberField=>
       });
     })
 
-
-
-
-
+function loadCourses()
+{
+      coursesList.innerHTML = student.showAllEnrolledCourses()
+}
+    
 function loadListByDates()
 {  
   homeworkList.innerHTML=""

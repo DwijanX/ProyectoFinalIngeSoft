@@ -75,6 +75,7 @@ function reloadCourseBox()
   })
 
 }
+
 function loadCourses()
 {
   coursesList.innerHTML = student.showAllEnrolledCourses()
