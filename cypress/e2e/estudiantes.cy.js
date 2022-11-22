@@ -111,6 +111,18 @@ describe("FeedBack", () => {
     cy.get("#hmwkBtn1").click()
     });
 });
-
+describe("Pressing feedBackbutton shoul show the input for hors spent", () => {
+    it("the add feedback should appear", () => {
+    cy.visit('http://localhost:1234');
+    cy.get("#loginText").type("Montaño Urquieta, Dieter");
+    cy.get("#passwordText").type("123");
+    cy.get("#estudiantesPage").click();
+    cy.get("#enrollCourse").type("TECNOLOGIAS WEB");
+    cy.get("#BtnToEnrollCourse").click();
+    cy.get("#enrollCourse").type("ADMINISTRACION II");
+    cy.get("#hmwkBtn1").click();
+    cy.get("#feedbackbtn1").click();
+    });
+});
 
 

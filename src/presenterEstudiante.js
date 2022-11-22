@@ -131,17 +131,33 @@ function InitializeMarkButton(Button,homeworkId)
   }
 
 }
+function feedbackBtnListener(element,hmwkId){
+
+  element.addEventListener('click', function handleClick(event){
+    element.disabled=true;
+    let hoursInput =document.querySelector("#hoursinput"+hmwkId);
+    let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
+    hoursInput.style.display = "block";
+    hoursBtn.style.display="block";
+  });
+}
 function homeworkDone(homeworkId){
   let feedbackbtn = document.querySelector("#feedbackbtn"+homeworkId);
   let disabled=student.getIfIdCompleted(homeworkId)
   if(disabled){
     feedbackbtn.style.display = "block";
+    feedbackBtnListener(feedbackbtn,homeworkId);
   }else{
     feedbackbtn.style.display = "none";
   }
 }
 function InitializeFeedBackButton(Button){
   Button.style.display = "none"
+}
+function InitializeHoursFeedback(input,button){
+  input.style.display= "none";
+  button.style.display="none";
+
 }
 function loadDateContainer(homeworksArray,date)
 {
@@ -166,13 +182,20 @@ function createHomeworkItem(homework)
   let nameContainer= document.createElement('div');
   let homeworkMarkButton= document.createElement('button');
   let feedBackButton=document.createElement('button');
+  let hoursInput=document.createElement('input');
+  hoursInput.setAttribute("type", "number");
+  hoursInput.setAttribute("placeholder", "Enter time spent on this assignment");
+  let hoursSubmit=document.createElement('button')
+  addPropsToElement(hoursInput,{"id":"hoursinput"+homework.id,"class":"hoursInput"})
+  addPropsToElement(hoursSubmit,{"id":"hourssubmit"+homework.id,"class":"hoursSubmit"}, "Submit")
   addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
   addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homework.id,"class":"HomeworkContainer"})
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
-  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton)
+  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit)
   addListenerForfurtherinfo(nameContainer,homework);
   addListenerForSelectedCourse();
   InitializeMarkButton(homeworkMarkButton,homework.id)
   InitializeFeedBackButton(feedBackButton);
+  InitializeHoursFeedback(hoursInput,hoursSubmit);
   return homeworkContainer
 }

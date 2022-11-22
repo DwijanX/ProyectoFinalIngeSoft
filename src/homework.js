@@ -6,8 +6,9 @@ class Homework{
         this.dateFin=dateFin;
         this.courseName=courseName;
         this.hoursNeeded=hoursNeeded;
-        this.id = id
+        this.id = id;
         this.timesCompleted=0;
+        this.hoursUsedToComplete= 0;
     }
     getHomeworkObj()
     {
@@ -34,6 +35,9 @@ class Homework{
         this.name=name;
         this.dateInit=dateInit;
         this.dateFin=dateFin;
+    }
+    setHoursUsedToComplete(hours){
+        this.hoursUsedToComplete=hours;
     }
     getHoursPerDay()
     {
