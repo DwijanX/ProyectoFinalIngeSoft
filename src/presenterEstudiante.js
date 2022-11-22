@@ -69,7 +69,7 @@ function removeAllChildNodes(parent)
 function reloadCourseBox()
 {
   removeAllChildNodes(courseBox);
-  studentCourses=student.getCoursesStudent();
+  let studentCourses=student.getCoursesStudent();
   addItemToCourseBox("All","All");
   studentCourses.forEach(course=>{
     addItemToCourseBox(course,course)
