@@ -50,6 +50,6 @@ describe("devuelve todos los cursos donde los estudiantes estan inscritos", () =
     });
     it("devuelve los cursos donde un estudiante esta inscrito", () => {
         let cursos =new Set(["TECNOLOGIAS WEB", "INTERNET DE LAS COSAS", "REDES DE COMPUTADORAS II", "SISTEMAS DE INFORMACION III", "INGENIERIA DE SOFTWARE", "ADMINISTRACION II"])
-        expect(getCoursesFromAllStudentsWithinACourse("TECNOLOGIAS WEB")).toEqual(cursos);
+        expect(getCoursesFromAllStudentsWithinACourse("INGENIERIA DE SOFTWARE")).toEqual(cursos);
     });
 });

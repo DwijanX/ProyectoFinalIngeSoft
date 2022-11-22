@@ -1,5 +1,7 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
+import {getCoursesFromAllStudentsWithinACourse} from "./studentList.js"
+import {getProfessorName} from "./predefinedCourses"
 
 let coursesController=CoursesControllerSingleton.getInstance()
 
@@ -113,15 +115,17 @@ noNumberFields.forEach(noNumberField=>
       });
     })
 
-function loadCourses()
+function loadHomeworkByStudentCourses()
 {
-      coursesList.innerHTML = student.showAllEnrolledCourses()
+  let course = coursesController.getCourseByProfessorName(getProfessorName())
+  return getCoursesFromAllStudentsWithinACourse(course)
 }
     
 function loadListByDates()
 {  
   homeworkList.innerHTML=""
-  let HomeworkDatesObj=coursesController.getAllHomeworksByDate()
+  console.log(loadHomeworkByStudentCourses())
+  let HomeworkDatesObj=coursesController.getAllHomeworksByDate(loadHomeworkByStudentCourses())
   Object.keys(HomeworkDatesObj).forEach((date)=>
   {
     addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))

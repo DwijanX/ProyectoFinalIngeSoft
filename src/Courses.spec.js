@@ -100,6 +100,20 @@ describe("Pruebas para conseguir Id",()=>{
     })
 })
 
+describe("Pruebas para conseguir nombre de materia por el nombre del profesor",()=>{
+    let CoursesObj;
+    beforeEach(() => {
+        CoursesObj=new Courses()
+        CoursesObj.createCourse("tst","testCourse","testTeacher")
+      });
+    it("deberia devolver el nombre del curso",()=>{
+        expect(CoursesObj.getCourseByName("testTeacher")).toEqual("testCourse");
+    })
+    it("Se trata de obtener un curso de un docente que no existe",()=>{
+        expect(CoursesObj.getCourseByName("amogus")).toEqual(CourseNotFound);
+    })
+})
+
 describe("Pruebas sobre Materia",()=>{
     let CoursesObj;
     let materia;

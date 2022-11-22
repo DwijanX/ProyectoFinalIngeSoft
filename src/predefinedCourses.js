@@ -3,6 +3,7 @@ let coursesController=CoursesControllerSingleton.getInstance()
 
 let professorArray = []
 //let professordPassword = "ucb2022"
+let professorName = ""
 let professordPassword = "123"
 
 function logInProfessorCredentials()
@@ -55,4 +56,14 @@ function createPredefinedHomework()
     status=coursesController.tryToCreateHomework("Entrega Proyecto Final","2023-01-01","2023-01-20","INGENIERIA DE SOFTWARE",8)
 }
 
-export {createPredefinedCourses, createPredefinedHomework, professorLogIn, logInProfessorCredentials}
+function setProfessorName(name)
+{
+    professorName = name
+}
+
+function getProfessorName()
+{
+    return professorName
+}
+
+export {createPredefinedCourses, createPredefinedHomework, professorLogIn, logInProfessorCredentials, setProfessorName, getProfessorName}

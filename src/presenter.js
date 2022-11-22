@@ -1,4 +1,4 @@
-import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework} from "./predefinedCourses"
+import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework, setProfessorName} from "./predefinedCourses"
 import {getStudentsFromJson, studentLogIn, setStudentName} from "./studentList.js"
 
 const docentesPage = document.querySelector("#docentesPage");
@@ -45,7 +45,9 @@ docentesPage.addEventListener("click", (event) => {
   logInProfessorCredentials()
   if(professorLogIn(loginText.value, passwordText.value) && !alreadyLoggedIn)
   {
+    getStudentsFromJson()
     logInProcedure()
+    setProfessorName(loginText.value)
     TeachersDiv.style.display="flex"
     StudentsDiv.style.display="none"
     Login.style.display="none"
