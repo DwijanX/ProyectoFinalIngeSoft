@@ -106,8 +106,8 @@ describe("FeedBack", () => {
     cy.get("#hmwkBtn1").click()
     });
 });
-describe("Pressing feedBackbutton shoul show the input for hors spent", () => {
-    it("the add feedback should appear", () => {
+describe("Pressing feedBackbutton should show the input for hors spent", () => {
+    it("the add feedback fields should appear", () => {
     cy.visit('http://localhost:1234');
     cy.get("#loginText").type("Montaño Urquieta, Dieter");
     cy.get("#passwordText").type("123");
