@@ -8,7 +8,6 @@ class Homework{
         this.hoursNeeded=hoursNeeded;
         this.id = id;
         this.timesCompleted=0;
-        this.hoursUsedToComplete= 0;
     }
     getHomeworkObj()
     {
@@ -18,8 +17,7 @@ class Homework{
             dateInit:this.dateInit,
             dateFin:this.dateFin,
             courseName:this.courseName,
-            timesCompleted:this.timesCompleted=0,
-            hoursNeeded:this.hoursNeeded
+            timesCompleted:this.timesCompleted=0
         }
     }
     getId()
@@ -35,9 +33,6 @@ class Homework{
         this.name=name;
         this.dateInit=dateInit;
         this.dateFin=dateFin;
-    }
-    setHoursUsedToComplete(hours){
-        this.hoursUsedToComplete=hours;
     }
     getHoursPerDay()
     {

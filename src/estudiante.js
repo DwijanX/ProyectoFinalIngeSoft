@@ -6,13 +6,19 @@ class Student{
         this.name=Name;
         this.coursesStudent = new Set();
         this.completedHomeworkIds = new Set();
+        this.hoursFeedback= Object.create(null);
     }
-
     addCoursesToStudent(course)
     {
         this.coursesStudent.add(course)
     }
-
+    addFeedback(hours,hmwkId){
+        this.hoursFeedback["hoursTaken"]=hours;
+        this.hoursFeedback["homeworkId"]=hmwkId;
+    }
+    getFeedBackhours(){
+        return this.hoursFeedback["hoursTaken"];
+    }
     getCoursesStudent()
     {
         return this.coursesStudent;
