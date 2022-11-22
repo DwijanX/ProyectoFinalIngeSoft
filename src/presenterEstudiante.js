@@ -16,7 +16,14 @@ let student
 
 estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
-  loadBaseStatus()
+  try
+  {
+    loadBaseStatus()
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 });
 
 function loadBaseStatus()
@@ -37,10 +44,7 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
   {
     alert("te inscribiste a " +courseName+ " con exito");
     student.addCoursesToStudent(courseName)
-    let newOption = document.createElement("option");
-    newOption.text = courseName;
-    newOption.value = courseName;
-    courseBox.appendChild(newOption);
+    addItemToCourseBox(courseName,courseName)
     loadCourses();
     loadListByDates();
   }
@@ -48,6 +52,30 @@ BtnToEnrollCourse.addEventListener("click", (event) => {
     alert("no te lograste inscribir a la materia");
   }
 });
+function addItemToCourseBox(item,value)
+{
+  let newOption = document.createElement("option");
+  newOption.text = item;
+  newOption.value = value;
+  courseBox.appendChild(newOption);
+}
+function removeAllChildNodes(parent) 
+{
+  while (parent.firstChild) 
+  {
+      parent.removeChild(parent.firstChild);
+  }
+}
+function reloadCourseBox()
+{
+  removeAllChildNodes(courseBox);
+  studentCourses=student.getCoursesStudent();
+  addItemToCourseBox("All","All");
+  studentCourses.forEach(course=>{
+    addItemToCourseBox(course,course)
+  })
+
+}
 
 function loadCourses()
 {
@@ -57,23 +85,26 @@ function loadCourses()
 function loadListByDates()
 {  
   homeworkDays.innerHTML=""
-  console.log(student.getCoursesStudent())
+  removeAllChildNodes(homeworkDays);
   let HomeworkDatesObj=coursesController.getStudentHomeworksByDate(student.getCoursesStudent())
+  reloadCourseBox()
   Object.keys(HomeworkDatesObj).forEach((date)=>
   {
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
   })
 
 }
-function addListenerForSelectedCourse(){
-
-  courseBox.addEventListener('change', (event) => {
-    loadSelectedCourse(event.target.value)
-  });
-}
+courseBox.addEventListener('change', (event) => {
+  if(event.target.value!="All")
+    loadSelectedCourse(courseBox.value)
+  else
+    loadListByDates();
+});
 function loadSelectedCourse(course){
   homeworkDays.innerHTML=""
+  removeAllChildNodes(homeworkDays);
   let homeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
+  
   Object.keys(homeworkDatesObj).forEach((date)=>{
     addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
   })
@@ -193,7 +224,6 @@ function createHomeworkItem(homework)
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
   addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit)
   addListenerForfurtherinfo(nameContainer,homework);
-  addListenerForSelectedCourse();
   InitializeMarkButton(homeworkMarkButton,homework.id)
   InitializeFeedBackButton(feedBackButton);
   InitializeHoursFeedback(hoursInput,hoursSubmit);

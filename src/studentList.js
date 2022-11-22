@@ -74,5 +74,25 @@ function getCoursesFromAllStudents()
     return courses
 }
 
+function getCoursesFromAllStudentsWithinACourse(courseToCheck)
+{
+    let courses = new Set();
+    for (const key in studentDict) {
 
-export {getStudentsFromJson,studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, getCoursesFromAllStudents}
+        let student = studentDict[key].getCoursesStudent()
+        if(student.has(courseToCheck))
+        {
+            for(let course of student)
+            {
+                courses.add(course)
+            }
+        } 
+    }
+    return courses
+}
+
+
+
+
+
+export {getStudentsFromJson,studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, getCoursesFromAllStudents, getCoursesFromAllStudentsWithinACourse}

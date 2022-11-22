@@ -73,6 +73,19 @@ class Courses{
     {
         return Object.keys(this.courses)
     }
+
+    getCourseByName(course)
+    {
+        for (const courseName in this.courses) {
+            let courseDetails = this.courses[courseName].getCourseObj()
+            if(courseDetails["teachersName"] == course)
+            {
+                return courseDetails["name"]
+            }
+        }
+        return CourseNotFound
+    }
+
     deleteHomework(courseName, homeworkId){
         let status=errorCode.CourseNotFound;
        if(this.courses[courseName]){

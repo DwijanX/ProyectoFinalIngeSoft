@@ -8,6 +8,12 @@ class CoursesController extends  Courses{
         super();
         this.homeworkId=0;
     }
+
+    getCourseByProfessorName(name)
+    {
+        return this.getCourseByName(name)  
+    }
+
     tryToModifyHomework(idModif,hmwkName,dateInit,dateFin,courseNameModif)
     {
         let status=this.#validateHomeworksInput(dateFin,dateInit);
@@ -39,34 +45,52 @@ class CoursesController extends  Courses{
         }
         return status
     }
-    getAllHomeworksByDate()
+
+    getAllHomeworksByDate(coursesThatStudentsPasses)
     {
         let CourseNames=this.getCourseNames()
         let HomeworksArray=[]
         CourseNames.forEach((CourseName)=>{
-            HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
+            if(coursesThatStudentsPasses.has(CourseName))
+            {
+                HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
+            }
         })
         return this.getdaysWithHomework(HomeworksArray);
     }
+
     getStudentHomeworksByDate(coursesEnlisted)
     {
         let CourseNames= getCoursesFromAllStudents()
         let HomeworksArray=[]
-        console.log(coursesEnlisted)
         CourseNames.forEach((CourseName)=>{
             if(coursesEnlisted.has(CourseName))
             {
                 HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
             }
         })
-        return this.getdaysWithHomework(HomeworksArray);
-        
+        return this.getdaysWithHomework(HomeworksArray);   
     }
+
+    getStudentHomeworksByDate(coursesEnlisted)
+    {
+        let CourseNames= getCoursesFromAllStudents()
+        let HomeworksArray=[]
+        CourseNames.forEach((CourseName)=>{
+            if(coursesEnlisted.has(CourseName))
+            {
+                HomeworksArray=HomeworksArray.concat(this.getCourseHomeworks(CourseName))
+            }
+        })
+        return this.getdaysWithHomework(HomeworksArray);   
+    }
+    
     getStudentHomeworkByClass(course){
         let assigmentArray=[];
         assigmentArray=assigmentArray.concat(this.getCourseHomeworks(course))
         return this.getdaysWithHomework(assigmentArray);
     }
+
     getdaysWithHomework(homeworks)
     {
         let daysWithHomework={};
@@ -79,6 +103,7 @@ class CoursesController extends  Courses{
         }
         return daysWithHomework
     }
+
     #validateHomeworksInput(dateFin,dateInit)
     {
         let status=0;

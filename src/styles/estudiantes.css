@@ -93,3 +93,6 @@
     opacity: 75%;
     cursor: pointer;
 }
+#logOutButton{
+    display: none;
+}
