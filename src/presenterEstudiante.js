@@ -1,6 +1,7 @@
 import {seeIfStudentExist, getStudentName} from "./studentList.js"
 import { CoursesControllerSingleton } from "./coursesController";
 import Homework from "./homework.js";
+import { transform } from "@babel/core";
 let coursesController=CoursesControllerSingleton.getInstance()
 
 const hoursToConsiderDayOverloaded=3
@@ -169,12 +170,23 @@ function InitializeMarkButton(Button,homeworkId)
   }
 
 }
-function feedbackBtnListener(element,hmwkId){
 
+function feedbackBtnListener(element,hmwkId){
+  element.style.backgroundColor="#3293a8";
+  element.style.textTransform="uppercase";
+  element.style.marginLeft ="1rem";
+  element.style.borderRadius ="40px";
   element.addEventListener('click', function handleClick(event){
     element.disabled=true;
     let hoursInput =document.querySelector("#hoursinput"+hmwkId);
     let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
+    hoursInput.style.marginLeft=".2rem"
+    hoursInput.style.borderRadius ="40px";
+    hoursInput.style.outlineColor = "#3293a8"
+    hoursBtn.style.backgroundColor="#3293a8";
+    hoursBtn.style.textTransform="uppercase";
+    hoursBtn.style.marginLeft =".2rem";
+    hoursBtn.style.borderRadius ="40px";
     hoursInput.style.display = "block";
     hoursBtn.style.display="block";
     sendFeedBackListener(hmwkId);
