@@ -157,7 +157,7 @@ describe("Interact with the stress input field", () => {
     cy.get("#hmwkBtn1").click();
     cy.get("#stressinput1").click();
     cy.get("#stressinput1").type(10);
-    cy.get("#stresssubmit2").click()
+    cy.get("#stresssubmit2").click();
     });
 });
 describe("Log out tests", () => {
