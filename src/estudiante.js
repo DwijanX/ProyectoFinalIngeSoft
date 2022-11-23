@@ -20,6 +20,9 @@ class Student{
     getStressLevel(){
         return this.stressFeedback["stressLevel"];
     }
+    getStressLevelid(){
+        return this.stressFeedback["homeworkId"];
+    }
     addFeedback(hours,hmwkId){
         this.hoursFeedback["hoursTaken"]=hours;
         this.hoursFeedback["homeworkId"]=hmwkId;
