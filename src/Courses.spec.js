@@ -23,6 +23,7 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         },{
             name:"test2",
@@ -31,6 +32,7 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         }]
         expect(CoursesObj.getCourseHomeworks("testCourse")).toEqual(expectedArray);
@@ -65,7 +67,27 @@ describe("Deletes an assigned homework", () => {
     });
 });
 
-
+describe("Add feedback Test",()=>{
+    let CoursesObj;
+    beforeEach(() => {
+        CoursesObj=new Courses()
+        CoursesObj.createCourse("tst","testCourse","testTeacher")
+      });
+    it("deberia devolver tarea 1 con informacion en feedback",()=>{
+        CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",2,0)
+        CoursesObj.getHomeworkBasedOnId(0).addFeedback(2)
+        expect(CoursesObj.getHomeworkBasedOnId(0)).toEqual({
+            name:"test",
+            id:0,
+            dateInit:"2021-01-01",
+            dateFin:"2021-01-02",
+            courseName:"testCourse",
+            timesCompleted: 0,
+            homeworkFeedbacks: [2],
+            hoursNeeded:2
+        });
+    })
+})
 describe("Pruebas para conseguir Id",()=>{
     let CoursesObj;
     beforeEach(() => {
@@ -81,6 +103,7 @@ describe("Pruebas para conseguir Id",()=>{
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         });
     })
@@ -154,6 +177,7 @@ describe("Modificar una tarea", () => {
             dateFin:"2021-01-03",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         });
     });

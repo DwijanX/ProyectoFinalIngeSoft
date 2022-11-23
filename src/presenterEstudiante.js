@@ -208,6 +208,8 @@ function sendFeedBackListener(hmwkId){
   let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
   let feedbackbtn = document.querySelector("#feedbackbtn"+hmwkId);
   hoursBtn.addEventListener('click', function handleClick(event){
+    student.addFeedback(hoursInput.value,hmwkId);
+    coursesController.addFeedbackToAhmwk(hoursInput.value,hmwkId);
     hoursInput.style.display="none";
     hoursBtn.style.display="none";
     feedbackbtn.style.display="none";
@@ -216,7 +218,7 @@ function sendFeedBackListener(hmwkId){
   });
 }
 function sendStresslevelListener(element,hmwkId){
-  let stressInput= document.querySelector("#stressInput"+hmwkId);
+  let stressInpt= document.querySelector("#stressinput"+hmwkId);
   element.addEventListener('click', function handleClick(event){
     element.disabled=true;
     alert("Gracias por dejarnos saber.");
@@ -267,16 +269,15 @@ function createHomeworkItem(homework)
   hoursInput.setAttribute("type", "number");
   hoursInput.setAttribute("placeholder", "Enter time spent on this assignment");
   let hoursSubmit=document.createElement('button');
-  let stressInput= document.createElement('input');
+  let stressInput=document.createElement('input');
   stressInput.setAttribute("type", "number");
   stressInput.setAttribute("min", "0");
   stressInput.setAttribute("max", "10");
   stressInput.setAttribute("maxLength", "2");
-  stressInput.setAttribute("label","How stressed do you feel 1-10?");
   let newlabel = document. createElement("Label");
   newlabel.setAttribute("for",stressInput);
-  newlabel.innerHTML = "How stressed do you feel 1-10?";
-  newlabel.style.marginLeft =".2rem";
+  newlabel.innerHTML = "How stressed do you feel about this assignment 1-10?";
+  newlabel.style.marginLeft ="1rem";
   let stressSubmit= document.createElement('button');
   addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
   addPropsToElement(stressSubmit,{"id":"stresssubmit"+homework.id,"class":"stressSubmit"}, "Submit")

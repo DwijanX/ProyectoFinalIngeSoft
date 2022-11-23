@@ -73,7 +73,10 @@ class Courses{
         let hmwk=this.getHomeworkBasedOnId(id)
         hmwk.addToCompleted()
     }
-    
+    addFeedbackToAhmwk(feedback,hmwkId){
+        this.getHomeworkBasedOnId(hmwkId).addFeedback(feedback);
+        console.log(this.getHomeworkBasedOnId(hmwkId))
+    }
 
     getCourseByName(course)
     {

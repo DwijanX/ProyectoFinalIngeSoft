@@ -8,6 +8,10 @@ class Homework{
         this.hoursNeeded=hoursNeeded;
         this.id = id;
         this.timesCompleted=0;
+        this.homeworkFeedbacks=[];
+    }
+    addFeedback(feedback){
+        this.homeworkFeedbacks.push(feedback);
     }
     getHomeworkObj()
     {
