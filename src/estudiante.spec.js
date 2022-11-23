@@ -50,10 +50,7 @@ describe("devuelve valores de hoursFeedback", () => {
         newStudent.addFeedback(8,1)
       });
     it("Devuelve las horas que le tomo al estudiante", () => {
-        expect(newStudent.getFeedBackhours()).toEqual(8);
-    });
-    it("Devuelve el id de la tarea que el estudiante envio feedback", () => {
-        expect(newStudent.getFeedBackid()).toEqual(1);
+        expect(newStudent.getFeedBackhours(1)).toEqual(8);
     });
 });
 describe("devuelve valores de stressLevel", () => {

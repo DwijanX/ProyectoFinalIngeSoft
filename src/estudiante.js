@@ -17,21 +17,18 @@ class Student{
         this.stressFeedback["stressLevel"]=stress;
         this.stressFeedback["homeworkId"]=hmwkId
     }
-    getStressLevel(){
+    getStressLevel(id){
         return this.stressFeedback["stressLevel"];
     }
     getStressLevelid(){
         return this.stressFeedback["homeworkId"];
     }
     addFeedback(hours,hmwkId){
-        this.hoursFeedback["hoursTaken"]=hours;
-        this.hoursFeedback["homeworkId"]=hmwkId;
+        console.log("saving feedback")
+        this.hoursFeedback[hmwkId]=hours;
     }
-    getFeedBackhours(){
-        return this.hoursFeedback["hoursTaken"];
-    }
-    getFeedBackid(){
-        return this.hoursFeedback["homeworkId"];
+    getFeedBackhours(id){
+        return this.hoursFeedback[id];
     }
     getCoursesStudent()
     {

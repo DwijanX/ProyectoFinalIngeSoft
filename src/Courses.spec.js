@@ -23,6 +23,7 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         },{
             name:"test2",
@@ -31,6 +32,7 @@ const HomeworkNotFound=2;
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         }]
         expect(CoursesObj.getCourseHomeworks("testCourse")).toEqual(expectedArray);
@@ -81,6 +83,7 @@ describe("Pruebas para conseguir Id",()=>{
             dateFin:"2021-01-02",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         });
     })
@@ -154,6 +157,7 @@ describe("Modificar una tarea", () => {
             dateFin:"2021-01-03",
             courseName:"testCourse",
             timesCompleted: 0,
+            homeworkFeedbacks: [],
             hoursNeeded:2
         });
     });

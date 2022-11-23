@@ -208,6 +208,8 @@ function sendFeedBackListener(hmwkId){
   let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
   let feedbackbtn = document.querySelector("#feedbackbtn"+hmwkId);
   hoursBtn.addEventListener('click', function handleClick(event){
+    student.addFeedback(hoursInput.value,hmwkId);
+    coursesController.addFeedbackToAhmwk(hoursInput.value,hmwkId);
     hoursInput.style.display="none";
     hoursBtn.style.display="none";
     feedbackbtn.style.display="none";
