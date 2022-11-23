@@ -218,7 +218,7 @@ function sendFeedBackListener(hmwkId){
   });
 }
 function sendStresslevelListener(element,hmwkId){
-  let stressInput= document.querySelector("#stressInput"+hmwkId);
+  let stressInpt= document.querySelector("#stressinput"+hmwkId);
   element.addEventListener('click', function handleClick(event){
     element.disabled=true;
     alert("Gracias por dejarnos saber.");
@@ -269,12 +269,11 @@ function createHomeworkItem(homework)
   hoursInput.setAttribute("type", "number");
   hoursInput.setAttribute("placeholder", "Enter time spent on this assignment");
   let hoursSubmit=document.createElement('button');
-  let stressInput= document.createElement('input');
+  let stressInput=document.createElement('input');
   stressInput.setAttribute("type", "number");
   stressInput.setAttribute("min", "0");
   stressInput.setAttribute("max", "10");
   stressInput.setAttribute("maxLength", "2");
-  stressInput.setAttribute("label","How stressed do you feel 1-10?");
   let newlabel = document. createElement("Label");
   newlabel.setAttribute("for",stressInput);
   newlabel.innerHTML = "How stressed do you feel about this assignment 1-10?";

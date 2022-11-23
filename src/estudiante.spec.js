@@ -60,10 +60,7 @@ describe("devuelve valores de stressLevel", () => {
         newStudent.addStressLevel(10,1)
       });
     it("Devuelve el numero de stress que siente el estudiante", () => {
-        expect(newStudent.getStressLevel()).toEqual(10);
-    });
-    it("Devuelve el id de la tarea que el estudiante envio feedback", () => {
-        expect(newStudent.getStressLevelid()).toEqual(1);
+        expect(newStudent.getStressLevel(1)).toEqual(10);
     });
 });
 

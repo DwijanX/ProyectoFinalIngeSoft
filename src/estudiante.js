@@ -14,17 +14,14 @@ class Student{
         this.coursesStudent.add(course)
     }
     addStressLevel(stress,hmwkId){
-        this.stressFeedback["stressLevel"]=stress;
-        this.stressFeedback["homeworkId"]=hmwkId
+        console.log("Setting Stress Level");
+        this.stressFeedback[hmwkId]=stress;
     }
     getStressLevel(id){
-        return this.stressFeedback["stressLevel"];
-    }
-    getStressLevelid(){
-        return this.stressFeedback["homeworkId"];
+        return this.stressFeedback[id];
     }
     addFeedback(hours,hmwkId){
-        console.log("saving feedback")
+        console.log("saving feedback");
         this.hoursFeedback[hmwkId]=hours;
     }
     getFeedBackhours(id){
