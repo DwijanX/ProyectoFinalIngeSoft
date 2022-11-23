@@ -192,6 +192,13 @@ function sendFeedBackListener(hmwkId){
 
   });
 }
+function sendStresslevelListener(element,hmwkId){
+  let stressInput= document.querySelector("#stressInput"+hmwkId);
+  element.addEventListener('click', function handleClick(event){
+    element.disabled=true;
+    alert("Gracias por dejarnos saber.");
+  })
+}
 function homeworkDone(homeworkId){
   let feedbackbtn = document.querySelector("#feedbackbtn"+homeworkId);
   let disabled=student.getIfIdCompleted(homeworkId)
@@ -256,5 +263,6 @@ function createHomeworkItem(homework)
   InitializeMarkButton(homeworkMarkButton,homework.id)
   InitializeFeedBackButton(feedBackButton);
   InitializeHoursFeedback(hoursInput,hoursSubmit);
+  sendStresslevelListener(stressSubmit,homework.id);
   return homeworkContainer
 }

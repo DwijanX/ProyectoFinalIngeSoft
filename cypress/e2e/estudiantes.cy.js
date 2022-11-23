@@ -146,6 +146,20 @@ describe("Interact with the stress input field", () => {
     cy.get("#stressinput1").type(9);
     });
 });
+describe("Interact with the stress input field", () => {
+    it("The stress input field should be editable", () => {
+    cy.visit('http://localhost:1234');
+    cy.get("#loginText").type("Montaño Urquieta, Dieter");
+    cy.get("#passwordText").type("123");
+    cy.get("#estudiantesPage").click();
+    cy.get("#enrollCourse").type("TECNOLOGIAS WEB");
+    cy.get("#BtnToEnrollCourse").click();
+    cy.get("#hmwkBtn1").click();
+    cy.get("#stressinput1").click();
+    cy.get("#stressinput1").type(10);
+    cy.get("#stresssubmit2").click()
+    });
+});
 describe("Log out tests", () => {
     it("should be able to log out", () => {
     cy.visit('http://localhost:1234');
