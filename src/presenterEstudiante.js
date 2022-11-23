@@ -245,7 +245,7 @@ function createHomeworkItem(homework)
   stressInput.setAttribute("maxLength", "2");
   let stressSubmit= document.createElement('button');
   addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
-  addPropsToElement(stressSubmit,{"id":"hourssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
+  addPropsToElement(stressSubmit,{"id":"stresssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
   addPropsToElement(hoursInput,{"id":"hoursinput"+homework.id,"class":"hoursInput"})
   addPropsToElement(hoursSubmit,{"id":"hourssubmit"+homework.id,"class":"hoursSubmit"}, "Submit")
   addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
