@@ -7,7 +7,7 @@ class Student{
         this.coursesStudent = new Set();
         this.completedHomeworkIds = new Set();
         this.hoursFeedback= Object.create(null);
-        this.stressFeedback=new Object();
+        this.stressFeedback= Object.create(null);
     }
     addCoursesToStudent(course)
     {

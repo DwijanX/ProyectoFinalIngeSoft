@@ -170,7 +170,18 @@ function InitializeMarkButton(Button,homeworkId)
   }
 
 }
-
+function initializeStressLevel(input,button){
+    input.stylemarginLeft=".2rem"
+    input.style.borderRadius ="40px";
+    input.style.height = "50px";
+    input.style.fontWeight = "900";
+    input.style.paddingLeft = "10px";
+    input.style.outlineColor = "#32a87f";
+    button.style.backgroundColor="#32a87f";
+    button.style.textTransform="uppercase";
+    button.style.marginLeft =".2rem";
+    button.style.borderRadius ="40px";
+}
 function feedbackBtnListener(element,hmwkId){
   element.style.backgroundColor="#3293a8";
   element.style.textTransform="uppercase";
@@ -258,10 +269,14 @@ function createHomeworkItem(homework)
   let hoursSubmit=document.createElement('button');
   let stressInput= document.createElement('input');
   stressInput.setAttribute("type", "number");
-  stressInput.setAttribute("placeholder", "How stressed do you feel 1-10?");
   stressInput.setAttribute("min", "0");
   stressInput.setAttribute("max", "10");
   stressInput.setAttribute("maxLength", "2");
+  stressInput.setAttribute("label","How stressed do you feel 1-10?");
+  let newlabel = document. createElement("Label");
+  newlabel.setAttribute("for",stressInput);
+  newlabel.innerHTML = "How stressed do you feel 1-10?";
+  newlabel.style.marginLeft =".2rem";
   let stressSubmit= document.createElement('button');
   addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
   addPropsToElement(stressSubmit,{"id":"stresssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
@@ -270,11 +285,12 @@ function createHomeworkItem(homework)
   addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
   addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homework.id,"class":"HomeworkContainer"})
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
-  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit,stressInput,stressSubmit);
+  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit,newlabel,stressInput,stressSubmit);
   addListenerForfurtherinfo(nameContainer,homework);
   InitializeMarkButton(homeworkMarkButton,homework.id)
   InitializeFeedBackButton(feedBackButton);
   InitializeHoursFeedback(hoursInput,hoursSubmit);
+  initializeStressLevel(stressInput,stressSubmit);
   sendStresslevelListener(stressSubmit,homework.id);
   return homeworkContainer
 }
