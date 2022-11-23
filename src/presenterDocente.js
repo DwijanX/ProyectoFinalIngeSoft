@@ -120,7 +120,12 @@ function loadHomeworkByStudentCourses()
   let course = coursesController.getCourseByProfessorName(getProfessorName())
   return getCoursesFromAllStudentsWithinACourse(course)
 }
-    
+  /*  
+function getStudentsSizeInHomework(homework)
+{
+
+}*/
+
 function loadListByDates()
 {  
   homeworkList.innerHTML=""
@@ -146,6 +151,7 @@ function loadDateContainer(homeworksArray,date)
   }
   return dateContainer
 }
+
 function createHomeworkItem(homework)
 {
   let idList = homework.getId().toString();
@@ -169,6 +175,7 @@ function createHomeworkItem(homework)
   addListenerToDeleteButton(deleteButton,homework)
   return HmwkContainer
 }
+
 function addElementsToFather(Father,...children)
 {
   for(let index=0;index<children.length;index++)
@@ -176,6 +183,7 @@ function addElementsToFather(Father,...children)
     Father.appendChild(children[index])
   }
 }
+
 function addPropsToElement(element,props,...innerHTML)
 {
   if(innerHTML[0]!=undefined)

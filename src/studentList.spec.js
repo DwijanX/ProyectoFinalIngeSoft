@@ -1,5 +1,8 @@
-import {getStudentsFromJson, studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, getCoursesFromAllStudents, getCoursesFromAllStudentsWithinACourse} from "./studentList.js"
+import {getStudentsFromJson, studentLogIn, seeIfStudentExist, getStudents, setStudentName, getStudentName, 
+    getCoursesFromAllStudents, getCoursesFromAllStudentsWithinACourse, getStudentsInCourse} from "./studentList.js"
 import Student from "./estudiante.js"
+
+
 
 describe("Se crean estudiantes predefinidos", () => {
     it("se ve que existe el primer estudiante", () => {
@@ -51,5 +54,18 @@ describe("devuelve todos los cursos donde los estudiantes estan inscritos", () =
     it("devuelve los cursos donde un estudiante esta inscrito", () => {
         let cursos =new Set(["TECNOLOGIAS WEB", "INTERNET DE LAS COSAS", "REDES DE COMPUTADORAS II", "SISTEMAS DE INFORMACION III", "INGENIERIA DE SOFTWARE", "ADMINISTRACION II"])
         expect(getCoursesFromAllStudentsWithinACourse("INGENIERIA DE SOFTWARE")).toEqual(cursos);
+    });
+});
+
+describe("devuelve total de veces que sucede tarea", () => {
+    it("devuelve el numero de veces que estudiantes tienen Practica 1 en inges soft", () => {
+        expect(getStudentsInCourse("INGENIERIA DE SOFTWARE", "Práctica 1")).toEqual({
+            "ADMINISTRACION II": 2, 
+            "INGENIERIA DE SOFTWARE": 13, 
+            "INTERNET DE LAS COSAS": 5, 
+            "REDES DE COMPUTADORAS II": 4, 
+            "SISTEMAS DE INFORMACION III": 7, 
+            "TECNOLOGIAS WEB": 5
+        });
     });
 });
