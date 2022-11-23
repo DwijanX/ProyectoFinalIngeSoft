@@ -7,10 +7,18 @@ class Student{
         this.coursesStudent = new Set();
         this.completedHomeworkIds = new Set();
         this.hoursFeedback= Object.create(null);
+        this.stressFeedback=new Object();
     }
     addCoursesToStudent(course)
     {
         this.coursesStudent.add(course)
+    }
+    addStressLevel(stress,hmwkId){
+        this.stressFeedback["stressLevel"]=stress;
+        this.stressFeedback["homeworkId"]=hmwkId
+    }
+    getStressLevel(){
+        return this.stressFeedback["stressLevel"];
     }
     addFeedback(hours,hmwkId){
         this.hoursFeedback["hoursTaken"]=hours;

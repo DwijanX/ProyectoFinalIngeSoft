@@ -56,4 +56,14 @@ describe("devuelve valores de hoursFeedback", () => {
         expect(newStudent.getFeedBackid()).toEqual(1);
     });
 });
+describe("devuelve valores de stressLevel", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Santiago")
+        newStudent.addStressLevel(10,1)
+      });
+    it("Devuelve el numero de stress que siente el estudiante", () => {
+        expect(newStudent.getStressLevel()).toEqual(10);
+    });
+});
 
