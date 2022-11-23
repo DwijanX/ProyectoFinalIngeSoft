@@ -1,6 +1,6 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
-import {getCoursesFromAllStudentsWithinACourse} from "./studentList.js"
+import {getCoursesFromAllStudentsWithinACourse, getStudentsInCourse} from "./studentList.js"
 import {getProfessorName} from "./predefinedCourses"
 
 let coursesController=CoursesControllerSingleton.getInstance()
@@ -39,9 +39,13 @@ const HoursNeededHmwk=document.querySelector("#HoursNeededHmwk");
 
 let noNumberFields=document.querySelectorAll(".noNumbersInput")
 
+let studentsInCourse
+
+
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
   loadTeacherViewBaseStatus()
+
 });
 
 function loadTeacherViewBaseStatus()
@@ -120,16 +124,13 @@ function getCourseHomeworksFromAllStudents()
   let answerSet=new Set()
   let courseName = coursesController.getCourseByName(getProfessorName())
   answerSet.add(courseName)
-  
+
+  studentsInCourse = getStudentsInCourse(courseName)
+
   let OtherCourses=getCoursesFromAllStudentsWithinACourse(courseName)
   return new Set([...answerSet, ...OtherCourses])
 }
-  /*  
-function getStudentsSizeInHomework(homework)
-{
-
-}*/
-
+  
 function loadListByDates()
 {  
   homeworkList.innerHTML=""
@@ -164,14 +165,16 @@ function createHomeworkItem(homework)
   let idList = homework.getId().toString();
   //Name Div
   const homeworkNameDiv = document.createElement('div');
-  addPropsToElement(homeworkNameDiv,{"class":"HomeworkText","id":"divName" + idList},homework.name)
+  //console.log(homework.courseName)
+  //console.log(studentsInCourse[homework.courseName])
+  let name = homework.name + "("+studentsInCourse[homework.courseName]+")"
+  addPropsToElement(homeworkNameDiv,{"class":"HomeworkText","id":"divName" + idList},name)
   //delete button
   const deleteButton = document.createElement('button');
   addPropsToElement(deleteButton,{"class":"HomeworkBtn","id":idList+"dlt"},"Eliminar")
   //ModifyButton
   const modifyButton = document.createElement('button');
   addPropsToElement(modifyButton,{"class":"HomeworkBtn","id":idList+"mdf"},"Modificar")
-
   //Container
   const HmwkContainer=document.createElement('div');
   addPropsToElement(HmwkContainer,{"class":"HomeworkContainer","id":"div" + idList})

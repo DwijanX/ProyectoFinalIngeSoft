@@ -95,7 +95,6 @@ function getCoursesFromAllStudentsWithinACourse(courseToCheck)
 function getStudentsInCourse(courseToCheck)
 {
     let students = {}
-    let total = 0
     for (const key in studentDict) {
 
         let courses = studentDict[key].getCoursesStudent()
