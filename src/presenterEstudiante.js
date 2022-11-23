@@ -275,8 +275,8 @@ function createHomeworkItem(homework)
   stressInput.setAttribute("label","How stressed do you feel 1-10?");
   let newlabel = document. createElement("Label");
   newlabel.setAttribute("for",stressInput);
-  newlabel.innerHTML = "How stressed do you feel 1-10?";
-  newlabel.style.marginLeft =".2rem";
+  newlabel.innerHTML = "How stressed do you feel about this assignment 1-10?";
+  newlabel.style.marginLeft ="1rem";
   let stressSubmit= document.createElement('button');
   addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
   addPropsToElement(stressSubmit,{"id":"stresssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
