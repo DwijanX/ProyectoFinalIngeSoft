@@ -6,13 +6,33 @@ class Student{
         this.name=Name;
         this.coursesStudent = new Set();
         this.completedHomeworkIds = new Set();
+        this.hoursFeedback= Object.create(null);
+        this.stressFeedback= Object.create(null);
     }
-
     addCoursesToStudent(course)
     {
         this.coursesStudent.add(course)
     }
-
+    addStressLevel(stress,hmwkId){
+        this.stressFeedback["stressLevel"]=stress;
+        this.stressFeedback["homeworkId"]=hmwkId
+    }
+    getStressLevel(){
+        return this.stressFeedback["stressLevel"];
+    }
+    getStressLevelid(){
+        return this.stressFeedback["homeworkId"];
+    }
+    addFeedback(hours,hmwkId){
+        this.hoursFeedback["hoursTaken"]=hours;
+        this.hoursFeedback["homeworkId"]=hmwkId;
+    }
+    getFeedBackhours(){
+        return this.hoursFeedback["hoursTaken"];
+    }
+    getFeedBackid(){
+        return this.hoursFeedback["homeworkId"];
+    }
     getCoursesStudent()
     {
         return this.coursesStudent;

@@ -37,9 +37,36 @@ describe("agregar materias a estudiantes", () => {
 describe("devuelve valores de constructor", () => {
     let newStudent;
     beforeEach(() => {
-        newStudent=new Student("Nicolas")
+        newStudent=new Student("Santiago")
       });
     it("Muestra nombre de estudiante creado", () => {
-        expect(newStudent.getName()).toEqual("Nicolas");
+        expect(newStudent.getName()).toEqual("Santiago");
     });
 });
+describe("devuelve valores de hoursFeedback", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Santiago")
+        newStudent.addFeedback(8,1)
+      });
+    it("Devuelve las horas que le tomo al estudiante", () => {
+        expect(newStudent.getFeedBackhours()).toEqual(8);
+    });
+    it("Devuelve el id de la tarea que el estudiante envio feedback", () => {
+        expect(newStudent.getFeedBackid()).toEqual(1);
+    });
+});
+describe("devuelve valores de stressLevel", () => {
+    let newStudent;
+    beforeEach(() => {
+        newStudent=new Student("Santiago")
+        newStudent.addStressLevel(10,1)
+      });
+    it("Devuelve el numero de stress que siente el estudiante", () => {
+        expect(newStudent.getStressLevel()).toEqual(10);
+    });
+    it("Devuelve el id de la tarea que el estudiante envio feedback", () => {
+        expect(newStudent.getStressLevelid()).toEqual(1);
+    });
+});
+

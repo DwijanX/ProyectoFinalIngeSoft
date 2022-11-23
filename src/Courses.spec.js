@@ -13,17 +13,6 @@ const HomeworkNotFound=2;
         CoursesObj=new Courses()
         CoursesObj.createCourse("tst","testCourse","testTeacher")
       });
-    it("Se crea una tarea", () => {
-        expect(CoursesObj.createHomework("test","2021-01-01","2021-01-02","testCourse",2,0)).toEqual({
-            name:"test",
-            id:0,
-            dateInit:"2021-01-01",
-            dateFin:"2021-01-02",
-            courseName:"testCourse",
-            timesCompleted: 0,
-            hoursNeeded:2
-        });
-    });
     it("Se crean varias tareas", () => {
         CoursesObj.createHomework("test1","2021-01-01","2021-01-02","testCourse",2,1)
         CoursesObj.createHomework("test2","2021-01-01","2021-01-02","testCourse",2,2)

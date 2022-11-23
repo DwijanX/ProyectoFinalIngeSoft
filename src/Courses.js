@@ -19,6 +19,10 @@ class Courses{
         }
         return errorCode.CourseNotFound
     }
+    getCourseNames()
+    {
+        return Object.keys(this.courses)
+    }
     getCourseHomeworks(courseName)
     {
         if(this.courses[courseName])
@@ -69,10 +73,7 @@ class Courses{
         let hmwk=this.getHomeworkBasedOnId(id)
         hmwk.addToCompleted()
     }
-    getCourseNames()
-    {
-        return Object.keys(this.courses)
-    }
+    
 
     getCourseByName(course)
     {

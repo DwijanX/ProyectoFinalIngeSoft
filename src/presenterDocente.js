@@ -115,10 +115,14 @@ noNumberFields.forEach(noNumberField=>
       });
     })
 
-function loadHomeworkByStudentCourses()
+function getCourseHomeworksFromAllStudents()
 {
-  let course = coursesController.getCourseByProfessorName(getProfessorName())
-  return getCoursesFromAllStudentsWithinACourse(course)
+  let answerSet=new Set()
+  let courseName = coursesController.getCourseByName(getProfessorName())
+  answerSet.add(courseName)
+  
+  let OtherCourses=getCoursesFromAllStudentsWithinACourse(courseName)
+  return new Set([...answerSet, ...OtherCourses])
 }
   /*  
 function getStudentsSizeInHomework(homework)
@@ -129,12 +133,15 @@ function getStudentsSizeInHomework(homework)
 function loadListByDates()
 {  
   homeworkList.innerHTML=""
-  console.log(loadHomeworkByStudentCourses())
-  let HomeworkDatesObj=coursesController.getAllHomeworksByDate(loadHomeworkByStudentCourses())
-  Object.keys(HomeworkDatesObj).forEach((date)=>
+
+  let HomeworkDatesObj=coursesController.getAllHomeworksByDate(getCourseHomeworksFromAllStudents())
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
   {
+    let date=dates[dateIndex]
     addElementsToFather(homeworkList,loadDateContainer(HomeworkDatesObj[date],date))
-  })
+  }
 
 }
 function loadDateContainer(homeworksArray,date)

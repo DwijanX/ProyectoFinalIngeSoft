@@ -1,5 +1,7 @@
 import {seeIfStudentExist, getStudentName} from "./studentList.js"
 import { CoursesControllerSingleton } from "./coursesController";
+import Homework from "./homework.js";
+import { transform } from "@babel/core";
 let coursesController=CoursesControllerSingleton.getInstance()
 
 const hoursToConsiderDayOverloaded=3
@@ -33,6 +35,7 @@ function loadBaseStatus()
   enrollCourse.value=""
   loadCourses()
   loadListByDates()
+  reloadCourseBox()
 }
 
 BtnToEnrollCourse.addEventListener("click", (event) => {
@@ -68,7 +71,7 @@ function removeAllChildNodes(parent)
 function reloadCourseBox()
 {
   removeAllChildNodes(courseBox);
-  studentCourses=student.getCoursesStudent();
+  let studentCourses=student.getCoursesStudent();
   addItemToCourseBox("All","All");
   studentCourses.forEach(course=>{
     addItemToCourseBox(course,course)
@@ -86,11 +89,14 @@ function loadListByDates()
   homeworkDays.innerHTML=""
   removeAllChildNodes(homeworkDays);
   let HomeworkDatesObj=coursesController.getStudentHomeworksByDate(student.getCoursesStudent())
-  reloadCourseBox()
-  Object.keys(HomeworkDatesObj).forEach((date)=>
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  reloadCourseBox();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
   {
+    let date=dates[dateIndex]
     addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
-  })
+  }
 
 }
 courseBox.addEventListener('change', (event) => {
@@ -102,11 +108,14 @@ courseBox.addEventListener('change', (event) => {
 function loadSelectedCourse(course){
   homeworkDays.innerHTML=""
   removeAllChildNodes(homeworkDays);
-  let homeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
-  
-  Object.keys(homeworkDatesObj).forEach((date)=>{
-    addElementsToFather(homeworkDays,loadDateContainer(homeworkDatesObj[date],date))
-  })
+  let HomeworkDatesObj=coursesController.getStudentHomeworkByClass(course)
+  let dates=Object.keys(HomeworkDatesObj) 
+  dates.sort();
+  for(let dateIndex=0;dateIndex<dates.length;dateIndex++)
+  {
+    let date=dates[dateIndex]
+    addElementsToFather(homeworkDays,loadDateContainer(HomeworkDatesObj[date],date))
+  }
 }
 function addListenerForfurtherinfo(homworkDiv,homework){
   homworkDiv.addEventListener('click', function handleClick(event){
@@ -141,6 +150,7 @@ function homeworkMarkButtonListener(element,hmwkId)
     element.innerHTML="Done"
     student.completeHomework(hmwkId);
     coursesController.markHmwkAsDone(hmwkId);
+    homeworkDone(hmwkId);
   });
 }
 function InitializeMarkButton(Button,homeworkId)
@@ -155,12 +165,81 @@ function InitializeMarkButton(Button,homeworkId)
   }
   else
   {
-    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Mark done")
+    addPropsToElement(Button,{"id":"hmwkBtn"+homeworkId,"class":"HomeworkBtn"}, "Mark done");
     homeworkMarkButtonListener(Button,homeworkId);
   }
 
 }
+function initializeStressLevel(input,button){
+    input.stylemarginLeft=".2rem"
+    input.style.borderRadius ="40px";
+    input.style.height = "50px";
+    input.style.fontWeight = "900";
+    input.style.paddingLeft = "10px";
+    input.style.outlineColor = "#32a87f";
+    button.style.backgroundColor="#32a87f";
+    button.style.textTransform="uppercase";
+    button.style.marginLeft =".2rem";
+    button.style.borderRadius ="40px";
+}
+function feedbackBtnListener(element,hmwkId){
+  element.style.backgroundColor="#3293a8";
+  element.style.textTransform="uppercase";
+  element.style.marginLeft ="1rem";
+  element.style.borderRadius ="40px";
+  element.addEventListener('click', function handleClick(event){
+    element.disabled=true;
+    let hoursInput =document.querySelector("#hoursinput"+hmwkId);
+    let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
+    hoursInput.style.marginLeft=".2rem"
+    hoursInput.style.borderRadius ="40px";
+    hoursInput.style.outlineColor = "#3293a8"
+    hoursBtn.style.backgroundColor="#3293a8";
+    hoursBtn.style.textTransform="uppercase";
+    hoursBtn.style.marginLeft =".2rem";
+    hoursBtn.style.borderRadius ="40px";
+    hoursInput.style.display = "block";
+    hoursBtn.style.display="block";
+    sendFeedBackListener(hmwkId);
+  });
+}
+function sendFeedBackListener(hmwkId){
+  let hoursInput =document.querySelector("#hoursinput"+hmwkId);
+  let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
+  let feedbackbtn = document.querySelector("#feedbackbtn"+hmwkId);
+  hoursBtn.addEventListener('click', function handleClick(event){
+    hoursInput.style.display="none";
+    hoursBtn.style.display="none";
+    feedbackbtn.style.display="none";
+    alert("Gracias por brindarnos la informacion");
 
+  });
+}
+function sendStresslevelListener(element,hmwkId){
+  let stressInput= document.querySelector("#stressInput"+hmwkId);
+  element.addEventListener('click', function handleClick(event){
+    element.disabled=true;
+    alert("Gracias por dejarnos saber.");
+  })
+}
+function homeworkDone(homeworkId){
+  let feedbackbtn = document.querySelector("#feedbackbtn"+homeworkId);
+  let disabled=student.getIfIdCompleted(homeworkId)
+  if(disabled){
+    feedbackbtn.style.display = "block";
+    feedbackBtnListener(feedbackbtn,homeworkId);
+  }else{
+    feedbackbtn.style.display = "none";
+  }
+}
+function InitializeFeedBackButton(Button){
+  Button.style.display = "none"
+}
+function InitializeHoursFeedback(input,button){
+  input.style.display= "none";
+  button.style.display="none";
+
+}
 function loadDateContainer(homeworksArray,date)
 {
   let dateContainer=document.createElement('div');
@@ -177,15 +256,41 @@ function loadDateContainer(homeworksArray,date)
     dateTittleDiv.style.color="red";
   return dateContainer
 }
+
 function createHomeworkItem(homework)
 {
   let homeworkContainer=document.createElement("div");
   let nameContainer= document.createElement('div');
   let homeworkMarkButton= document.createElement('button');
+  let feedBackButton=document.createElement('button');
+  let hoursInput=document.createElement('input');
+  hoursInput.setAttribute("type", "number");
+  hoursInput.setAttribute("placeholder", "Enter time spent on this assignment");
+  let hoursSubmit=document.createElement('button');
+  let stressInput= document.createElement('input');
+  stressInput.setAttribute("type", "number");
+  stressInput.setAttribute("min", "0");
+  stressInput.setAttribute("max", "10");
+  stressInput.setAttribute("maxLength", "2");
+  stressInput.setAttribute("label","How stressed do you feel 1-10?");
+  let newlabel = document. createElement("Label");
+  newlabel.setAttribute("for",stressInput);
+  newlabel.innerHTML = "How stressed do you feel 1-10?";
+  newlabel.style.marginLeft =".2rem";
+  let stressSubmit= document.createElement('button');
+  addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
+  addPropsToElement(stressSubmit,{"id":"stresssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
+  addPropsToElement(hoursInput,{"id":"hoursinput"+homework.id,"class":"hoursInput"})
+  addPropsToElement(hoursSubmit,{"id":"hourssubmit"+homework.id,"class":"hoursSubmit"}, "Submit")
+  addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
   addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homework.id,"class":"HomeworkContainer"})
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
-  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton)
+  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit,newlabel,stressInput,stressSubmit);
   addListenerForfurtherinfo(nameContainer,homework);
   InitializeMarkButton(homeworkMarkButton,homework.id)
+  InitializeFeedBackButton(feedBackButton);
+  InitializeHoursFeedback(hoursInput,hoursSubmit);
+  initializeStressLevel(stressInput,stressSubmit);
+  sendStresslevelListener(stressSubmit,homework.id);
   return homeworkContainer
 }
