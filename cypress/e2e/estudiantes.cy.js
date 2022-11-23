@@ -106,7 +106,7 @@ describe("FeedBack", () => {
     cy.get("#hmwkBtn1").click()
     });
 });
-describe("Pressing feedBackbutton should show the input for hors spent", () => {
+describe("Pressing feedBackbutton should show the input fields for the student to give feedback", () => {
     it("the add feedback fields should appear", () => {
     cy.visit('http://localhost:1234');
     cy.get("#loginText").type("Montaño Urquieta, Dieter");
@@ -119,7 +119,19 @@ describe("Pressing feedBackbutton should show the input for hors spent", () => {
     cy.get("#feedbackbtn1").click();
     });
 });
-
+describe("Pressing hoursSubmitbuttonShould sendFeedback and make the fields disappear", () => {
+    it("the add feedback fields should disappear after submit is pressed", () => {
+    cy.visit('http://localhost:1234');
+    cy.get("#loginText").type("Montaño Urquieta, Dieter");
+    cy.get("#passwordText").type("123");
+    cy.get("#estudiantesPage").click();
+    cy.get("#enrollCourse").type("TECNOLOGIAS WEB");
+    cy.get("#BtnToEnrollCourse").click();
+    cy.get("#hmwkBtn1").click();
+    cy.get("#feedbackbtn1").click();
+    cy.get("#hourssubmit1").click();
+    });
+});
 
 describe("Log out tests", () => {
     it("should be able to log out", () => {

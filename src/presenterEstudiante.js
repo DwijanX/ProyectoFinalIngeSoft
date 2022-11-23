@@ -170,6 +170,19 @@ function feedbackBtnListener(element,hmwkId){
     let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
     hoursInput.style.display = "block";
     hoursBtn.style.display="block";
+    sendFeedBackListener(hmwkId);
+  });
+}
+function sendFeedBackListener(hmwkId){
+  let hoursInput =document.querySelector("#hoursinput"+hmwkId);
+  let hoursBtn =document.querySelector("#hourssubmit"+hmwkId);
+  let feedbackbtn = document.querySelector("#feedbackbtn"+hmwkId);
+  hoursBtn.addEventListener('click', function handleClick(event){
+    hoursInput.style.display="none";
+    hoursBtn.style.display="none";
+    feedbackbtn.style.display="none";
+    alert("Gracias por brindarnos la informacion");
+
   });
 }
 function homeworkDone(homeworkId){

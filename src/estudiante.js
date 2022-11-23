@@ -19,6 +19,9 @@ class Student{
     getFeedBackhours(){
         return this.hoursFeedback["hoursTaken"];
     }
+    getFeedBackid(){
+        return this.hoursFeedback["homeworkId"];
+    }
     getCoursesStudent()
     {
         return this.coursesStudent;
