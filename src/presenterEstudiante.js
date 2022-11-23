@@ -240,13 +240,18 @@ function createHomeworkItem(homework)
   let stressInput= document.createElement('input');
   stressInput.setAttribute("type", "number");
   stressInput.setAttribute("placeholder", "How stressed do you feel 1-10?");
+  stressInput.setAttribute("min", "0");
+  stressInput.setAttribute("max", "10");
+  stressInput.setAttribute("maxLength", "2");
+  let stressSubmit= document.createElement('button');
   addPropsToElement(stressInput,{"id": "stressinput"+homework.id,"class":"stressInput"})
+  addPropsToElement(stressSubmit,{"id":"hourssubmit"+homework.id,"class":"stressSubmit"}, "Submit")
   addPropsToElement(hoursInput,{"id":"hoursinput"+homework.id,"class":"hoursInput"})
   addPropsToElement(hoursSubmit,{"id":"hourssubmit"+homework.id,"class":"hoursSubmit"}, "Submit")
   addPropsToElement(feedBackButton,{"id":"feedbackbtn"+homework.id,"class":"feedBackButton"}, "Add Feedback");
   addPropsToElement(homeworkContainer,{"id":"hmwkCont"+homework.id,"class":"HomeworkContainer"})
   addPropsToElement(nameContainer,{"id":"hmwkName"+homework.id,"class":"HomeworkText"}, homework.name)
-  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit,stressInput)
+  addElementsToFather(homeworkContainer,nameContainer,homeworkMarkButton,feedBackButton,hoursInput,hoursSubmit,stressInput,stressSubmit);
   addListenerForfurtherinfo(nameContainer,homework);
   InitializeMarkButton(homeworkMarkButton,homework.id)
   InitializeFeedBackButton(feedBackButton);
