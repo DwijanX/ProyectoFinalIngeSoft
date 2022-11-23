@@ -6,7 +6,7 @@ class Homework{
         this.dateFin=dateFin;
         this.courseName=courseName;
         this.hoursNeeded=hoursNeeded;
-        this.id = id
+        this.id = id;
         this.timesCompleted=0;
     }
     getHomeworkObj()
@@ -17,8 +17,7 @@ class Homework{
             dateInit:this.dateInit,
             dateFin:this.dateFin,
             courseName:this.courseName,
-            timesCompleted:this.timesCompleted=0,
-            hoursNeeded:this.hoursNeeded
+            timesCompleted:this.timesCompleted=0
         }
     }
     getId()
