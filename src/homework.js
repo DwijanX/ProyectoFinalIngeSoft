@@ -13,6 +13,10 @@ class Homework{
     addFeedback(feedback){
         this.homeworkFeedbacks.push(feedback);
     }
+    getFeedback()
+    {
+        return this.homeworkFeedbacks;
+    }
     getHomeworkObj()
     {
         return {

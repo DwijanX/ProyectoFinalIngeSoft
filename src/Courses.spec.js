@@ -242,4 +242,17 @@ describe("Tiempo", () => {
         expect(CoursesObj.getHoursToComplete(CoursesObj.getCourseHomeworks('mate'))).toEqual(3);
     });
 });
+describe("Adding feedback to hmwk", () => {
+    let CoursesObj;
+    beforeEach(() => {
+        CoursesObj=new Courses()
+        CoursesObj.createCourse("tst","mate","testName")
+        CoursesObj.createHomework("test","2021-01-01","2021-01-03","mate",3,0)
+      });
+    it("Deberia devolver el feedback ingresado", () => {
+        CoursesObj.addFeedbackToAhmwk(12,0)
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.getFeedback()).toEqual([12]);
+    });
+});
 

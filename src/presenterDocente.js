@@ -1,7 +1,7 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
-import {getCoursesFromAllStudentsWithinACourse, getStudentsInCourse} from "./studentList.js"
-import {getProfessorName} from "./predefinedCourses"
+import {getCoursesFromAllStudentsWithinACourse} from "./studentList.js"
+import {getProfessorName} from "./TeacherLoginManager"
 
 let coursesController=CoursesControllerSingleton.getInstance()
 
