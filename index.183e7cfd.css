@@ -1,0 +1,149 @@
+body {
+  min-height: 100vh;
+  color: #fff;
+  background: #0c192c;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.bubbles {
+  z-index: -100;
+  display: flex;
+  position: relative;
+}
+
+.bubbles span {
+  width: 30px;
+  height: 30px;
+  animation: 15s linear infinite animate;
+  animation-duration: calc(125s / var(--i));
+  background: #4fc3dc;
+  border-radius: 50%;
+  margin: 0 4px;
+  position: relative;
+  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
+}
+
+.bubbles span:nth-child(2n) {
+  background: #ff2d75;
+  box-shadow: 0 0 0 10px #ff2d7544, 0 0 50px #ff2d75, 0 0 50px #ff2d75;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(100vh)scale(0);
+  }
+
+  100% {
+    transform: translateY(-10vh)scale(1);
+  }
+}
+
+#paginaInicio {
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 30%;
+}
+
+.changePage {
+  text-transform: uppercase;
+  background: #0f0;
+  border-radius: 40px;
+  padding: 15px 30px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left: 100px;
+}
+
+.changePage:hover {
+  transition-property: all;
+  transition-duration: .4s;
+  transition-delay: 0s;
+  transition-timing-function: line;
+  transform: translate3d(6px, -6px, 0);
+  box-shadow: -1px 1px #3dab3d, -2px 2px #3dab3d, -3px 3px #3dab3d, -4px 4px #3dab3d, -5px 5px #3dab3d, -6px 6px #3dab3d;
+}
+
+#Login {
+  width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 15px #0000000d;
+}
+
+#Login form {
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+
+form .txt_field {
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+  position: relative;
+}
+
+.txt_field input {
+  width: 100%;
+  height: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0 5px;
+  font-size: 16px;
+}
+
+.txt_field label {
+  color: #adadad;
+  pointer-events: none;
+  font-size: 16px;
+  transition: all .5s;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+}
+
+.txt_field span:before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: all .5s;
+  position: absolute;
+  top: 40px;
+  left: 0;
+}
+
+.txt_field input:focus ~ label, .txt_field input:valid ~ label {
+  color: #2691d9;
+  top: -5px;
+}
+
+.txt_field input:focus ~ span:before, .txt_field input:valid ~ span:before {
+  width: 100%;
+}
+
+#pass {
+  color: #a6a6a6;
+  cursor: pointer;
+  margin: -5px 0 20px 5px;
+}
+
+/*# sourceMappingURL=index.183e7cfd.css.map */

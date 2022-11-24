@@ -1,0 +1,58 @@
+#TeachersDiv {
+  width: 100%;
+  z-index: 10;
+  flex-direction: column;
+  display: none;
+  position: absolute;
+  top: 120px;
+  left: -22%;
+}
+
+.TeachersButton {
+  width: 25%;
+}
+
+.creationForms {
+  display: none;
+}
+
+#BtnToCreateHmwk {
+  padding: 15px 0;
+}
+
+#BtnToCreateCourse {
+  padding: 15px 0;
+  position: relative;
+  top: 10px;
+}
+
+#HomeworkCreation-form, #CourseCreation-form, #HomeworkMofication-form {
+  position: relative;
+  top: 20px;
+}
+
+#TeachersDiv input {
+  padding: 5px;
+}
+
+input[type="submit"] {
+  text-transform: uppercase;
+  background: #0f0;
+  border-radius: 40px;
+  padding: 20px 30px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+input[type="submit"]:hover {
+  transition-property: all;
+  transition-duration: .4s;
+  transition-delay: 0s;
+  transition-timing-function: line;
+  transform: translate3d(6px, -6px, 0);
+  box-shadow: -1px 1px #3dab3d, -2px 2px #3dab3d, -3px 3px #3dab3d, -4px 4px #3dab3d, -5px 5px #3dab3d, -6px 6px #3dab3d;
+}
+
+/*# sourceMappingURL=index.0810076c.css.map */

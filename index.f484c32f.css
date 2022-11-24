@@ -1,0 +1,97 @@
+#StudentsDiv {
+  width: 100%;
+  z-index: 10;
+  flex-direction: column;
+  display: none;
+  position: absolute;
+  top: 120px;
+  left: -22%;
+}
+
+.StudentButton {
+  color: #fff;
+  width: 25%;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 2px solid #009688;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 0;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+  overflow: hidden;
+}
+
+.StudentButton span {
+  height: 100%;
+  width: 0;
+  z-index: -1;
+  background: #009688;
+  border-radius: 25px;
+  transition: all .5s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.StudentButton:hover span {
+  width: 100%;
+}
+
+.StudentButton:hover {
+  border: none;
+}
+
+#enrollCourse {
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 0 15px 10px;
+  font-weight: bold;
+}
+
+.HomeworkContainer {
+  width: 45%;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 1em;
+  display: flex;
+}
+
+.HomeworkBtn {
+  color: #fff;
+  text-transform: uppercase;
+  background: #ff2d75;
+  border-radius: 40px;
+  margin-left: 3rem;
+  padding: 15px 30px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.HomeworkBtn:hover {
+  opacity: .75;
+  cursor: pointer;
+  transition: all .25s;
+}
+
+.HomeworkText {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.HomeworkText:hover {
+  color: #009688;
+  opacity: .75;
+  cursor: pointer;
+}
+
+#logOutButton {
+  display: none;
+}
+
+/*# sourceMappingURL=index.f484c32f.css.map */
