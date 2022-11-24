@@ -1,5 +1,7 @@
-import {professorLogIn, logInProfessorCredentials, createPredefinedCourses, createPredefinedHomework, setProfessorName} from "./predefinedCourses"
+import {professorLogIn, setProfessorName,setProfessorArray} from "./TeacherLoginManager"
+
 import {getStudentsFromJson, studentLogIn, setStudentName} from "./studentList.js"
+import {loadSampleData,getGeneratedProfessorArray} from './SampleDataCourses'
 
 const docentesPage = document.querySelector("#docentesPage");
 const estudiantesPage = document.querySelector("#estudiantesPage");
@@ -19,19 +21,10 @@ const passwordText = document.querySelector("#passwordText");
 let passInfo = document.querySelector("#pass");
 let alreadyLoaded=false
 let alreadyLoggedIn=false;
-function loadSampleData()
-{
-  if(alreadyLoaded==false)
-  {
-    createPredefinedCourses()
-    createPredefinedHomework()
-    alreadyLoaded=true
-  }
-}
+
 function logInProcedure()
 {
   alreadyLoggedIn=true;
-  loadSampleData()
   resetMinorObjsStyles()
   estudiantesPage.style.display="none"
   docentesPage.style.display="none"
@@ -42,10 +35,8 @@ function logInProcedure()
 docentesPage.addEventListener("click", (event) => {
   event.preventDefault();
 
-  logInProfessorCredentials()
   if(professorLogIn(loginText.value, passwordText.value) && !alreadyLoggedIn)
   {
-    getStudentsFromJson()
     logInProcedure()
     setProfessorName(loginText.value)
     TeachersDiv.style.display="flex"
@@ -62,8 +53,6 @@ docentesPage.addEventListener("click", (event) => {
 
 estudiantesPage.addEventListener("click", (event) => {
   event.preventDefault();
-
-  getStudentsFromJson()
   if(studentLogIn(loginText.value, passwordText.value)  && !alreadyLoggedIn)
   {
     logInProcedure()
@@ -100,4 +89,11 @@ function resetPages()
   StudentsDiv.style.display="none"
   TeachersDiv.style.display="none"
   Login.style.display="block"
+}
+
+
+window.onload=()=>{
+  loadSampleData();
+  setProfessorArray(getGeneratedProfessorArray());
+  getStudentsFromJson();
 }
