@@ -1,6 +1,6 @@
 import * as errorCode from './errorCodes'
 import { CoursesControllerSingleton } from "./coursesController";
-import {getCoursesFromAllStudentsWithinACourse} from "./studentList.js"
+import {getCoursesFromAllStudentsWithinACourse, getStudentsInCourse} from "./studentList.js"
 import {getProfessorName} from "./TeacherLoginManager"
 
 let coursesController=CoursesControllerSingleton.getInstance()
@@ -250,8 +250,8 @@ function showItemsOnClick(divID)
   {
     console.log(homework.homeworkFeedbacks)
     selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
-    homework.dateFin + " , materia: " + homework.courseName+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay();
-    //homework.homeworkFeedbacks
+    homework.dateFin + " , materia: " + homework.courseName+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay()
+    + ", feedback de horas:  " + homework.sumFeedback();
   }
   else{
     selectedHomework.innerHTML = ""

@@ -254,5 +254,18 @@ describe("Adding feedback to hmwk", () => {
         let hmwk=CoursesObj.getHomeworkBasedOnId(0)
         expect(hmwk.getFeedback()).toEqual([12]);
     });
+    it("Deberia devolver el feedback ingresado de muchas tareas", () => {
+        CoursesObj.addFeedbackToAhmwk(12,0)
+        CoursesObj.addFeedbackToAhmwk(10,0)
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.getFeedback()).toEqual([12,10]);
+    });
+    it("Deberia devolver la suma de los feedback", () => {
+        CoursesObj.addFeedbackToAhmwk(12,0)
+        CoursesObj.addFeedbackToAhmwk(10,0)
+        CoursesObj.addFeedbackToAhmwk(8,0)
+        CoursesObj.addFeedbackToAhmwk(6,0)
+        let hmwk=CoursesObj.getHomeworkBasedOnId(0)
+        expect(hmwk.sumFeedback()).toEqual(9);
+    });
 });
-
