@@ -248,8 +248,10 @@ function showItemsOnClick(divID)
   console.log(homework);
   if(homework != 2)
   {
+    console.log(homework.homeworkFeedbacks)
     selectedHomework.innerHTML = "nombre: " + homework.name + " , fecha inicio: " + homework.dateInit + " , fecha fin: " + 
     homework.dateFin + " , materia: " + homework.courseName+", Horas necesarias:  "+homework.hoursNeeded+", Horas por dia:  "+homework.getHoursPerDay();
+    //homework.homeworkFeedbacks
   }
   else{
     selectedHomework.innerHTML = ""
